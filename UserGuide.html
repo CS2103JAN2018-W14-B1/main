@@ -33,9 +33,9 @@
 <li><a href="#forming-a-class-code-coming-in-v1-3-code">3.3. Forming a class <code>[coming in v1.3]</code></a></li>
 <li><a href="#setting-up-an-appointment-code-set-appointment-code-code-coming-in-v1-2-code">3.4. Setting up an appointment : <code>set appointment</code> <code>[coming in v1.2]</code></a></li>
 <li><a href="#setting-a-task-code-set-task-code-code-coming-in-v1-2-code">3.5. Setting a task : <code>set task</code> <code>[coming in v1.2]</code></a></li>
-<li><a href="#listing-all-contacts-tasks-appointments-code-list-code">3.6. Listing all contacts/tasks/appointments : <code>list</code></a></li>
-<li><a href="#editing-a-contact-code-edit-code">3.7. Editing a contact : <code>edit</code></a></li>
-<li><a href="#locating-contacts-by-name-code-find-code">3.8. Locating contacts by name: <code>find</code></a></li>
+<li><a href="#listing-all-contacts-tasks-appointments-students-code-list-code">3.6. Listing all contacts/tasks/appointments/students : <code>list</code></a></li>
+<li><a href="#editing-a-contact-code-edit-code-will-be-updated-by-v1-4">3.7. Editing a contact : <code>edit</code> [will be updated by v1.4]</a></li>
+<li><a href="#locating-contacts-by-name-code-find-code-will-be-updated-by-v1-2">3.8. Locating contacts by name: <code>find</code> [will be updated by v1.2]</a></li>
 <li><a href="#deleting-an-entry-in-the-list-code-delete-code">3.9. Deleting an entry in the list : <code>delete</code></a></li>
 <li><a href="#selecting-a-contact-code-select-code">3.10. Selecting a contact : <code>select</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">3.11. Listing entered commands : <code>history</code></a></li>
@@ -44,7 +44,7 @@
 <li><a href="#clearing-all-entries-code-clear-code">3.14. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">3.15. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">3.16. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.17. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#upcoming-features-code-coming-soon-code">3.17. Upcoming features <code>[coming soon]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -56,7 +56,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TeachConnect (TC) is created to help teachers and other educational professionals to <strong>better manage their contacts</strong> and <strong>remenber students that they had taught</strong>. TeachConnect is also tailored for teachers who would <strong>prefer to use a desktop app for managing contacts</strong>. Most importantly, it is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeachConnect will manage your contacts faster than traditional GUI apps. Interested? Jump to <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>TeachConnect (TC) is created to help teachers and other educational professionals <strong>better manage their contacts</strong> and <strong>remember students they taught</strong>. TeachConnect is also tailored for teachers who would <strong>prefer to use a Desktop App for managing contacts</strong>. Most importantly, it is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeachConnect will manage your contacts faster than traditional GUI apps. Interested? Jump to <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -75,14 +75,14 @@
 </td>
 <td class="content">
 This app will not work with earlier versions of Java 8.<br>
-You can download the lastest Java version <a href="https://java.com/en/download/">here</a>.
+You can download the latest Java version <a href="https://java.com/en/download/">here</a>.
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/CS2103JAN2018-W14-B1/main//releases">here</a>.</p>
+<p>Download the latest <code>Teachconnect.jar</code> <a href="https://github.com/CS2103JAN2018-W14-B1/main//releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your TeachConnect.</p>
@@ -208,7 +208,7 @@ Format: <code>form subj/SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</c
 <div class="ulist">
 <ul>
 <li>
-<p>Students specified by the <code>INDEX</code> are added in the class.</p>
+<p>Students specified by the <code>INDEX</code> are added to the class.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -294,7 +294,7 @@ Format: <code>set task t/TITLE e/END_DATE END_TIME</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Task with <code>TITLE</code> which needs to complete before <code>END_DATE</code> at <code>END_TIME</code> is added.</p>
+<p>Task with <code>TITLE</code> which needs to completed before <code>END_DATE</code> at <code>END_TIME</code> is added.</p>
 </li>
 <li>
 <p><code>END_DATE</code> must be in the format <code>DD-MM-YYYY</code>.</p>
@@ -319,7 +319,7 @@ Sets a task which needs to be completed before April 5th, 2018, 10am.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-contacts-tasks-appointments-code-list-code"><a class="link" href="#listing-all-contacts-tasks-appointments-code-list-code">3.6. Listing all contacts/tasks/appointments : <code>list</code></a></h3>
+<h3 id="listing-all-contacts-tasks-appointments-students-code-list-code"><a class="link" href="#listing-all-contacts-tasks-appointments-students-code-list-code">3.6. Listing all contacts/tasks/appointments/students : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all of the specified <code>TYPE</code>.<br>
 Format: <code>list TYPE</code>.</p>
@@ -353,7 +353,7 @@ Format: <code>list TYPE</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-contact-code-edit-code"><a class="link" href="#editing-a-contact-code-edit-code">3.7. Editing a contact : <code>edit</code></a></h3>
+<h3 id="editing-a-contact-code-edit-code-will-be-updated-by-v1-4"><a class="link" href="#editing-a-contact-code-edit-code-will-be-updated-by-v1-4">3.7. Editing a contact : <code>edit</code> [will be updated by v1.4]</a></h3>
 <div class="paragraph">
 <p>Edits an existing contact.<br></p>
 </div>
@@ -406,7 +406,7 @@ Edits the name of the 2nd contact to be <code>Betsy Crower</code> and clears all
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-contacts-by-name-code-find-code"><a class="link" href="#locating-contacts-by-name-code-find-code">3.8. Locating contacts by name: <code>find</code></a></h3>
+<h3 id="locating-contacts-by-name-code-find-code-will-be-updated-by-v1-2"><a class="link" href="#locating-contacts-by-name-code-find-code-will-be-updated-by-v1-2">3.8. Locating contacts by name: <code>find</code> [will be updated by v1.2]</a></h3>
 <div class="paragraph">
 <p>Finds contacts whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -658,14 +658,45 @@ Format: <code>exit</code></p>
 <div class="sect2">
 <h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.16. Saving the data</a></h3>
 <div class="paragraph">
-<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
+<p>TeachConnect data are saved in the hard disk automatically [even while sharing TeachConnect] after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.17. Encrypting data files <code>[coming in v2.0]</code></a></h3>
-<div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
+<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">3.17. Upcoming features <code>[coming soon]</code></a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Clear distinction between students and parents [coming in v1.2]</p>
+</li>
+<li>
+<p>Finding not only by name but by any field [coming in v1.2]</p>
+</li>
+<li>
+<p>Import and Export (Sharing of Address Book) [coming in v1.3]</p>
+</li>
+<li>
+<p>Adding events and Appointments [coming in v1.3]</p>
+</li>
+<li>
+<p>An All new customised UI [coming in v1.3]</p>
+</li>
+<li>
+<p>Shortcuts and Autocompletion [coming in v1.4]</p>
+</li>
+<li>
+<p>A login feature [coming in v1.5]</p>
+</li>
+<li>
+<p>Dynamic search [coming in v2.0]</p>
+</li>
+<li>
+<p>NLP for event and appointment scheduling [coming in v2.0]</p>
+</li>
+<li>
+<p>Encrypting data files [coming in v2.0]</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -675,7 +706,11 @@ There is no need to save manually.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder. Alternatively you can also choose the import and export commands coming up!</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Does it automatically tell us if there are any appointment clashes?<br>
+<strong>A</strong>: Hell yes! Our aim is also to help you make your planning simpler and that is just what we do!</p>
 </div>
 </div>
 </div>
@@ -744,7 +779,7 @@ e.g. <code>delete schedule 3</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-14 17:05:57 UTC
+Last updated 2018-03-15 03:37:41 UTC
 </div>
 </div>
 </body>
