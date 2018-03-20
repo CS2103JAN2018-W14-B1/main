@@ -45,9 +45,11 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#import-feature">3.2. Import Feature</a></li>
+<li><a href="#export-mechanism">3.3. Export mechanism</a></li>
+<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -863,20 +865,276 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="import-feature"><a class="link" href="#import-feature">3.2. Import Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The ImportCommand uses <code>XmlAddressBookStorage</code> to generate a temporary <code>AddressBook</code> object from a given path. It takes in a String value path. The command then adds the contacts found in the temporary <code>AddressBook</code> object into the main address book object. Below is the rough idea of the constructor for the class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ImportCommand(<span class="predefined-type">String</span> importPath) {
+        requireNonNull(importPath);
+        <span class="local-variable">this</span>.filePath = importPath;
+        addressBookStorage = <span class="keyword">new</span> XmlAddressBookStorage(filePath);
+}</code></pre>
+</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/ImportCommandFlowChart.png" alt="ImportCommandFlowChart">
+</div>
+</div>
+<div class="paragraph">
+<p>Import command extends <code>Undoable Command</code> and hence Undo can be called on it. It initially checks if the given file path is valid and if so initialised the contacts from there, creates a <code>Person</code> object and adds it to the current <code>TeachConnect</code> with the help of <code>model</code>. The code can be found below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+        <span class="keyword">try</span> {
+          <span class="keyword">if</span> (addressBookStorage.readAddressBook(filePath).isPresent()) {
+              <span class="local-variable">this</span>.addressBookImported = <span class="keyword">new</span> AddressBook(addressBookStorage.readAddressBook().get());
+              ObservableList&lt;Person&gt; people = addressBookImported.getPersonList();
+              <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; people.size(); i++) {
+                  <span class="keyword">try</span> {
+                      model.addPerson(people.get(i));
+                  } <span class="keyword">catch</span> (DuplicatePersonException e) {
+                      <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_PERSON);
+                  }
+              }
+          } <span class="keyword">else</span> {
+              <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE));
+          }
+      } <span class="keyword">catch</span> (DataConversionException e) {
+          <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE));
+      } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+          <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE));
+      }
+     <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-implementation-import-command"><a class="link" href="#aspects-implementation-import-command">Aspects : Implementation Import Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Only import from an <code>XML</code> file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Goes well with the idea of TeachConnect. Easier to implement and also clear distinction of the file that needs to be imported by the user with the help of the .XML extension.</p>
+</li>
+<li>
+<p>Cons: User might want to import from Excel only to realise this isn&#8217;t possible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Include import from an <code>Excel</code> file too.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Might be more intuitive for the user and might come in handy.</p>
+</li>
+<li>
+<p>Cons: Complex implementation ther by giving rise to more bugs and slower response rate.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export-mechanism"><a class="link" href="#export-mechanism">3.3. Export mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code>. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">ExportCommand(<span class="predefined-type">String</span> range, Tag tag, <span class="predefined-type">String</span> path, <span class="predefined-type">String</span> nameOfExportFile) {
+        requireNonNull(range);
+        requireNonNull(tag);
+        requireNonNull(path);
+        requireNonNull(nameOfExportFile);
+
+        <span class="local-variable">this</span>.range = range;
+        <span class="local-variable">this</span>.path = path;
+        thispublic.tag = tag;
+        <span class="local-variable">this</span>.nameOfExportFile = nameOfExportFile;
+
+        teachConnectBook = <span class="keyword">new</span> AddressBook();
+}</code></pre>
+</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/ExportCommandDiagram.png" alt="ExportCommandDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The method <code>handleRange()</code> splits the range using a separator [, in this case] and returns a <code>String</code> array with the upper bound and lower bound as values. In some cases it also returns <code>all</code> or the single <code>index</code> that has to be exported.</p>
+</div>
+<div class="paragraph">
+<p>Below is an extract of the method <code>handleRange()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="predefined-type">String</span><span class="type">[]</span> handleRange() <span class="directive">throws</span> <span class="exception">IOException</span> {
+        <span class="predefined-type">String</span><span class="type">[]</span> rangeStringArray = <span class="local-variable">this</span>.range.split(<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>);
+        <span class="keyword">if</span> (rangeStringArray.length &gt; <span class="integer">2</span>) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">IOException</span>();
+        }
+        <span class="keyword">return</span> rangeStringArray;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Any range with more than 2 values in the String array returned throws an IO Exception. To add the contacts to the export file, contacts are added to the teachConnectBook. There are 4 individual cases and multiple combinations of these:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All (Without a tag)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the word <code>all</code> is present in the user input, we will just export all the contacts from the last shown list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>All (With a Tag)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the word <code>all</code> is present along with a tag specified in the user input, we will just export all the contacts with that particular tag from the last shown list</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Specific index (e.g. 1, 2, 3)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the user input contains a specific index, we will add that index (one-based) to the <code>teachConnectBook</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Range of indexes (e.g. 1,5)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the user input contains a range which is identified by the <code>,</code> character, we will add that range of index (one-based) to the <code>teachConnectBook</code> including the lower range but excluding the upper bound.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Range of indexes (with a tag)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the user input contains a range which is identified by the <code>,</code> character along with the tag, we will add that range of index (one-based) to the <code>teachConnectBook</code> if that contact contains that particular tag including the lower range but excluding the upper bound.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Below is the code snippet to identify the three cases in the user input:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">String</span><span class="type">[]</span> rangeGiven;
+        <span class="keyword">try</span> {
+            rangeGiven = handleRange();
+        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_RANGE_ERROR);
+        }
+        <span class="keyword">if</span> (rangeGiven[<span class="integer">0</span>].equals(<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span>)) {
+            <span class="keyword">try</span> {
+                exportAllRange(tag);
+            } <span class="keyword">catch</span> (DuplicatePersonException e) {
+                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(MESSAGE_FAIL);
+            }
+        } <span class="keyword">else</span> {
+            <span class="keyword">if</span> (rangeGiven.length != <span class="integer">1</span>) {
+                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; rangeGiven.length; i++) {
+                    <span class="type">int</span> low = <span class="predefined-type">Integer</span>.parseInt(rangeGiven[<span class="integer">0</span>]);
+                    <span class="type">int</span> high = <span class="predefined-type">Integer</span>.parseInt(rangeGiven[<span class="integer">1</span>]);
+                    <span class="keyword">if</span> (low &gt;= high) {
+                        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_RANGE_ERROR);
+                    } <span class="keyword">else</span> {
+                        <span class="keyword">try</span> {
+                            exportRange(low, high, tag);
+                        } <span class="keyword">catch</span> (DuplicatePersonException e) {
+                            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(MESSAGE_FAIL);
+                        } <span class="keyword">catch</span> (<span class="exception">IndexOutOfBoundsException</span> e) {
+                            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_OUT_OF_BOUNDS);
+                        }
+                    }
+                }
+            } <span class="keyword">else</span> {
+                <span class="type">int</span> low = <span class="predefined-type">Integer</span>.parseInt(rangeGiven[<span class="integer">0</span>]);
+                <span class="keyword">try</span> {
+                    exportSpecific(low);
+                } <span class="keyword">catch</span> (DuplicatePersonException e) {
+                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(MESSAGE_FAIL);
+                } <span class="keyword">catch</span> (<span class="exception">IndexOutOfBoundsException</span> e) {
+                    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_OUT_OF_BOUNDS);
+                }
+            }
+        }
+
+        ....Storage part comes here</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The final step is to create the xml file from the <code>teachConnectBook</code>.</p>
+</div>
+<div class="paragraph">
+<p>Below is the code snippet to export the data into an xml file using <code>AddressBookStorage</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">teachConnectStorage = <span class="keyword">new</span> XmlAddressBookStorage(path + <span class="string"><span class="delimiter">&quot;</span><span class="content">/</span><span class="delimiter">&quot;</span></span> + nameOfExportFile + <span class="string"><span class="delimiter">&quot;</span><span class="content">.xml</span><span class="delimiter">&quot;</span></span>);
+        <span class="keyword">try</span> {
+            teachConnectStorage.saveAddressBook(teachConnectBook);
+        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_FAIL);
+        }
+        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -907,7 +1165,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2663,7 +2921,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-20 12:49:49 UTC
+Last updated 2018-03-20 14:08:08 UTC
 </div>
 </div>
 </body>
