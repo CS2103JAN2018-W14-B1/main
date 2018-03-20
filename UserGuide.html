@@ -31,11 +31,11 @@
 <li><a href="#viewing-mannual-code-help-code">3.1. Viewing mannual : <code>help</code></a></li>
 <li><a href="#adding-a-contact-code-add-code">3.2. Adding a contact: <code>add</code></a></li>
 <li><a href="#forming-a-class-code-coming-in-v1-3-code">3.3. Forming a class <code>[coming in v1.3]</code></a></li>
-<li><a href="#setting-up-an-appointment-code-set-appointment-code-code-coming-in-v1-2-code">3.4. Setting up an appointment : <code>set appointment</code> <code>[coming in v1.2]</code></a></li>
-<li><a href="#setting-a-task-code-set-task-code-code-coming-in-v1-2-code">3.5. Setting a task : <code>set task</code> <code>[coming in v1.2]</code></a></li>
+<li><a href="#setting-up-an-appointment-code-set-appointment-code-code-coming-in-v1-3-code">3.4. Setting up an appointment : <code>set appointment</code> <code>[coming in v1.3]</code></a></li>
+<li><a href="#setting-a-task-code-set-task-code-code-coming-in-v1-3-code">3.5. Setting a task : <code>set task</code> <code>[coming in v1.3]</code></a></li>
 <li><a href="#listing-all-contacts-tasks-appointments-students-code-list-code">3.6. Listing all contacts/tasks/appointments/students : <code>list</code></a></li>
 <li><a href="#editing-a-contact-code-edit-code-will-be-updated-by-v1-4">3.7. Editing a contact : <code>edit</code> [will be updated by v1.4]</a></li>
-<li><a href="#locating-contacts-by-name-code-find-code-will-be-updated-by-v1-2">3.8. Locating contacts by name: <code>find</code> [will be updated by v1.2]</a></li>
+<li><a href="#locating-contacts-by-name-code-find-code-will-be-updated-by-v1-3">3.8. Locating contacts by name: <code>find</code> [will be updated by v1.3]</a></li>
 <li><a href="#deleting-an-entry-in-the-list-code-delete-code">3.9. Deleting an entry in the list : <code>delete</code></a></li>
 <li><a href="#selecting-a-contact-code-select-code">3.10. Selecting a contact : <code>select</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">3.11. Listing entered commands : <code>history</code></a></li>
@@ -44,7 +44,9 @@
 <li><a href="#clearing-all-entries-code-clear-code">3.14. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">3.15. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">3.16. Saving the data</a></li>
-<li><a href="#upcoming-features-code-coming-soon-code">3.17. Upcoming features <code>[coming soon]</code></a></li>
+<li><a href="#importing-the-contacts-code-import-code-code-since-v1-2-code">3.17. Importing the contacts : <code>import</code> <code>[since v1.2]</code></a></li>
+<li><a href="#exporting-the-contacts-code-export-code-code-since-v1-2-code">3.18. Exporting the contacts : <code>export</code> <code>[since v1.2]</code></a></li>
+<li><a href="#upcoming-features-code-coming-soon-code">3.19. Upcoming features <code>[coming soon]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -91,7 +93,7 @@ You can download the latest Java version <a href="https://java.com/en/download/"
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
+<img src="images/UI_modified.png" alt="UI modified" width="790">
 </div>
 </div>
 </li>
@@ -243,7 +245,7 @@ Forms an English class containing the first, second and fifth contact in the lis
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-an-appointment-code-set-appointment-code-code-coming-in-v1-2-code"><a class="link" href="#setting-up-an-appointment-code-set-appointment-code-code-coming-in-v1-2-code">3.4. Setting up an appointment : <code>set appointment</code> <code>[coming in v1.2]</code></a></h3>
+<h3 id="setting-up-an-appointment-code-set-appointment-code-code-coming-in-v1-3-code"><a class="link" href="#setting-up-an-appointment-code-set-appointment-code-code-coming-in-v1-3-code">3.4. Setting up an appointment : <code>set appointment</code> <code>[coming in v1.3]</code></a></h3>
 <div class="paragraph">
 <p>Sets an appointment with the specified contact.<br>
 Format: <code>set appointment t/TITLE s/START_DATE START_TIME e/END_DATE END_TIME i/INDEX</code></p>
@@ -284,7 +286,7 @@ Sets an appointment on April 5th, 2018, 10am with the 3rd contact in the list.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-a-task-code-set-task-code-code-coming-in-v1-2-code"><a class="link" href="#setting-a-task-code-set-task-code-code-coming-in-v1-2-code">3.5. Setting a task : <code>set task</code> <code>[coming in v1.2]</code></a></h3>
+<h3 id="setting-a-task-code-set-task-code-code-coming-in-v1-3-code"><a class="link" href="#setting-a-task-code-set-task-code-code-coming-in-v1-3-code">3.5. Setting a task : <code>set task</code> <code>[coming in v1.3]</code></a></h3>
 <div class="paragraph">
 <p>Sets a task to be done by a deadline<br>
 Format: <code>set task t/TITLE e/END_DATE END_TIME</code></p>
@@ -406,7 +408,7 @@ Edits the name of the 2nd contact to be <code>Betsy Crower</code> and clears all
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-contacts-by-name-code-find-code-will-be-updated-by-v1-2"><a class="link" href="#locating-contacts-by-name-code-find-code-will-be-updated-by-v1-2">3.8. Locating contacts by name: <code>find</code> [will be updated by v1.2]</a></h3>
+<h3 id="locating-contacts-by-name-code-find-code-will-be-updated-by-v1-3"><a class="link" href="#locating-contacts-by-name-code-find-code-will-be-updated-by-v1-3">3.8. Locating contacts by name: <code>find</code> [will be updated by v1.3]</a></h3>
 <div class="paragraph">
 <p>Finds contacts whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -663,17 +665,70 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">3.17. Upcoming features <code>[coming soon]</code></a></h3>
+<h3 id="importing-the-contacts-code-import-code-code-since-v1-2-code"><a class="link" href="#importing-the-contacts-code-import-code-code-since-v1-2-code">3.17. Importing the contacts : <code>import</code> <code>[since v1.2]</code></a></h3>
+<div class="paragraph">
+<p>TeachConnect allows you to import contacts from a different TeachConnect file by specifying the location of the file.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>import [TYPE] pathname</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:
+Importing Contacts : <code>import ./data/importsample.xml</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-the-contacts-code-export-code-code-since-v1-2-code"><a class="link" href="#exporting-the-contacts-code-export-code-code-since-v1-2-code">3.18. Exporting the contacts : <code>export</code> <code>[since v1.2]</code></a></h3>
+<div class="paragraph">
+<p>TeachConnect allows you to export contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts based on a given range of indexes or a given tag or a given tag in a range of indexes.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>export [TYPE] n/NAME r/RANGE t/TAG p/PATH</code></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>export [TYPE] n/NAME r/RANGE p/PATH</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can export all the people at once, all the people with a certain tag at once, all the people with a certain tag in a range at once or all the people in a range with any tags in a single command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+You can only export all a people based on one or zero tags.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p>Exporting contacts : <code>export n/StudentsFile1 r/all t/students p/./data</code>
+Exporting contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">3.19. Upcoming features <code>[coming soon]</code></a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Clear distinction between students and parents [coming in v1.2]</p>
+<p>Clear distinction between students and parents [coming in v1.3]</p>
 </li>
 <li>
-<p>Finding not only by name but by any field [coming in v1.2]</p>
-</li>
-<li>
-<p>Import and Export (Sharing of Address Book) [coming in v1.3]</p>
+<p>Finding not only by name but by any field [coming in v1.3]</p>
 </li>
 <li>
 <p>Adding events and Appointments [coming in v1.3]</p>
@@ -764,6 +819,14 @@ e.g. <code>set task t/Mark papers d/05-04-2018 10:00</code></p>
 e.g. <code>delete schedule 3</code></p>
 </li>
 <li>
+<p><strong>Import TeachConnect File</strong> : <code>import</code><br>
+e.g. <code>import ./data/samplefile.xml</code></p>
+</li>
+<li>
+<p><strong>Export</strong> : <code>export n/NAME r/RANGE t/TAG p/PATH</code><br>
+e.g. <code>export n/samplefile.xml r/all t/friends p/.data</code></p>
+</li>
+<li>
 <p><strong>History</strong> : <code>history</code></p>
 </li>
 <li>
@@ -779,7 +842,7 @@ e.g. <code>delete schedule 3</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-19 17:08:27 UTC
+Last updated 2018-03-20 12:49:49 UTC
 </div>
 </div>
 </body>
