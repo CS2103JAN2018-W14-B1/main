@@ -47,9 +47,10 @@
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#import-feature">3.2. Import Feature</a></li>
 <li><a href="#export-mechanism">3.3. Export mechanism</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#incomplete-student-management">3.4. [Incomplete] Student Management</a></li>
+<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1121,20 +1122,73 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="incomplete-student-management"><a class="link" href="#incomplete-student-management">3.4. [Incomplete] Student Management</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The student manangement allows the user of TeachConnect to manage a particular type of contact, a student. The user is capable of interacting with the student contact just like with any other contact, for example: adding, editing, deleting and so on. In addition, users will be able to form classes to group students of the same class together. An overview of the Model Class after implementation is shown below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/EditedModelClassDiagram.png" alt="EditedModelClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>As shown above, <code>student</code> extends from <code>person</code>, giving <code>student</code> access to its constructor and getter methods for <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code> whereas only <code>student</code> will have access to <code>class</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-implementation-of-student"><a class="link" href="#aspects-implementation-of-student">Aspects : Implementation of student</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> student extends person</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allow students access to person methods while restricting person from accessing student methods.</p>
+</li>
+<li>
+<p>Cons: A seperate UniqueStudentList is required to store the student contacts.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> only use a tag to show its a student</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Simpler to implement and tags are visible to user</p>
+</li>
+<li>
+<p>Cons: Requires every operation to check the tags. Tags can be removed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1165,7 +1219,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2921,7 +2975,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-20 14:15:46 UTC
+Last updated 2018-03-20 21:17:54 UTC
 </div>
 </div>
 </body>
