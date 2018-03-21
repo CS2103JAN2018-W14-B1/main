@@ -45,12 +45,14 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#import-feature">3.2. Import Feature</a></li>
-<li><a href="#export-mechanism">3.3. Export mechanism</a></li>
+<li><a href="#import-contacts">3.2. Import Contacts</a></li>
+<li><a href="#export-contacts">3.3. Export contacts</a></li>
 <li><a href="#incomplete-student-management">3.4. [Incomplete] Student Management</a></li>
-<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#event-management">3.5. Event Management</a></li>
+<li><a href="#proposed-changing-gui-theme">3.6. [Proposed] Changing GUI theme</a></li>
+<li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.8. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -866,7 +868,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-feature"><a class="link" href="#import-feature">3.2. Import Feature</a></h3>
+<h3 id="import-contacts"><a class="link" href="#import-contacts">3.2. Import Contacts</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
@@ -954,7 +956,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-mechanism"><a class="link" href="#export-mechanism">3.3. Export mechanism</a></h3>
+<h3 id="export-contacts"><a class="link" href="#export-contacts">3.3. Export contacts</a></h3>
 <div class="paragraph">
 <p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code>. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
 </div>
@@ -1175,20 +1177,129 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
+<h3 id="event-management"><a class="link" href="#event-management">3.5. Event Management</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>There are two types of events: an <code>Appointment</code> or a <code>Task</code>.
+The model for event are shown below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/EventModelClassDiagram.png" alt="EventModelClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><code>Appointment</code> consist of 4 variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Title: Hold description for the appointment</p>
+</li>
+<li>
+<p>Start Time: Hold the starting time of the appointment</p>
+</li>
+<li>
+<p>End time: Hold the end time of the appointment</p>
+</li>
+<li>
+<p>Person to meet: (optional) Hold the target  in the appointment</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>Task</code> consist of 2 variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Title: Hold description for the task</p>
+</li>
+<li>
+<p>Time: Hold the time the task is expected to be finished</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Commands supported for each event</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set</p>
+</li>
+<li>
+<p>Remove</p>
+</li>
+<li>
+<p>Edit</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Similar to <code>UniquePersonList</code> and <code>UniqueTagList</code>, <code>UniqueEventList</code> is linked
+to <code>AddressBook</code>. Request to change to the <code>AddressBook</code> model is signalled through <code>ModelManager</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-implementation-of-set-event"><a class="link" href="#aspects-implementation-of-set-event">Aspects : Implementation of set event</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> user can still set appointment/task with the starting time/deadline already elapsed.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Might be useful if the users want to keep track of past events.</p>
+</li>
+<li>
+<p>Cons: Not the most intuitive implementation and might be prone to error from the user side.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> user can only set  appointment/task with the starting time/deadline in the future</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Is the more intuitive approach and can prevent the user from keying in "redundant" events</p>
+</li>
+<li>
+<p>Cons: As TeachConnect fetches the current time from the user&#8217;s system, if the user for some purposes set the system&#8217;s time to deviate from world clock, some difficulties may arise when he/she wants to add new event.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-changing-gui-theme"><a class="link" href="#proposed-changing-gui-theme">3.6. [Proposed] Changing GUI theme</a></h3>
+<div class="paragraph">
+<p><em>{to be finished later}</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1219,7 +1330,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2975,7 +3086,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 02:10:26 UTC
+Last updated 2018-03-21 03:06:39 UTC
 </div>
 </div>
 </body>
