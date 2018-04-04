@@ -47,9 +47,11 @@
 <li><a href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">3.19. Saving the data</a></li>
-<li><a href="#importing-the-contacts-code-import-code-code-since-v1-2-code">3.20. Importing the contacts : <code>import</code> <code>[since v1.2]</code></a></li>
-<li><a href="#exporting-the-contacts-code-export-code-code-since-v1-2-code">3.21. Exporting the contacts : <code>export</code> <code>[since v1.2]</code></a></li>
-<li><a href="#upcoming-features-code-coming-soon-code">3.22. Upcoming features <code>[coming soon]</code></a></li>
+<li><a href="#importing-the-contacts-code-import-code-code-since-v1-4-code">3.20. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></li>
+<li><a href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">3.21. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></li>
+<li><a href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code">3.22. Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></li>
+<li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code">3.23. Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></li>
+<li><a href="#upcoming-features-code-coming-soon-code">3.24. Upcoming features <code>[coming soon]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -213,9 +215,17 @@ A contact can have any number of tags (including 0)
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="paragraph">
-<p>Adding a default contact: <code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> t/friend<br>
-Adding a student contact: <code>add student n/Betsy Crowe e/betsycrowe@example.com a/Centre Street, block 238, #02-02</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/friend</code><br>
+Adds a default contact.</p>
+</li>
+<li>
+<p><code>add student n/Betsy Crowe e/betsycrowe@example.com a/Centre Street, block 238, #02-02</code><br>
+Adds a student contact.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -256,7 +266,7 @@ Format: <code>form subj/SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</c
 <div class="ulist">
 <ul>
 <li>
-<p><code>list student</code><br>
+<p><code>list students</code><br>
 <code>form 1,2,5 subj/English s/18-01-2018 e/17-07-2019</code><br>
 Forms an English class containing the first, second and fifth contact in the list that starts in 18 Jan 2018 to 17 July 2019.</p>
 </li>
@@ -378,7 +388,7 @@ Format: <code>remove EVENT_TYPE INDEX</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list appointment</code><br>
+<p><code>list appointments</code><br>
 <code>remove appointment 2</code><br>
 Removes the appointment with the index 2 in the appointment list.</p>
 <div class="imageblock">
@@ -532,7 +542,7 @@ Format: <code>list TYPE</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>TYPE</code> can be of the following: <code>contact</code>, <code>student</code>, <code>task</code>, <code>appointment</code>.</p>
+<p><code>TYPE</code> can be of the following: <code>contacts</code>, <code>students</code>, <code>tasks</code>, <code>appointments</code>, <code>shortcuts</code>.</p>
 </li>
 <li>
 <p><code>TYPE</code> cannot be empty.</p>
@@ -547,10 +557,13 @@ Format: <code>list TYPE</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>List all student: <code>list student</code><br></p>
+<p>List all student: <code>list students</code><br></p>
 </li>
 <li>
-<p>List all task: <code>list task</code></p>
+<p>List all task: <code>list tasks</code><br></p>
+</li>
+<li>
+<p>List all command shortcut: <code>list shortcuts</code></p>
 </li>
 </ul>
 </div>
@@ -861,33 +874,39 @@ Format: <code>exit</code></p>
 <div class="sect2">
 <h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.19. Saving the data</a></h3>
 <div class="paragraph">
-<p>TeachConnect data are saved in the hard disk automatically [even while sharing TeachConnect] after any command that changes the data.<br>
+<p>Saves data in the hard disk automatically [even while sharing TeachConnect] after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-the-contacts-code-import-code-code-since-v1-2-code"><a class="link" href="#importing-the-contacts-code-import-code-code-since-v1-2-code">3.20. Importing the contacts : <code>import</code> <code>[since v1.2]</code></a></h3>
+<h3 id="importing-the-contacts-code-import-code-code-since-v1-4-code"><a class="link" href="#importing-the-contacts-code-import-code-code-since-v1-4-code">3.20. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
-<p>TeachConnect allows you to import contacts from a different TeachConnect file by specifying the location of the file.<br></p>
+<p>Imports contacts from a different TeachConnect file by specifying the location of the file.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>import [TYPE] pathname</code></p>
 </div>
 <div class="paragraph">
-<p>Examples:
-Importing Contacts : <code>import ./data/importsample.xml</code></p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Imports Contacts : <code>import ./data/importsample.xml</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-contacts-code-export-code-code-since-v1-2-code"><a class="link" href="#exporting-the-contacts-code-export-code-code-since-v1-2-code">3.21. Exporting the contacts : <code>export</code> <code>[since v1.2]</code></a></h3>
+<h3 id="exporting-the-contacts-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">3.21. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
-<p>TeachConnect allows you to export contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts based on a given range of indexes or a given tag or a given tag in a range of indexes.</p>
+<p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts based on a given range of indexes or a given tag or a given tag in a range of indexes. By specifying the type of the export you want it saves either only the xml file or both the xml and Csv file.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export [TYPE] n/NAME r/RANGE t/TAG p/PATH</code></p>
+<p>Format: <code>export n/NAME r/RANGE t/TAG p/PATH te/normal</code></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export [TYPE] n/NAME r/RANGE p/PATH</code></p>
+<p>Format: <code>export n/NAME r/RANGE p/PATH te/excel</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -896,7 +915,8 @@ Importing Contacts : <code>import ./data/importsample.xml</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can export all the people at once, all the people with a certain tag at once, all the people with a certain tag in a range at once or all the people in a range with any tags in a single command.
+You can export all the people at once, all the people with a certain tag at once, all the people with a certain tag in a range at once or all the people in a range with any tags in a single command.<br>
+You can also choose to export it in Csv format which you can later open in Excel.
 </td>
 </tr>
 </table>
@@ -908,7 +928,8 @@ You can export all the people at once, all the people with a certain tag at once
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-You can only export all a people based on one or zero tags.
+You can only export all or people based on one or zero tags.<br>
+Be careful about the parameter value for the format type. It has to exactly be either <code>normal</code> or <code>excel</code>.
 </td>
 </tr>
 </table>
@@ -916,17 +937,119 @@ You can only export all a people based on one or zero tags.
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="paragraph">
-<p>Exporting contacts : <code>export n/StudentsFile1 r/all t/students p/./data</code>
-Exporting contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">3.22. Upcoming features <code>[coming soon]</code></a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>A login feature [coming in v1.5]</p>
+<p>Exports contacts : <code>export n/StudentsFile1 r/all t/students p/./data te/normal</code></p>
+</li>
+<li>
+<p>Exports contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code"><a class="link" href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code">3.22. Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></h3>
+<div class="paragraph">
+<p>Sets your own personal shortcut for any of the commands above.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>shortcut [command word] [shortcut word]</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can choose multiple shortcuts for the same command.<br>
+You can later use these shortcuts in place of the original command even after closing and reopening the app.<br>
+You can also set shortcut for the shortcut command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+You cannot set the shortcut word to a already preregistered command.<br>
+Your shortcut word cannot be more than a single word.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Personalised Alias : <code>shortcut list l</code></p>
+</li>
+<li>
+<p>Personalised Alias : <code>shortcut add a</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code">3.23. Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></h3>
+<div class="paragraph">
+<p>Deletes your personalised Alias if you don&#8217;t want them or if you created them by mistake.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>delete_shortcut [command word] [shortcut word]</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can choose to just undo the delete_shortcut if you delete a shortcut by mistake.<br>
+Listing all the shortcuts using the <code>list shortcuts</code> command as mentioned above might help in seeing all the shortcuts at once.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+You can only delete shortcuts that you have already added.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the Personalised Alias : <code>delete_shortcut list l</code></p>
+</li>
+<li>
+<p>Deletes the Personalised Alias : <code>delete_shortcut add a</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">3.24. Upcoming features <code>[coming soon]</code></a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A login feature [coming in v2.0]</p>
 </li>
 <li>
 <p>Dynamic search [coming in v2.0]</p>
@@ -947,11 +1070,7 @@ Exporting contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data</co
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder. Alternatively you can also choose the import and export commands coming up!</p>
-</div>
-<div class="paragraph">
-<p><strong>Q</strong>: Does it automatically tell us if there are any appointment clashes?<br>
-<strong>A</strong>: Hell yes! Our aim is also to help you make your planning simpler and that is just what we do!</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder. Alternatively you can also choose the import and export commands!</p>
 </div>
 </div>
 </div>
@@ -1052,8 +1171,18 @@ Exporting contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data</co
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Export</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/NAME r/RANGE t/TAG p/PATH</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/samplefile.xml r/all t/friends p/.data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/NAME r/RANGE t/TAG p/PATH te/TYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/samplefile.xml r/all t/friends p/.data te/excel</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Set Shortcut</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shortcut [command word] [shortcut word]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shortcut list l</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete Shortcut</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete_shortcut [command word] [shortcut word]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete_shortcut list l</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>History</strong></p></td>
@@ -1082,7 +1211,7 @@ Exporting contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data</co
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-04 03:35:18 UTC
+Last updated 2018-04-04 04:11:39 UTC
 </div>
 </div>
 </body>
