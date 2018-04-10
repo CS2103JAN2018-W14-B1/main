@@ -63,7 +63,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TeachConnect (TC) is created to assist teachers and other educational professionals in <strong>managing their contacts, appointments and tasks</strong>. TeachConnect is also tailored for teachers who would <strong>prefer to use a Desktop App for managing contacts</strong>. Most importantly, it is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeachConnect will manage your contacts faster than traditional GUI apps. Interested? Jump to <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>TeachConnect (TC) is created to assist teachers and other educational professionals in <strong>managing their contacts, appointments and tasks</strong>. TeachConnect is also tailored for teachers who would <strong>prefer to use a Desktop App for managing contacts</strong>. Most importantly, it is *optimized for those who prefer to enter input using keyboard while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeachConnect will manage your contacts faster than traditional GUI apps. Interested? Jump to <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -219,11 +219,11 @@ A contact can have any number of tags (including 0)
 <ul>
 <li>
 <p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/friend</code><br>
-Adds a default contact.</p>
+Adds a default contact to TeachConnect&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>add student n/Betsy Crowe e/betsycrowe@example.com a/Centre Street, block 238, #02-02</code><br>
-Adds a student contact.</p>
+Adds a student contact to TeachConnect&#8217;s contact list.</p>
 </li>
 </ul>
 </div>
@@ -254,7 +254,7 @@ Format: <code>form subj/SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</c
 <p>Only a student contact can be entered, default and guardian contacts are not allowed.</p>
 </li>
 <li>
-<p>Dates must be in the format: <code>DD-MM-YYYY</code>.</p>
+<p>Dates must be in the format: <code>DD/MM/YYYY</code>.</p>
 </li>
 </ul>
 </div>
@@ -267,7 +267,7 @@ Format: <code>form subj/SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</c
 <ul>
 <li>
 <p><code>list students</code><br>
-<code>form 1,2,5 subj/English s/18-01-2018 e/17-07-2019</code><br>
+<code>form 1,2,5 subj/English s/18/01/2018 e/17/07/2019</code><br>
 Forms an English class containing the first, second and fifth contact in the list that starts in 18 Jan 2018 to 17 July 2019.</p>
 </li>
 </ul>
@@ -293,7 +293,7 @@ Format: <code>set_appointment t/TITLE s/START_DATE START_TIME e/END_DATE END_TIM
 <p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code>.</p>
 </li>
 <li>
-<p><code>START_DATE</code> and <code>END_DATE</code> must be in the format <code>DD-MM-YYYY</code>.</p>
+<p><code>START_DATE</code> and <code>END_DATE</code> must be in the format <code>DD/MM/YYYY</code>.</p>
 </li>
 <li>
 <p><code>START_TIME</code> and <code>END_TIME</code> must be in the 24-hr format: HH:MM.</p>
@@ -311,7 +311,7 @@ Format: <code>set_appointment t/TITLE s/START_DATE START_TIME e/END_DATE END_TIM
 <div class="ulist">
 <ul>
 <li>
-<p><code>set_appointment t/Tutoring session s/02-04-2018 19:00 e/02-04-2018 20:00</code><br>
+<p><code>set_appointment t/Tutoring session s/02/04/2018 19:00 e/02/04/2018 20:00</code><br>
 Sets up an appointment on April 2nd, 2018, from 7pm to 8pm.</p>
 <div class="imageblock">
 <div class="content">
@@ -341,7 +341,7 @@ Format: <code>set_task t/TITLE e/END_DATE END_TIME</code></p>
 <p>Task with <code>TITLE</code> which needs to completed before <code>END_DATE</code> at <code>END_TIME</code> is added.</p>
 </li>
 <li>
-<p><code>END_DATE</code> must be in the format <code>DD-MM-YYYY</code>.</p>
+<p><code>END_DATE</code> must be in the format <code>DD/MM/YYYY</code>.</p>
 </li>
 <li>
 <p><code>END_TIME</code> must be in the 24-hr format: HH:MM.</p>
@@ -356,7 +356,7 @@ Format: <code>set_task t/TITLE e/END_DATE END_TIME</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>set_task t/Mark papers e/05-04-2018 10:00</code><br>
+<p><code>set_task t/Mark papers e/05/04/2018 10:00</code><br>
 Sets a task which needs to be completed before April 5th, 2018, 10am.</p>
 </li>
 </ul>
@@ -557,13 +557,16 @@ Format: <code>list TYPE</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>List all student: <code>list students</code><br></p>
+<p><code>list students</code><br>
+Lists all student.</p>
 </li>
 <li>
-<p>List all task: <code>list tasks</code><br></p>
+<p><code>list tasks</code><br>
+Lists all task.</p>
 </li>
 <li>
-<p>List all command shortcut: <code>list shortcuts</code></p>
+<p><code>list shortcuts</code><br>
+Lists all command shortcuts.</p>
 </li>
 </ul>
 </div>
@@ -989,10 +992,12 @@ Your shortcut word cannot be more than a single word.
 <div class="ulist">
 <ul>
 <li>
-<p>Personalised Alias : <code>shortcut list l</code></p>
+<p><code>shortcut list l</code><br>
+Sets <code>l</code> as the Personalised Alias for <code>list</code> command.</p>
 </li>
 <li>
-<p>Personalised Alias : <code>shortcut add a</code></p>
+<p><code>shortcut add a</code><br>
+Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 </li>
 </ul>
 </div>
@@ -1036,10 +1041,12 @@ You can only delete shortcuts that you have already added.
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the Personalised Alias : <code>delete_shortcut list l</code></p>
+<p><code>delete_shortcut list l</code><br>
+Deletes the Personalised Alias <code>l</code> for <code>list</code> command.</p>
 </li>
 <li>
-<p>Deletes the Personalised Alias : <code>delete_shortcut add a</code></p>
+<p><code>delete_shortcut add a</code><br>
+Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 </li>
 </ul>
 </div>
@@ -1137,12 +1144,12 @@ You can only delete shortcuts that you have already added.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Set Appointment</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_appointment t/TITLE s/START_DATE START_TIME e/END_DATE END_TIME i/INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_appointment t/Meet parent s/05-04-2018 10:00 e/05-04-2018 11:00 i/3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_appointment t/Meet parent s/05/04/2018 10:00 e/05/04/2018 11:00 i/3</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Set Task</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_task t/TITLE e/END_DATE END_TIME</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_task t/Mark papers d/05-04-2018 10:00</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_task t/Mark papers d/05/04/2018 10:00</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Remove</strong></p></td>
@@ -1211,7 +1218,7 @@ You can only delete shortcuts that you have already added.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 15:55:07 UTC
+Last updated 2018-04-10 15:58:34 UTC
 </div>
 </div>
 </body>
