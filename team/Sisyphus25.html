@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Rachel Ngo Phuong Thao - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Rachel Ngo Phuong Thao - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-teachconnect"><a class="link" href="#project-teachconnect">Project: TeachConnect</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TeachConnect is a contact and event management application designed for teachers and educational professionals.<br></p>
+</div>
+<div class="paragraph">
+<p>MedNus aims to eliminate the existing inefficient and space consuming filing system and aid medical professionals<br>
+in working efficiently and effectively.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>:<br>
+<a href="../../collated/main/Sisyphus25.md">Functional code</a><br>
+<a href="../../collated/test/Sisyphus25.md">Test code</a><br></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="portfolio-purpose"><a class="link" href="#portfolio-purpose">Portfolio Purpose</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This portfolio was made to document all contribution I have made to the project.<br>
+The content includes are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The external behavior of my contributions</p>
+</li>
+<li>
+<p>The justification for their implementation</p>
+</li>
+<li>
+<p>Details of the implementation</p>
+</li>
+</ol>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sect2">
+<h3 id="enhancement-added-task-and-appointment-commands"><a class="link" href="#enhancement-added-task-and-appointment-commands">Enhancement Added: Task and Appointment commands</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-up-an-appointment-code-set_appointment-code-code-since-v1-3-code"><a class="link" href="#setting-up-an-appointment-code-set_appointment-code-code-since-v1-3-code">Setting up an appointment : <code>set_appointment</code> <code>[since v1.3]</code></a></h3>
+<div class="paragraph">
+<p>Sets up an appointment with the specified contact.<br>
+Format: <code>set_appointment t/TITLE s/START_DATE START_TIME e/END_DATE END_TIME i/INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>This sets an appointment with <code>TITLE</code>, from <code>START_DATE</code> at <code>START_TIME</code> to <code>END_DATE</code> at <code>END_TIME</code>, with contact at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code>.</p>
+</li>
+<li>
+<p><code>START_DATE</code> and <code>END_DATE</code> must be in the format <code>DD/MM/YYYY</code>.</p>
+</li>
+<li>
+<p><code>START_TIME</code> and <code>END_TIME</code> must be in the 24-hr format: HH:MM.</p>
+</li>
+<li>
+<p>The new appointment will be listed on both the appointment list and the TeachConnect Calendar.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>set_appointment t/Tutoring session s/02/04/2018 19:00 e/02/04/2018 20:00</code><br>
+Sets up an appointment on April 2nd, 2018, from 7pm to 8pm.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/appointmentAdded.jpg" alt="appointmentAdded" width="800">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 3: Appointment added successfully example</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-up-a-task-code-set_task-code-code-since-v1-3-code"><a class="link" href="#setting-up-a-task-code-set_task-code-code-since-v1-3-code">Setting up a task : <code>set_task</code> <code>[since v1.3]</code></a></h3>
+<div class="paragraph">
+<p>Sets up a task to be done by a deadline.<br>
+Format: <code>set_task t/TITLE e/END_DATE END_TIME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Task with <code>TITLE</code> which needs to completed before <code>END_DATE</code> at <code>END_TIME</code> is added.</p>
+</li>
+<li>
+<p><code>END_DATE</code> must be in the format <code>DD/MM/YYYY</code>.</p>
+</li>
+<li>
+<p><code>END_TIME</code> must be in the 24-hr format: HH:MM.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>set_task t/Mark papers e/05/04/2018 10:00</code><br>
+Sets a task which needs to be completed before April 5th, 2018, 10am.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<hr>
+<div class="paragraph">
+<p>These features allow users of TeachConnect to manage their events like appointments and to-do easily.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="event-management"><a class="link" href="#event-management">Event Management</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>There are two types of events: an <code>Appointment</code> or a <code>Task</code>.
+The model for event are shown below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/EventModelClassDiagram.png" alt="EventModelClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><code>Appointment</code> consist of 4 variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Title: Hold description for the appointment</p>
+</li>
+<li>
+<p>Start Time: Hold the starting time of the appointment</p>
+</li>
+<li>
+<p>End time: Hold the end time of the appointment</p>
+</li>
+<li>
+<p>Person to meet: (optional) Hold the target  in the appointment</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>Task</code> consist of 2 variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Title: Hold description for the task</p>
+</li>
+<li>
+<p>Time: Hold the time the task is expected to be finished</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Commands supported for each event</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set</p>
+</li>
+<li>
+<p>Remove</p>
+</li>
+<li>
+<p>Edit</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Similar to <code>UniquePersonList</code> and <code>UniqueTagList</code>, <code>UniqueEventList</code> is linked
+to <code>AddressBook</code>. Request to change to the <code>AddressBook</code> model is signalled through <code>ModelManager</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-implementation-of-set-event"><a class="link" href="#aspects-implementation-of-set-event">Aspects : Implementation of set event</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> user can still set appointment/task with the starting time/deadline already elapsed.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Might be useful if the users want to keep track of past events.</p>
+</li>
+<li>
+<p>Cons: Not the most intuitive implementation and might be prone to error from the user side.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> user can only set  appointment/task with the starting time/deadline in the future</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Is the more intuitive approach and can prevent the user from keying in "redundant" events</p>
+</li>
+<li>
+<p>Cons: As TeachConnect fetches the current time from the user&#8217;s system, if the user for some purposes set the system&#8217;s time to deviate from world clock, some difficulties may arise when he/she wants to add new event.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-theme-command"><a class="link" href="#enhancement-added-theme-command">Enhancement Added: Theme Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-gui-theme-code-theme-code-code-since-v1-4-code"><a class="link" href="#changing-gui-theme-code-theme-code-code-since-v1-4-code">Changing GUI theme : <code>theme</code> <code>[since v1.4]</code></a></h3>
+<div class="paragraph">
+<p>Changes the theme of the GUI. <br>
+Format: <code>theme THEME_NAME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>This changes the theme of the GUI to <code>THEME_NAME</code>.</p>
+</li>
+<li>
+<p><code>THEME_NAME</code> can be <code>dark</code>, <code>light</code> or <code>galaxy</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>theme dark</code><br>
+Changes the theme of TeachConnect to Dark Theme.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/themeDark.jpg" alt="themeDark" width="800">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 5: GUI with Dark Theme</pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>theme galaxy</code><br>
+Changes the theme of TeachConnect to Galaxy Theme.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/themeGalaxy.jpg" alt="themeGalaxy" width="800">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 6: GUI with Galaxy Theme</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+</li>
+</ul>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<hr>
+<div class="paragraph">
+<p>This feature allows the user to customize the GUI of TeachConnect to their own liking and set the GUI colour to one that is most pleasant to their eyes.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-for-version-2-0"><a class="link" href="#enhancement-proposed-for-version-2-0">Enhancement Proposed (for Version 2.0)</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>More classifications for existing contacts: i.e: <code>student</code>, <code>staff</code>, <code>friend</code> instead of just <code>student</code>.</p>
+</li>
+<li>
+<p>A <code>get guardian</code> command which allows the user to quickly retrieve contact detail of the guardian of a student in the contact list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Tag Colour for Person tags</p>
+</li>
+<li>
+<p>Toggle Calendar View command</p>
+</li>
+<li>
+<p>Modify <code>list</code> command to toggle list displayed on GUI.</p>
+</li>
+<li>
+<p>2 new themes for GUI: <code>light</code> and <code>galaxy</code></p>
+</li>
+<li>
+<p>User Guide<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Commands usage<br></p>
+</li>
+<li>
+<p>Demo images<br></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Test Coverage</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-11 00:37:33 UTC
+</div>
+</div>
+</body>
+</html>

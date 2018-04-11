@@ -47,12 +47,14 @@
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#import-contacts">3.2. Import Contacts</a></li>
 <li><a href="#export-contacts">3.3. Export contacts</a></li>
-<li><a href="#incomplete-student-management">3.4. [Incomplete] Student Management</a></li>
-<li><a href="#event-management">3.5. Event Management</a></li>
-<li><a href="#proposed-changing-gui-theme">3.6. [Proposed] Changing GUI theme</a></li>
-<li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.8. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
+<li><a href="#personalised-shortcut">3.4. Personalised Shortcut</a></li>
+<li><a href="#deleting-personalised-shortcut">3.5. Deleting Personalised Shortcut</a></li>
+<li><a href="#incomplete-student-management">3.6. [Incomplete] Student Management</a></li>
+<li><a href="#event-management">3.7. Event Management</a></li>
+<li><a href="#proposed-changing-gui-theme">3.8. [Proposed] Changing GUI theme</a></li>
+<li><a href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.10. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -894,25 +896,14 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
-        <span class="keyword">try</span> {
-          <span class="keyword">if</span> (addressBookStorage.readAddressBook(filePath).isPresent()) {
-              <span class="local-variable">this</span>.addressBookImported = <span class="keyword">new</span> AddressBook(addressBookStorage.readAddressBook().get());
-              ObservableList&lt;Person&gt; people = addressBookImported.getPersonList();
-              <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; people.size(); i++) {
-                  <span class="keyword">try</span> {
-                      model.addPerson(people.get(i));
-                  } <span class="keyword">catch</span> (DuplicatePersonException e) {
-                      <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_PERSON);
-                  }
-              }
-          } <span class="keyword">else</span> {
-              <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE));
-          }
-      } <span class="keyword">catch</span> (DataConversionException e) {
-          <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE));
-      } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-          <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE));
-      }
+     ObservableList&lt;Person&gt; people = addressBookImported.getPersonList();
+     <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; people.size(); i++) {
+           <span class="keyword">try</span> {
+             model.addPerson(people.get(i));
+           } <span class="keyword">catch</span> (DuplicatePersonException e) {
+             <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_PERSON);
+           }
+     }
      <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
 }</code></pre>
 </div>
@@ -957,21 +948,19 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div class="sect2">
 <h3 id="export-contacts"><a class="link" href="#export-contacts">3.3. Export contacts</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code>. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
+<p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code> String <code>type</code>. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">ExportCommand(<span class="predefined-type">String</span> range, Tag tag, <span class="predefined-type">String</span> path, <span class="predefined-type">String</span> nameOfExportFile) {
-        requireNonNull(range);
-        requireNonNull(tag);
-        requireNonNull(path);
-        requireNonNull(nameOfExportFile);
-
+<pre class="CodeRay highlight"><code data-lang="java">ExportCommand(<span class="predefined-type">String</span> range, Tag tag, <span class="predefined-type">String</span> path, <span class="predefined-type">String</span> nameOfExportFile, <span class="predefined-type">String</span> type) {
         <span class="local-variable">this</span>.range = range;
         <span class="local-variable">this</span>.path = path;
         thispublic.tag = tag;
         <span class="local-variable">this</span>.nameOfExportFile = nameOfExportFile;
+        <span class="local-variable">this</span>.type = type;
 
         teachConnectBook = <span class="keyword">new</span> AddressBook();
 }</code></pre>
@@ -983,7 +972,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>The method <code>handleRange()</code> splits the range using a separator [, in this case] and returns a <code>String</code> array with the upper bound and lower bound as values. In some cases it also returns <code>all</code> or the single <code>index</code> that has to be exported.</p>
+<p>The method <code>handleRange()</code> splits the range using a separator [, in this case] and returns a <code>String</code> array with the upper bound and lower bound as values. In some cases it also returns <code>all</code> or the single <code>index</code> that has to be exported. Based on the type it also exports to an excel format or XML format.</p>
 </div>
 <div class="paragraph">
 <p>Below is an extract of the method <code>handleRange()</code>:</p>
@@ -1067,46 +1056,24 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
         } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
             <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_RANGE_ERROR);
         }
-        <span class="keyword">if</span> (rangeGiven[<span class="integer">0</span>].equals(<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span>)) {
-            <span class="keyword">try</span> {
-                exportAllRange(tag);
-            } <span class="keyword">catch</span> (DuplicatePersonException e) {
-                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(MESSAGE_FAIL);
-            }
-        } <span class="keyword">else</span> {
-            <span class="keyword">if</span> (rangeGiven.length != <span class="integer">1</span>) {
-                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; rangeGiven.length; i++) {
-                    <span class="type">int</span> low = <span class="predefined-type">Integer</span>.parseInt(rangeGiven[<span class="integer">0</span>]);
-                    <span class="type">int</span> high = <span class="predefined-type">Integer</span>.parseInt(rangeGiven[<span class="integer">1</span>]);
-                    <span class="keyword">if</span> (low &gt;= high) {
-                        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_RANGE_ERROR);
-                    } <span class="keyword">else</span> {
-                        <span class="keyword">try</span> {
-                            exportRange(low, high, tag);
-                        } <span class="keyword">catch</span> (DuplicatePersonException e) {
-                            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(MESSAGE_FAIL);
-                        } <span class="keyword">catch</span> (<span class="exception">IndexOutOfBoundsException</span> e) {
-                            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_OUT_OF_BOUNDS);
-                        }
-                    }
-                }
-            } <span class="keyword">else</span> {
-                <span class="type">int</span> low = <span class="predefined-type">Integer</span>.parseInt(rangeGiven[<span class="integer">0</span>]);
-                <span class="keyword">try</span> {
-                    exportSpecific(low);
-                } <span class="keyword">catch</span> (DuplicatePersonException e) {
-                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(MESSAGE_FAIL);
-                } <span class="keyword">catch</span> (<span class="exception">IndexOutOfBoundsException</span> e) {
-                    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_OUT_OF_BOUNDS);
-                }
-            }
+
+
+        <span class="keyword">try</span> {
+            handledRangeSituation = handleRangeArray(rangeGiven);
+        } <span class="keyword">catch</span> (DuplicatePersonException e) {
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_FAIL);
+        } <span class="keyword">catch</span> (<span class="exception">IndexOutOfBoundsException</span> e) {
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_OUT_OF_BOUNDS);
         }
 
+        <span class="keyword">if</span> (handledRangeSituation != <span class="predefined-constant">null</span>) {
+            <span class="keyword">return</span> handledRangeSituation;
+        }
         ....Storage part comes here</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The final step is to create the xml file from the <code>teachConnectBook</code>.</p>
+<p>The final step is to create the xml/excel file from the <code>teachConnectBook</code>.</p>
 </div>
 <div class="paragraph">
 <p>Below is the code snippet to export the data into an xml file using <code>AddressBookStorage</code>.</p>
@@ -1122,11 +1089,279 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
         <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Depending on the type of export it can also be exported to an excel format using an arrayList called <code>exportAddition</code>.</p>
+</div>
+<div class="paragraph">
+<p>Below is the code snipped to export the data into an excel file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">CSVPrinter csvPrinter;
+        <span class="keyword">try</span> {
+            csvPrinter = csvFileToBeWritten();
+        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+           handle exception...
+        }
+
+        <span class="keyword">try</span> {
+            <span class="keyword">for</span> (Person p : exportAddition) {
+                csvPrinter.printRecord(p.getName(), p.getEmail(), p.getPhone(), p.getAddress(), p.getTags());
+            }
+
+            csvPrinter.flush();
+
+        }
+        exceptions are to be handled...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-implementation-export-command"><a class="link" href="#aspects-implementation-export-command">Aspects : Implementation Export Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Only export to an <code>XML</code> file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier implementation and very helpful for the import command as import can only be done from an XML file.</p>
+</li>
+<li>
+<p>Cons: The exported file might not be very user friendly to read in the xml file format and hence later referencing to the file after exporting can be a nightmare.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (current choice):</strong> Include export to an <code>Excel</code> file too.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Might be more intuitive for the user and might come in handy especially when the user wants to print it or later read the contents in a user friendly format.</p>
+</li>
+<li>
+<p>Cons: Complex implementation there by giving rise to more boundary cases to consider.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="incomplete-student-management"><a class="link" href="#incomplete-student-management">3.4. [Incomplete] Student Management</a></h3>
+<h3 id="personalised-shortcut"><a class="link" href="#personalised-shortcut">3.4. Personalised Shortcut</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The personalised shortcut uses a <code>ShortcutDouble</code> to hold the shortcut word and the command word. There is a <code>UniqueShortcutDoublesList</code> to which these <code>ShortcutDoubles</code> are added. The comparator in the <code>ShortcutDouble</code> accounts to check for any duplicates in the <code>UniqueShortcutDoublesList</code>. This list is then added to the <code>addressbook.xml</code> so as to load the shortcuts on initialisation. Below is a short code snippet of the constructor of the ShortcutDouble:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ShortcutDoubles(<span class="predefined-type">String</span> shortcutWord, <span class="predefined-type">String</span> commandWord) {
+        <span class="local-variable">this</span>.shortcutWord = shortcutWord;
+        <span class="local-variable">this</span>.commandWord = commandWord;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This ShortcutDouble is called using the <code>ShortcutCommand</code>. Below is the constructor to the ShortcutCommand:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ShortcutCommand(<span class="predefined-type">String</span> commandWord, <span class="predefined-type">String</span> shortcutWord) {
+        <span class="local-variable">this</span>.shortcutWord = shortcutWord;
+        <span class="local-variable">this</span>.commandWord = commandWord;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Shortcut command extends <code>UndoableCommand</code> and hence is undoable. It initially calls a filtered commandsList to which a new <code>ShortcutDouble</code> is added based on the checks. Below is the implementation of the <code>executeUndoableCommand()</code> method in the ShortcutCommand class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">commandsList = model.getFilteredCommandsList();
+        checks <span class="keyword">for</span> checking <span class="keyword">if</span> the command is already present...
+
+        ShortcutDoubles toAdd = <span class="keyword">new</span> ShortcutDoubles(shortcutWord, commandWord);
+        <span class="keyword">try</span> {
+            model.addCommandShortcut(toAdd);
+        } <span class="keyword">catch</span> (UniqueShortcutDoublesList.DuplicateShortcutDoublesException e) {
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SHORTCUT_AVAILABLE));
+        }
+
+        returns the success message....</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is a check to find if the command is already present and the method used for this is called <code>checkIfCommandPresent()</code>.By default it returns false. Below is a small code snippet to take notice of:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (!containsKeyWord(commandWord) || containsKeyWord(shortcutWord)) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NO_COMMAND_TO_MAP);
+}
+<span class="keyword">for</span> (ShortcutDoubles s : commandsList) {
+     <span class="keyword">if</span> (s.shortcutWord.equals(shortcutWord)) {
+         <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+     }
+}
+<span class="keyword">return</span> <span class="predefined-constant">false</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also choose to list all the shortcuts created uptil now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. A high level sequence diagram is given below :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ListShortcutsHighLevelSequenceDiagrams.png" alt="ListShortcutsHighLevelSequenceDiagrams" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>As of now the conditions to take note of are:
+* Shortcut can be only one word.
+* The command word should already exist.
+* New commands are to be added in the <code>commandsPresent</code> String array.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-implementation-shortcut-command"><a class="link" href="#aspects-implementation-shortcut-command">Aspects : Implementation Shortcut Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Restricting the number of aliases of a command word.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allows for setting up a shortcut word there by increasing the usability of the app.</p>
+</li>
+<li>
+<p>Cons: Wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because there is only one shortcut alias and the user might forget it.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (current choice):</strong> Allowing multiple number of shortcut words for a single command word</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User can create multiple aliases there by giving the user more personalisation and the flexibility of forgetting the words as he can create more of them.</p>
+</li>
+<li>
+<p>Cons: Need to consider several cases for duplicate shortcuts and maintain a dynamic list without forgetting the shortcuts when the app is closed without hardcoding the shortcut word into each command.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-personalised-shortcut"><a class="link" href="#deleting-personalised-shortcut">3.5. Deleting Personalised Shortcut</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The personalised shortcut uses a <code>ShortcutDouble</code> to hold the shortcut word and the command word. There is a <code>UniqueShortcutDoublesList</code> to which these <code>ShortcutDoubles</code> are added. The comparator in the <code>ShortcutDouble</code> accounts to check for any duplicates in the <code>UniqueShortcutDoublesList</code>. This list is then added to the <code>addressbook.xml</code> so as to load the shortcuts on initialisation. Below is a short code snippet of the constructor of the ShortcutDouble:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ShortcutDoubles(<span class="predefined-type">String</span> shortcutWord, <span class="predefined-type">String</span> commandWord) {
+        <span class="local-variable">this</span>.shortcutWord = shortcutWord;
+        <span class="local-variable">this</span>.commandWord = commandWord;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This ShortcutDouble can be deleted using the <code>DeleteShortcutCommand</code>. The sequence diagram is below :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteShortcutSequenceDiagram.png" alt="DeleteShortcutSequenceDiagram" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is the constructor to the DeleteShortcutCommand:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> DeleteShortcutCommand(<span class="predefined-type">String</span> commandWord, <span class="predefined-type">String</span> shortcutWord) {
+        <span class="local-variable">this</span>.commandWord = commandWord;
+        <span class="local-variable">this</span>.shortcutWord = shortcutWord;
+        commandShortcut = <span class="keyword">new</span> ShortcutDoubles(shortcutWord, commandWord);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>DeleteShortcut command extends <code>UndoableCommand</code> and hence is undoable. It calls the method <code>deleteCommandShortcut()</code> in the model class to achieve its objective. Below is a code snippet of the <code>executeUndoableCommand()</code> used to for deleting the shortcut:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">       <span class="keyword">try</span> {
+            model.deleteCommandShortcut(commandShortcut);
+        } <span class="keyword">catch</span> (UniqueShortcutDoublesList.CommandShortcutNotFoundException csnf) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="string"><span class="delimiter">&quot;</span><span class="content">Please enter a valid Shortcut Command you have saved</span><span class="delimiter">&quot;</span></span>);
+        }
+        returns the success message....</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is a check to find if the shortcut is already present or not and <code>CommandShortcutNotFoundException</code> is thrown if the shortcut is not present.</p>
+</div>
+<div class="paragraph">
+<p>As of now the conditions to take note of are:
+* DeleteShortcut can be only delete something if the command is already present.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-validity-of-the-delete-shortcut-command"><a class="link" href="#aspects-validity-of-the-delete-shortcut-command">Aspects : Validity of the Delete Shortcut Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Omit the delete shortcut command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Would require less implementation considering the fact that the shortcut has been added by the user.</p>
+</li>
+<li>
+<p>Cons: Would not give the user any room for mistake or change of mind as once added cannot be deleted.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (current choice):</strong> Include the delete shortcut command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Will give the user the room to make mistake and change the shortcuts if needed. Would also help him in clearing the clutter of shortcuts which would have developed over time.</p>
+</li>
+<li>
+<p>Cons: Will have to take care of various edge cases when the shortcuts are not present and keep modifying the dynamic list. Several relevant exceptions have to be thrown and taken care of.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="incomplete-student-management"><a class="link" href="#incomplete-student-management">3.6. [Incomplete] Student Management</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The student manangement allows the user of TeachConnect to manage a particular type of contact, a student. The user is capable of interacting with the student contact just like with any other contact, for example: adding, editing, deleting and so on. In addition, users will be able to form classes to group students of the same class together. An overview of the Model Class after implementation is shown below:</p>
 </div>
@@ -1140,7 +1375,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspects-implementation-of-student"><a class="link" href="#aspects-implementation-of-student">Aspects : Implementation of student</a></h5>
 <div class="ulist">
@@ -1153,7 +1388,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>Pros: Allow students access to person methods while restricting person from accessing student methods.</p>
 </li>
 <li>
-<p>Cons: A seperate UniqueStudentList is required to store the student contacts.</p>
+<p>Cons: A separate UniqueStudentList is required to store the student contacts.</p>
 </li>
 </ul>
 </div>
@@ -1177,9 +1412,9 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="event-management"><a class="link" href="#event-management">3.5. Event Management</a></h3>
+<h3 id="event-management"><a class="link" href="#event-management">3.7. Event Management</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>There are two types of events: an <code>Appointment</code> or a <code>Task</code>.
 The model for event are shown below:</p>
@@ -1243,7 +1478,7 @@ to <code>AddressBook</code>. Request to change to the <code>AddressBook</code> m
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspects-implementation-of-set-event"><a class="link" href="#aspects-implementation-of-set-event">Aspects : Implementation of set event</a></h5>
 <div class="ulist">
@@ -1280,26 +1515,26 @@ to <code>AddressBook</code>. Request to change to the <code>AddressBook</code> m
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-changing-gui-theme"><a class="link" href="#proposed-changing-gui-theme">3.6. [Proposed] Changing GUI theme</a></h3>
+<h3 id="proposed-changing-gui-theme"><a class="link" href="#proposed-changing-gui-theme">3.8. [Proposed] Changing GUI theme</a></h3>
 <div class="paragraph">
 <p><em>{to be finished later}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1330,7 +1565,7 @@ to <code>AddressBook</code>. Request to change to the <code>AddressBook</code> m
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3086,7 +3321,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-11 00:23:47 UTC
+Last updated 2018-04-11 00:37:33 UTC
 </div>
 </div>
 </body>
