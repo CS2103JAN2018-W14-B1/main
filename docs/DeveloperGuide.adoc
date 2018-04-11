@@ -355,7 +355,29 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Pros: We do not need to maintain a separate stack, and just reuse what is already in the codebase.
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two * different things.
 // end::undoredo[]
+// tag::sort[]
+=== Sorting mechanism
 
+The `SortCommand` uses a `SortedList` that is initialised with the current `filteredPerson` and is sorted using a comparator. Below is the code snippet:
+
+[source,java]
+----
+sortedfilteredPersons = new SortedList<>(filteredPersons);
+
+ public void sortFilteredPersonList(){
+
+        Comparator<Person> sortByName = new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                return o1.getName().fullName.compareTo(o2.getName().fullName);
+            }
+        };
+
+        sortedFilteredPersons.setComparator(sortByName);
+        indicateAddressBookChanged();
+    }
+----
+// end::sort[]
 // tag::import[]
 === Import Contacts
 ==== Current Implementation

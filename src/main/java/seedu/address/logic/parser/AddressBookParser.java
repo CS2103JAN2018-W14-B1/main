@@ -29,8 +29,10 @@ import seedu.address.logic.commands.SetTaskCommand;
 import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.ToggleCalendarViewCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.shortcuts.ShortcutDoubles;
+
 
 /**
  * Parses user input.
@@ -138,6 +140,9 @@ public class AddressBookParser {
 
         case DeleteShortcutCommand.COMMAND_WORD:
             return new DeleteShortcutCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

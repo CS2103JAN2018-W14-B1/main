@@ -5,10 +5,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.Comparator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
@@ -40,6 +42,7 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<ShortcutDoubles> filteredShortcutCommands;
     private String currentActiveListType;
 
+    private SortedList<Person> sortedFilteredPersons;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -51,6 +54,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         filteredContacts = new FilteredList<>(this.addressBook.getContactList());
+        sortedFilteredPersons = new SortedList<Person>(filteredContacts);
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
         filteredShortcutCommands = new FilteredList<>(this.addressBook.getCommandsList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
@@ -174,9 +178,22 @@ public class ModelManager extends ComponentManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return FXCollections.unmodifiableObservableList(filteredContacts);
+        return FXCollections.unmodifiableObservableList(sortedFilteredPersons);
     }
 
+    @Override
+    public void sortFilteredPersonList(){
+
+        Comparator<Person> sortByName = new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                return o1.getName().fullName.compareTo(o2.getName().fullName);
+            }
+        };
+
+        sortedFilteredPersons.setComparator(sortByName);
+        indicateAddressBookChanged();
+    }
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return FXCollections.unmodifiableObservableList(filteredAppointments);
