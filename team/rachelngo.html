@@ -22,7 +22,7 @@
 <p>TeachConnect is a contact and event management application designed for teachers and educational professionals.<br></p>
 </div>
 <div class="paragraph">
-<p>TeachConnect is designed to best aid users who prefer to enter input using keyboard instead of Graphical User Interface (GUI).</p>
+<p>TeachConnect is designed to best aid users who prefer to enter input using keyboard instead of the Graphical User Interface.</p>
 </div>
 <div class="paragraph">
 <p><strong>Code contributed</strong>:<br>
@@ -114,7 +114,7 @@ Sets up an appointment on April 2nd, 2018, from 7pm to 8pm.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-a-task-code-set_task-code"><a class="link" href="#setting-up-a-task-code-set_task-code">Setting up a task : <code>set_task</code></a></h3>
+<h3 id="setting-up-a-task-code-set_task-code-code-since-v1-3-code"><a class="link" href="#setting-up-a-task-code-set_task-code-code-since-v1-3-code">Setting up a task : <code>set_task</code> <code>[since v1.3]</code></a></h3>
 <div class="paragraph">
 <p>Sets up a task to be done by a deadline.<br>
 Format: <code>set_task t/TITLE e/END_DATE END_TIME</code></p>
@@ -152,7 +152,7 @@ Sets a task which needs to be completed before April 5th, 2018, 10am.</p>
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
 <hr>
 <div class="paragraph">
-<p>These features make it easier for teachers and educational staff to review appointments they have set with students and parents, or to review the list of tasks they have to do before a certain deadline.</p>
+<p>This feature can help teachers keeping track of any upcoming appointment or task they have. This can be useful for teachers or teaching associates who frequently need to meet up with students and parents for counselling or administrative purposes.</p>
 </div>
 <hr>
 </div>
@@ -165,99 +165,116 @@ Sets a task which needs to be completed before April 5th, 2018, 10am.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="event-management"><a class="link" href="#event-management">Event Management</a></h3>
+<h3 id="schedule-management"><a class="link" href="#schedule-management">Schedule Management</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>There are two types of events: an <code>Appointment</code> or a <code>Task</code>.
-The model for event are shown below:</p>
+<p>There are two types of schedule: an <code>Appointment</code> or a <code>Task</code>. The model diagrams for <code>Appointment</code> and <code>Task</code> are shown in <code>Figure 24</code> and <code>Figure 25</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/EventModelClassDiagram.png" alt="EventModelClassDiagram">
+<img src="../images/AppointmentModelClassDiagram.png" alt="AppointmentModelClassDiagram">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 24: Appointment Class Diagram</pre>
+</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/TaskModelClassDiagram.png" alt="TaskModelClassDiagram">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 25: Task Class Diagram</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>Appointment</code> consist of 4 variables:</p>
+<p><code>Appointment</code> has 4 variables:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Title: Hold description for the appointment</p>
+<p>Title: Holds description for the appointment.</p>
 </li>
 <li>
-<p>Start Time: Hold the starting time of the appointment</p>
+<p>Start Time: Holds the starting time of the appointment.</p>
 </li>
 <li>
-<p>End time: Hold the end time of the appointment</p>
+<p>End time: Holds the end time of the appointment.</p>
 </li>
 <li>
-<p>Person to meet: (optional) Hold the target  in the appointment</p>
+<p>Person to meet: (optional) Holds the target in the appointment.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><code>Task</code> consist of 2 variables:</p>
+<p><code>Task</code> has 2 variables:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Title: Hold description for the task</p>
+<p>Title: Holds description for the task.</p>
 </li>
 <li>
-<p>Time: Hold the time the task is expected to be finished</p>
+<p>Time: Holds the time the task is expected to be finished.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Commands supported for each event</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Set</p>
-</li>
-<li>
-<p>Remove</p>
-</li>
-<li>
-<p>Edit</p>
-</li>
-</ul>
+<p>Similar to <code>UniquePersonList</code> and <code>UniqueTagList</code>, <code>UniqueAppointmentList</code> and <code>UniqueTaskList</code> is linked to <code>AddressBook</code>. Request to change to the <code>AddressBook</code> model is signalled through <code>ModelManager</code>.</p>
 </div>
 <div class="paragraph">
-<p>Similar to <code>UniquePersonList</code> and <code>UniqueTagList</code>, <code>UniqueEventList</code> is linked
-to <code>AddressBook</code>. Request to change to the <code>AddressBook</code> model is signalled through <code>ModelManager</code>.</p>
+<p>Every <code>Appointment</code> in the <code>UniqueAppointmentList</code> is also added to <code>CalendarFX</code> 's Calendar entry list to be rendered on the Calendar View in the GUI. When there is a change in the <code>UniqueAppointmentList</code>, an <code>AppointmentListChangedEvent</code> will be propagated through the <code>EventsCenter</code>. When it reaches the <code>UI</code> component, the result is re-syncing of <code>UniqueAppointmentList</code> and <code>CalendarFx</code> 's Calendar entry list and the Calendar View in the GUI will be updated. The code below shows how the re-syncing works within the <code>UI</code> component.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> handleAppointmentListChangedEvent(AppointmentListChangedEvent event) {
+        appointmentList = event.appointmentList;
+        Platform.runLater(
+                <span class="local-variable">this</span>::updateCalendar
+        );
+}
+<span class="directive">private</span> <span class="type">void</span> updateCalendar() {
+        calendar.clear();
+        <span class="predefined-type">ArrayList</span>&lt;Entry&gt; entries = getEntries();
+        <span class="keyword">for</span> (Entry entry : entries) {
+                calendar.addEntry(entry);
+        }
+}</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspects-implementation-of-set-event"><a class="link" href="#aspects-implementation-of-set-event">Aspects : Implementation of set event</a></h5>
+<h5 id="aspects-implementation-of-set-appointment-task"><a class="link" href="#aspects-implementation-of-set-appointment-task">Aspects : Implementation of set appointment/task</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> user can still set appointment/task with the starting time/deadline already elapsed.</p>
+<p><strong>Alternative 1 (current choice):</strong> Users can set appointment/task with already elapsed starting time/deadline.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Might be useful if the users want to keep track of past events.</p>
+<p>Pros: With this implementation, TeachConnect can help the user keep track of past schedules which weren&#8217;t added to the schedule list.</p>
 </li>
 <li>
-<p>Cons: Not the most intuitive implementation and might be prone to error from the user side.</p>
+<p>Cons: This is not the most intuitive implementation and the application could accept error-prone date input from the user side.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> user can only set  appointment/task with the starting time/deadline in the future</p>
+<p><strong>Alternative 2:</strong> Users can only set  appointment/task with the starting time/deadline in the future.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Is the more intuitive approach and can prevent the user from keying in "redundant" events</p>
+<p>Pros: This is the more intuitive approach and it can prevent the user from keying in "redundant" schedule.</p>
 </li>
 <li>
-<p>Cons: As TeachConnect fetches the current time from the user&#8217;s system, if the user for some purposes set the system&#8217;s time to deviate from world clock, some difficulties may arise when he/she wants to add new event.</p>
+<p>Cons: As TeachConnect fetches the current time from the user&#8217;s system, if the user for some purposes sets the system&#8217;s time to deviate from the world clock, some difficulties may arise when he/she wants to add new event.</p>
 </li>
 </ul>
 </div>
@@ -355,11 +372,69 @@ Changes the theme of TeachConnect to Galaxy Theme.</p>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-changing-gui-theme"><a class="link" href="#proposed-changing-gui-theme">[Proposed] Changing GUI theme</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The current implementation of this command only involves <code>Logic</code>, <code>EventsCenter</code> and <code>UI</code> components of the application.</p>
+</div>
+<div class="paragraph">
+<p>To illustrate how the change theme command works, <code>Figure 26</code> shows the sequence diagram for changing the theme to <code>dark</code> theme.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/ChangeThemeSequenceDiagram.png" alt="ChangeThemeSequenceDiagram">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 26: Change Theme Command Sequence Diagram</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-saving-of-user-selected-theme-to-code-userprefs-code-or-code-storage-code"><a class="link" href="#aspects-saving-of-user-selected-theme-to-code-userprefs-code-or-code-storage-code">Aspects : Saving of user selected theme to <code>UserPrefs</code> or <code>Storage</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Theme selected is not saved to storage or <code>UserPrefs</code>, thus when TeachConnect starts the default theme is always selected.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This implementation is more simple and we don&#8217;t need to interact with <code>Model</code>.</p>
+</li>
+<li>
+<p>Cons: If the users want to use a theme other than the default one, it will be very inconvenient for them as they will have to change the theme every time they start up TeachConnect.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Last selected theme by the users would be saved to storage or <code>UserPrefs</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Users experience can be enhanced as users can have the theme they like selected automatically each time they start up TeachConnect.</p>
+</li>
+<li>
+<p>Cons: The command implementation would be more complex as we need to interact with <code>Model</code> and <code>Storage</code> components too.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -380,22 +455,22 @@ Changes the theme of TeachConnect to Galaxy Theme.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Tag Colour for Person tags</p>
+<p>Tag Colour for <code>PersonCard</code> 's tags</p>
 </li>
 <li>
 <p>Toggle Calendar View command</p>
 </li>
 <li>
-<p>Modification <code>list</code> command to toggle list displayed on GUI.</p>
+<p>Modification <code>list</code> command to toggle list displayed on GUI</p>
 </li>
 <li>
 <p>2 new themes for GUI: <code>light</code> and <code>galaxy</code></p>
 </li>
 <li>
-<p>Project issues assignment and management</p>
+<p>Project issues assignment and tracking</p>
 </li>
 <li>
-<p>Project PR review</p>
+<p>Team members' Pull Requests review</p>
 </li>
 <li>
 <p>Bugs fixes for various issues raised by other teammates and testers</p>
@@ -409,6 +484,12 @@ Changes the theme of TeachConnect to Galaxy Theme.</p>
 </li>
 <li>
 <p>Demo images<br></p>
+</li>
+<li>
+<p>Annotation for tables and figures<br></p>
+</li>
+<li>
+<p>Formatting</p>
 </li>
 </ul>
 </div>
@@ -424,7 +505,7 @@ Changes the theme of TeachConnect to Galaxy Theme.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 17:19:17 UTC
+Last updated 2018-04-14 18:45:53 UTC
 </div>
 </div>
 </body>
