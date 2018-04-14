@@ -30,15 +30,15 @@
 <ul class="sectlevel2">
 <li><a href="#viewing-manual-code-help-code">3.1. Viewing manual : <code>help</code></a></li>
 <li><a href="#adding-a-contact-code-add-code">3.2. Adding a contact: <code>add</code></a></li>
-<li><a href="#forming-a-class-code-coming-in-v1-5-code">3.3. Forming a class <code>[coming in v1.5]</code></a></li>
-<li><a href="#setting-up-an-appointment-code-set_appointment-code-code-since-v1-3-code">3.4. Setting up an appointment : <code>set_appointment</code> <code>[since v1.3]</code></a></li>
-<li><a href="#setting-up-a-task-code-set_task-code-code-since-v1-3-code">3.5. Setting up a task : <code>set_task</code> <code>[since v1.3]</code></a></li>
-<li><a href="#changing-gui-theme-code-theme-code-code-since-v1-4-code">3.6. Changing GUI theme : <code>theme</code> <code>[since v1.4]</code></a></li>
-<li><a href="#switching-calendar-viewmode-code-calendar-code-code-since-v1-4-code">3.7. Switching Calendar Viewmode : <code>calendar</code> <code>[since v1.4]</code></a></li>
-<li><a href="#importing-the-contacts-code-import-code-code-since-v1-4-code">3.8. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></li>
+<li><a href="#forming-a-class">3.3. Forming a class</a></li>
+<li><a href="#setting-up-an-appointment-code-set_appointment-code">3.4. Setting up an appointment : <code>set_appointment</code></a></li>
+<li><a href="#setting-up-a-task-code-set_task-code">3.5. Setting up a task : <code>set_task</code></a></li>
+<li><a href="#changing-gui-theme-code-theme-code">3.6. Changing GUI theme : <code>theme</code></a></li>
+<li><a href="#switching-calendar-viewmode-code-calendar-code">3.7. Switching Calendar Viewmode : <code>calendar</code></a></li>
+<li><a href="#importing-the-contacts-code-import-code">3.8. Importing the contacts : <code>import</code></a></li>
 <li><a href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">3.9. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></li>
-<li><a href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code">3.10. Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></li>
-<li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code">3.11. Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></li>
+<li><a href="#adding-your-own-shortcut-code-shortcut-code">3.10. Adding your own shortcut : <code>shortcut</code></a></li>
+<li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code">3.11. Deleting your personalised Alias : <code>delete_shortcut</code></a></li>
 <li><a href="#editing-a-contact-code-edit-code">3.12. Editing a contact : <code>edit</code></a></li>
 <li><a href="#locating-contacts-by-name-code-find-code">3.13. Locating contacts by name: <code>find</code></a></li>
 <li><a href="#deleting-an-entry-in-the-list-code-delete-code">3.14. Deleting an entry in the list : <code>delete</code></a></li>
@@ -49,11 +49,7 @@
 <li><a href="#clearing-all-entries-code-clear-code">3.19. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">3.20. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">3.21. Saving the data</a></li>
-<li><a href="#importing-the-contacts-code-import-code-code-since-v1-4-code-2">3.22. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></li>
-<li><a href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">3.23. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></li>
-<li><a href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code-2">3.24. Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></li>
-<li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code-2">3.25. Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></li>
-<li><a href="#upcoming-features-code-coming-soon-code">3.26. Upcoming features <code>[coming soon]</code></a></li>
+<li><a href="#upcoming-features-code-coming-soon-code">3.22. Upcoming features <code>[coming soon]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -193,10 +189,13 @@ Format: <code>add [TYPE] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&
 <div class="ulist">
 <ul>
 <li>
-<p><code>[TYPE]</code> field represents the type of contact you wish to add. <br></p>
+<p><code>[TYPE]</code> field represents the type of contact you wish to add.</p>
 </li>
 <li>
 <p>It can be <code>student</code>, or <code>&#160;</code> (empty for a default contact).</p>
+</li>
+<li>
+<p>Only student contacts can be added into a class.</p>
 </li>
 </ul>
 </div>
@@ -221,28 +220,25 @@ A contact can have any number of tags (including 0)
 <ul>
 <li>
 <p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/friend</code><br>
-Adds a default contact to TeachConnect&#8217;s contact list.</p>
+Adds a default contact named <code>John Doe</code> to TeachConnect&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>add student n/Betsy Crowe e/betsycrowe@example.com a/Centre Street, block 238, #02-02</code><br>
-Adds a student contact to TeachConnect&#8217;s contact list.</p>
+Adds a student contact named <code>Betsy Crowe</code> to TeachConnect&#8217;s contact list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="forming-a-class-code-coming-in-v1-5-code"><a class="link" href="#forming-a-class-code-coming-in-v1-5-code">3.3. Forming a class <code>[coming in v1.5]</code></a></h3>
+<h3 id="forming-a-class"><a class="link" href="#forming-a-class">3.3. Forming a class</a></h3>
 <div class="paragraph">
 <p>Forms a class of students for a specified subject and time period.<br>
-Format: <code>form subj/SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code></p>
+Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
-<li>
-<p>Students specified by the <code>INDEX</code> are added to the class.</p>
-</li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
 </li>
@@ -250,10 +246,13 @@ Format: <code>form subj/SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</c
 <p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code>.</p>
 </li>
 <li>
-<p>Minimum of one student must be entered. There can be more than one student</p>
+<p>Minimum of one student must be entered. There can be more than one student.</p>
 </li>
 <li>
-<p>Only a student contact can be entered, default and guardian contacts are not allowed.</p>
+<p>Only a student contact can be entered, default contacts are not allowed.</p>
+</li>
+<li>
+<p><strong>Students cannot be added in after the class is formed.</strong></p>
 </li>
 <li>
 <p>Dates must be in the format: <code>DD/MM/YYYY</code>.</p>
@@ -269,14 +268,14 @@ Format: <code>form subj/SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</c
 <ul>
 <li>
 <p><code>list students</code><br>
-<code>form 1,2,5 subj/English s/18/01/2018 e/17/07/2019</code><br>
+<code>form English s/18/01/2018 e/17/07/2019</code> i/1,5,2<br>
 Forms an English class containing the first, second and fifth contact in the list that starts in 18 Jan 2018 to 17 July 2019.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-an-appointment-code-set_appointment-code-code-since-v1-3-code"><a class="link" href="#setting-up-an-appointment-code-set_appointment-code-code-since-v1-3-code">3.4. Setting up an appointment : <code>set_appointment</code> <code>[since v1.3]</code></a></h3>
+<h3 id="setting-up-an-appointment-code-set_appointment-code"><a class="link" href="#setting-up-an-appointment-code-set_appointment-code">3.4. Setting up an appointment : <code>set_appointment</code></a></h3>
 <div class="paragraph">
 <p>Sets up an appointment with the specified contact.<br>
 Format: <code>set_appointment t/TITLE s/START_DATE START_TIME e/END_DATE END_TIME i/INDEX</code></p>
@@ -285,9 +284,6 @@ Format: <code>set_appointment t/TITLE s/START_DATE START_TIME e/END_DATE END_TIM
 <div class="content">
 <div class="ulist">
 <ul>
-<li>
-<p>This sets an appointment with <code>TITLE</code>, from <code>START_DATE</code> at <code>START_TIME</code> to <code>END_DATE</code> at <code>END_TIME</code>, with contact at the specified <code>INDEX</code>.</p>
-</li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
 </li>
@@ -330,7 +326,7 @@ Sets up an appointment on April 2nd, 2018, from 7pm to 8pm.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-a-task-code-set_task-code-code-since-v1-3-code"><a class="link" href="#setting-up-a-task-code-set_task-code-code-since-v1-3-code">3.5. Setting up a task : <code>set_task</code> <code>[since v1.3]</code></a></h3>
+<h3 id="setting-up-a-task-code-set_task-code"><a class="link" href="#setting-up-a-task-code-set_task-code">3.5. Setting up a task : <code>set_task</code></a></h3>
 <div class="paragraph">
 <p>Sets up a task to be done by a deadline.<br>
 Format: <code>set_task t/TITLE e/END_DATE END_TIME</code></p>
@@ -339,9 +335,6 @@ Format: <code>set_task t/TITLE e/END_DATE END_TIME</code></p>
 <div class="content">
 <div class="ulist">
 <ul>
-<li>
-<p>Task with <code>TITLE</code> which needs to completed before <code>END_DATE</code> at <code>END_TIME</code> is added.</p>
-</li>
 <li>
 <p><code>END_DATE</code> must be in the format <code>DD/MM/YYYY</code>.</p>
 </li>
@@ -365,7 +358,7 @@ Sets a task which needs to be completed before April 5th, 2018, 10am.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-gui-theme-code-theme-code-code-since-v1-4-code"><a class="link" href="#changing-gui-theme-code-theme-code-code-since-v1-4-code">3.6. Changing GUI theme : <code>theme</code> <code>[since v1.4]</code></a></h3>
+<h3 id="changing-gui-theme-code-theme-code"><a class="link" href="#changing-gui-theme-code-theme-code">3.6. Changing GUI theme : <code>theme</code></a></h3>
 <div class="paragraph">
 <p>Changes the theme of the GUI. <br>
 Format: <code>theme THEME_NAME</code></p>
@@ -421,7 +414,7 @@ Changes the theme of TeachConnect to Galaxy Theme.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switching-calendar-viewmode-code-calendar-code-code-since-v1-4-code"><a class="link" href="#switching-calendar-viewmode-code-calendar-code-code-since-v1-4-code">3.7. Switching Calendar Viewmode : <code>calendar</code> <code>[since v1.4]</code></a></h3>
+<h3 id="switching-calendar-viewmode-code-calendar-code"><a class="link" href="#switching-calendar-viewmode-code-calendar-code">3.7. Switching Calendar Viewmode : <code>calendar</code></a></h3>
 <div class="paragraph">
 <p>Switches the Calendar view mode. <br>
 Format: <code>calendar VIEW_MODE</code></p>
@@ -487,7 +480,7 @@ Changes the view mode of TeachConnect Calendar to Month View.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>=== Listing all contact/task/appointment/student : <code>list</code> <code>[since v1.4]</code></p>
+<p>=== Listing all contact/task/appointment/student : <code>list</code></p>
 </div>
 </li>
 </ul>
@@ -531,7 +524,7 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-the-contacts-code-import-code-code-since-v1-4-code"><a class="link" href="#importing-the-contacts-code-import-code-code-since-v1-4-code">3.8. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></h3>
+<h3 id="importing-the-contacts-code-import-code"><a class="link" href="#importing-the-contacts-code-import-code">3.8. Importing the contacts : <code>import</code></a></h3>
 <div class="paragraph">
 <p>Imports contacts from a different TeachConnect file by specifying the location of the file. This automatically imports all the students, classes and any other contacts present in the import file.<br></p>
 </div>
@@ -544,7 +537,7 @@ Lists all command shortcuts.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Imports Contacts : <code>import ./data/importsample.xml</code></p>
+<p><code>import ./data/importsample.xml</code> : Import contacts from <code>importsample.xml</code></p>
 </li>
 </ul>
 </div>
@@ -607,16 +600,18 @@ Be careful about the parameter value for the format type. It has to exactly be e
 <div class="ulist">
 <ul>
 <li>
-<p>Exports contacts : <code>export n/StudentsFile1 r/all t/students p/./data te/xml</code></p>
+<p><code>export n/StudentsFile1 r/all t/students p/./data te/normal</code> :<br>
+Exports all contacts with tag student to an xml file named <code>StudentsFile1</code> in the <code>data</code> folder.</p>
 </li>
 <li>
-<p>Exports contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code></p>
+<p><code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code> :<br>
+Exports contacts from 1 to 10 with tag students to an excel file named <code>StudentsFile2</code> in the <code>data</code> folder.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code"><a class="link" href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code">3.10. Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></h3>
+<h3 id="adding-your-own-shortcut-code-shortcut-code"><a class="link" href="#adding-your-own-shortcut-code-shortcut-code">3.10. Adding your own shortcut : <code>shortcut</code></a></h3>
 <div class="paragraph">
 <p>Sets your own personal shortcut for any of the commands above.</p>
 </div>
@@ -680,7 +675,7 @@ Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code">3.11. Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></h3>
+<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code">3.11. Deleting your personalised Alias : <code>delete_shortcut</code></a></h3>
 <div class="paragraph">
 <p>Deletes your personalised Alias if you don&#8217;t want them or if you created them by mistake.</p>
 </div>
@@ -741,10 +736,7 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Contact at the specified <code>INDEX</code> is edited.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the last contact listing.</p>
+<p>The index refers to the index number shown in the last contact or student listing.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code>.</p>
@@ -771,12 +763,14 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+<p><code>list contacts</code><br>
+<code>edit 1 p/91234567 e/johndoe@example.com</code><br>
 Edits the phone number and email address of the 1st contact to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
 </li>
 <li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd contact to be <code>Betsy Crower</code> and clears all existing tags.</p>
+<p><code>list students</code><br>
+<code>edit 2 n/Betsy Crower t/</code><br>
+Edits the name of the 2nd student to be <code>Betsy Crower</code> and clears all existing tags.</p>
 </li>
 </ul>
 </div>
@@ -817,11 +811,11 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <ul>
 <li>
 <p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
+Shows all contacts with <code>john</code> in their name.</p>
 </li>
 <li>
 <p><code>find Betsy Tim John</code><br>
-Returns any contact having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+Shows al contacts with <code>Betsy</code>, <code>Tim</code>, or <code>John</code> in their name.</p>
 </li>
 </ul>
 </div>
@@ -836,9 +830,6 @@ Format: <code>delete INDEX</code></p>
 <div class="content">
 <div class="ulist">
 <ul>
-<li>
-<p>Entry at the specified <code>INDEX</code> is deleted.</p>
-</li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
 </li>
@@ -860,11 +851,6 @@ Format: <code>delete INDEX</code></p>
 Deletes the 2nd contact in the list</p>
 </li>
 <li>
-<p><code>find Betsy</code><br>
-<code>delete 1</code><br>
-Deletes the 1st contact in the results of the <code>find</code> command.</p>
-</li>
-<li>
 <p><code>list tasks</code><br>
 <code>delete 4</code><br>
 Deletes the 4th task in the list</p>
@@ -882,9 +868,6 @@ Format: <code>select INDEX</code></p>
 <div class="content">
 <div class="ulist">
 <ul>
-<li>
-<p>Contact specified by <code>INDEX</code> is selected.</p>
-</li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
 </li>
@@ -1039,177 +1022,7 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-the-contacts-code-import-code-code-since-v1-4-code-2"><a class="link" href="#importing-the-contacts-code-import-code-code-since-v1-4-code-2">3.22. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></h3>
-<div class="paragraph">
-<p>Imports contacts from a different TeachConnect file by specifying the location of the file.<br></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>import [TYPE] pathname</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Imports Contacts : <code>import ./data/importsample.xml</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exporting-the-contacts-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">3.23. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></h3>
-<div class="paragraph">
-<p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts based on a given range of indexes or a given tag or a given tag in a range of indexes. By specifying the type of the export you want it saves either only the xml file or both the xml and Csv file.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>export n/NAME r/RANGE t/TAG p/PATH te/normal</code></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>export n/NAME r/RANGE p/PATH te/excel</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can export all the people at once, all the people with a certain tag at once, all the people with a certain tag in a range at once or all the people in a range with any tags in a single command.<br>
-You can also choose to export it in Csv format which you can later open in Excel.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-You can only export all or people based on one or zero tags.<br>
-Be careful about the parameter value for the format type. It has to exactly be either <code>normal</code> or <code>excel</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Exports contacts : <code>export n/StudentsFile1 r/all t/students p/./data te/normal</code></p>
-</li>
-<li>
-<p>Exports contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code-2"><a class="link" href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code-2">3.24. Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></h3>
-<div class="paragraph">
-<p>Sets your own personal shortcut for any of the commands above.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>shortcut [command word] [shortcut word]</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can choose multiple shortcuts for the same command.<br>
-You can later use these shortcuts in place of the original command even after closing and reopening the app.<br>
-You can also set shortcut for the shortcut command.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-You cannot set the shortcut word to a already preregistered command.<br>
-Your shortcut word cannot be more than a single word.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>shortcut list l</code><br>
-Sets <code>l</code> as the Personalised Alias for <code>list</code> command.</p>
-</li>
-<li>
-<p><code>shortcut add a</code><br>
-Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code-2"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code-2">3.25. Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></h3>
-<div class="paragraph">
-<p>Deletes your personalised Alias if you don&#8217;t want them or if you created them by mistake.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>delete_shortcut [command word] [shortcut word]</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can choose to just undo the delete_shortcut if you delete a shortcut by mistake.<br>
-Listing all the shortcuts using the <code>list shortcuts</code> command as mentioned above might help in seeing all the shortcuts at once.<br>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-You can only delete shortcuts that you have already added.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete_shortcut list l</code><br>
-Deletes the Personalised Alias <code>l</code> for <code>list</code> command.</p>
-</li>
-<li>
-<p><code>delete_shortcut add a</code><br>
-Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">3.26. Upcoming features <code>[coming soon]</code></a></h3>
+<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">3.22. Upcoming features <code>[coming soon]</code></a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1223,6 +1036,9 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 </li>
 <li>
 <p>Encrypting data files [coming in v2.0]</p>
+</li>
+<li>
+<p>Adding a student into an already formed class [coming in v2.0]</p>
 </li>
 </ul>
 </div>
@@ -1264,7 +1080,7 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add [TYPE] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p></td>
 </tr>
 <tr>
@@ -1301,6 +1117,16 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Export</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/NAME r/RANGE t/TAG p/PATH te/TYPE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/samplefile.xml r/all t/friends p/.data te/excel</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Form</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>form SUBJECT n/CLASS_NAME s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>form math n/math101 s/14/04/2018 e/15/09/2018 i/1,4</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list TYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list student</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Find</strong></p></td>
@@ -1369,7 +1195,7 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 17:04:14 UTC
+Last updated 2018-04-14 17:19:17 UTC
 </div>
 </div>
 </body>

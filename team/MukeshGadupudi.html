@@ -35,7 +35,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-contact-task-appointment-student-code-list-code-code-since-v1-4-code"><a class="link" href="#listing-all-contact-task-appointment-student-code-list-code-code-since-v1-4-code">Listing all contact/task/appointment/student : <code>list</code> <code>[since v1.4]</code></a></h3>
+<h3 id="listing-all-contact-task-appointment-student-code-list-code"><a class="link" href="#listing-all-contact-task-appointment-student-code-list-code">Listing all contact/task/appointment/student : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all of the specified <code>TYPE</code>.<br>
 Format: <code>list TYPE</code>.</p>
@@ -221,7 +221,7 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code"><a class="link" href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code">Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></h3>
+<h3 id="adding-your-own-shortcut-code-shortcut-code"><a class="link" href="#adding-your-own-shortcut-code-shortcut-code">Adding your own shortcut : <code>shortcut</code></a></h3>
 <div class="paragraph">
 <p>Sets your own personal shortcut for any of the commands above.</p>
 </div>
@@ -431,7 +431,7 @@ Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code">Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></h3>
+<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code">Deleting your personalised Alias : <code>delete_shortcut</code></a></h3>
 <div class="paragraph">
 <p>Deletes your personalised Alias if you don&#8217;t want them or if you created them by mistake.</p>
 </div>
@@ -607,7 +607,7 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-the-contacts-code-import-code-code-since-v1-4-code"><a class="link" href="#importing-the-contacts-code-import-code-code-since-v1-4-code">Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></h3>
+<h3 id="importing-the-contacts-code-import-code"><a class="link" href="#importing-the-contacts-code-import-code">Importing the contacts : <code>import</code></a></h3>
 <div class="paragraph">
 <p>Imports contacts from a different TeachConnect file by specifying the location of the file. This automatically imports all the students, classes and any other contacts present in the import file.<br></p>
 </div>
@@ -620,7 +620,7 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Imports Contacts : <code>import ./data/importsample.xml</code></p>
+<p><code>import ./data/importsample.xml</code> : Import contacts from <code>importsample.xml</code></p>
 </li>
 </ul>
 </div>
@@ -790,10 +790,12 @@ Be careful about the parameter value for the format type. It has to exactly be e
 <div class="ulist">
 <ul>
 <li>
-<p>Exports contacts : <code>export n/StudentsFile1 r/all t/students p/./data te/xml</code></p>
+<p><code>export n/StudentsFile1 r/all t/students p/./data te/normal</code> :<br>
+Exports all contacts with tag student to an xml file named <code>StudentsFile1</code> in the <code>data</code> folder.</p>
 </li>
 <li>
-<p>Exports contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code></p>
+<p><code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code> :<br>
+Exports contacts from 1 to 10 with tag students to an excel file named <code>StudentsFile2</code> in the <code>data</code> folder.</p>
 </li>
 </ul>
 </div>
@@ -1089,7 +1091,7 @@ Be careful about the parameter value for the format type. It has to exactly be e
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 17:04:14 UTC
+Last updated 2018-04-14 17:19:17 UTC
 </div>
 </div>
 </body>

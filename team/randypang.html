@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Randy Pang Chung - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Randy Pang Chung - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-teachconnect"><a class="link" href="#project-teachconnect">Project: TeachConnect</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TeachConnect(TC) is application designed to help teachers and other teaching proffessionals manage their contacts and schedule.
+TC is tailored for teachers who would prefer to use a desktop application and its Command Line Interface is meant for teachers who
+are used to typing frequently and can type fast, allowing them to use it faster than any other app.Nevertheless, TC also supports normal
+graphic interfaces like clicking and scrolling.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>:<br>
+<a href="{collatedDir}/main/randypx.md">Functional code</a><br>
+<a href="{collatedDir}/test/randypx.md">Test code</a><br></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="portfolio-purpose"><a class="link" href="#portfolio-purpose">Portfolio Purpose</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This portfolio was made to document all contribution I have made to the project.<br>
+The content includes are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The external behavior of my contributions</p>
+</li>
+<li>
+<p>The justification for their implementation</p>
+</li>
+<li>
+<p>Details of the implementation</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-addition-of-student-and-class"><a class="link" href="#enhancement-added-addition-of-student-and-class">Enhancement Added: Addition of Student and Class</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="forming-a-class"><a class="link" href="#forming-a-class">Forming a class</a></h3>
+<div class="paragraph">
+<p>Forms a class of students for a specified subject and time period.<br>
+Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code>.</p>
+</li>
+<li>
+<p>Minimum of one student must be entered. There can be more than one student.</p>
+</li>
+<li>
+<p>Only a student contact can be entered, default contacts are not allowed.</p>
+</li>
+<li>
+<p><strong>Students cannot be added in after the class is formed.</strong></p>
+</li>
+<li>
+<p>Dates must be in the format: <code>DD/MM/YYYY</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list students</code><br>
+<code>form English s/18/01/2018 e/17/07/2019</code> i/1,5,2<br>
+Forms an English class containing the first, second and fifth contact in the list that starts in 18 Jan 2018 to 17 July 2019.</p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<hr>
+<div class="paragraph">
+<p>The feature of adding students as a seperate type of contact allows teachers to manage their student contacts seperately from their
+personal contacts. The class feature furhter allows teachers to group their students into groups based on the classes they are teaching.
+This helps teachers to view their student contacts in a more organized manner and also keep track on what and when they have taught a
+student.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="incomplete-student-management"><a class="link" href="#incomplete-student-management">[Incomplete] Student Management</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The student manangement allows the user of TeachConnect to manage a particular type of contact, a student. The user is capable of interacting with the student contact just like with any other contact, for example: adding, editing, deleting and so on. In addition, users will be able to form classes to group students of the same class together. An overview of the Model Class after implementation is shown below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/EditedModelClassDiagram.png" alt="EditedModelClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>As shown above, <code>student</code> extends from <code>person</code>, giving <code>student</code> access to its constructor and getter methods for <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code> whereas only <code>student</code> will have access to <code>class</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-implementation-of-student"><a class="link" href="#aspects-implementation-of-student">Aspects : Implementation of student</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> student extends person</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allow students access to person methods while restricting person from accessing student methods.</p>
+</li>
+<li>
+<p>Cons: A separate UniqueStudentList is required to store the student contacts.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> only use a tag to show its a student</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Simpler to implement and tags are visible to user</p>
+</li>
+<li>
+<p>Cons: Requires every operation to check the tags. Tags can be removed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-for-version-2-0"><a class="link" href="#enhancement-proposed-for-version-2-0">Enhancement Proposed (for Version 2.0)</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Another add command to enter students into a already existing group.</p>
+</li>
+<li>
+<p>A grading feature to allow teachers to store a student&#8217;s grades as well.</p>
+</li>
+<li>
+<p>A relations feature to 'relate' two contacts (student or not) together. A way to store any two contacts' relationship.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Modifications to delete function to delete from the current list displayed rather then a seperate delete command for every new feature.</p>
+</li>
+<li>
+<p>Project issues assignment and management</p>
+</li>
+<li>
+<p>Project PR review</p>
+</li>
+<li>
+<p>Bugs fixes for various issues raised by other teammates and testers
+© 2018 GitHub, Inc.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-14 17:19:17 UTC
+</div>
+</div>
+</body>
+</html>
