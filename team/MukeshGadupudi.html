@@ -2554,10 +2554,10 @@ Expected: Similar to previous.</p>
 <div class="sect2">
 <h3 id="importing-the-contacts-code-import-code-code-since-v1-4-code"><a class="link" href="#importing-the-contacts-code-import-code-code-since-v1-4-code">Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
-<p>Imports contacts from a different TeachConnect file by specifying the location of the file.<br></p>
+<p>Imports contacts from a different TeachConnect file by specifying the location of the file. This automatically imports all the students, classes and any other contacts present in the import file.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>import [TYPE] pathname</code></p>
+<p>Format: <code>import pathname</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -2595,7 +2595,7 @@ Expected: Similar to previous.</p>
 <div class="sect3">
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The ImportCommand uses <code>XmlAddressBookStorage</code> to generate a temporary <code>AddressBook</code> object from a given path. It takes in a String value path. The command then adds the contacts found in the temporary <code>AddressBook</code> object into the main address book object. Below is the rough idea of the constructor for the class:</p>
+<p>The ImportCommand uses <code>XmlAddressBookStorage</code> to generate a temporary <code>AddressBook</code> object from a given path. It takes in a String value path. The command then adds the contacts or the classes found in the temporary <code>AddressBook</code> object into the main address book object. Below is the rough idea of the constructor for the class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2612,19 +2612,15 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Import command extends <code>Undoable Command</code> and hence Undo can be called on it. It initially checks if the given file path is valid and if so initialised the contacts from there, creates a <code>Person</code> object and adds it to the current <code>TeachConnect</code> with the help of <code>model</code>. The code can be found below.</p>
+<p>Import command extends <code>Undoable Command</code> and hence Undo can be called on it. It initially checks if the given file path is valid and if so initialises the contacts from there, creates a <code>Person</code> object and adds it to the current <code>TeachConnect</code> with the help of <code>model</code>.For importing classes class objects are first created and students related to the classes are stored before being added to the model. The code can be found below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
-     ObservableList&lt;Person&gt; people = addressBookImported.getPersonList();
-     <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; people.size(); i++) {
-           <span class="keyword">try</span> {
-             model.addPerson(people.get(i));
-           } <span class="keyword">catch</span> (DuplicatePersonException e) {
-             <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_PERSON);
-           }
-     }
+     peopleToBeImported(people);
+     studentToBeImported(students);
+     classesToBeImported(students, classes);
+
      <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
 }</code></pre>
 </div>
@@ -2657,7 +2653,7 @@ Expected: Similar to previous.</p>
 <p>Pros: Might be more intuitive for the user and might come in handy.</p>
 </li>
 <li>
-<p>Cons: Complex implementation ther by giving rise to more bugs and slower response rate.</p>
+<p>Cons: Will not really help the user distinguish the exact file to be imported. Care has to be taken so that the input by the user follows a certain format to parse the content properly.</p>
 </li>
 </ul>
 </div>
@@ -2672,7 +2668,7 @@ Expected: Similar to previous.</p>
 <div class="sect3">
 <h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code> String <code>type</code>. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
+<p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code> String <code>type</code>.It is also possible to export classes with String <code>path</code> String <code>name</code> String <code>type</code> as parameters. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2708,6 +2704,9 @@ Expected: Similar to previous.</p>
         <span class="keyword">return</span> rangeStringArray;
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Choosing to export classes follows a different pattern. It exports all the classes and the students related to those classes.</p>
 </div>
 <div class="paragraph">
 <p>Any range with more than 2 values in the String array returned throws an IO Exception. To add the contacts to the export file, contacts are added to the teachConnectBook. There are 4 individual cases and multiple combinations of these:</p>
@@ -2819,21 +2818,24 @@ Expected: Similar to previous.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">CSVPrinter csvPrinter;
-        <span class="keyword">try</span> {
-            csvPrinter = csvFileToBeWritten();
-        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-           handle exception...
-        }
-
-        <span class="keyword">try</span> {
-            <span class="keyword">for</span> (Person p : exportAddition) {
-                csvPrinter.printRecord(p.getName(), p.getEmail(), p.getPhone(), p.getAddress(), p.getTags());
+       <span class="keyword">try</span> {
+            csvPrinter = csvFileToBeWritten(isClassesOrNot);
+            } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+                <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_FAIL));
             }
 
-            csvPrinter.flush();
+            <span class="keyword">if</span> (isClassesOrNot) {
+               saveAsCsvClasses(csvPrinter);
+            } <span class="keyword">else</span> {
+               saveAsCsvPersons(csvPrinter);
+            }
 
-        }
-        exceptions are to be handled...</code></pre>
+            <span class="keyword">try</span> {
+                csvPrinter.flush();
+                } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+                e.printStackTrace();
+            }
+       exceptions are to be handled...</code></pre>
 </div>
 </div>
 </div>
@@ -5052,15 +5054,29 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-contacts-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></h3>
+<h3 id="exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
-<p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts based on a given range of indexes or a given tag or a given tag in a range of indexes. By specifying the type of the export you want it saves either only the xml file or both the xml and Csv file.</p>
+<p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts/students based on a given range of indexes or a given tag or a given tag in a range of indexes. Alternatively you can choose to export all the classes with the students in them. By specifying the type of the export you want it saves either only the xml file or the Csv file.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export n/NAME r/RANGE t/TAG p/PATH te/normal</code></p>
+<p>Format: <code>export n/NAME r/RANGE [t/TAG] p/PATH te/TYPE</code></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export n/NAME r/RANGE p/PATH te/excel</code></p>
+<p>Format: <code>export classes n/NAME p/PATH te/TYPE</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Here TYPE refers to the kind of export you want to do.</p>
+</li>
+<li>
+<p><code>TYPE</code> can be either excel or xml.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -5070,7 +5086,8 @@ Expected: Similar to previous.</p>
 </td>
 <td class="content">
 You can export all the people at once, all the people with a certain tag at once, all the people with a certain tag in a range at once or all the people in a range with any tags in a single command.<br>
-You can also choose to export it in Csv format which you can later open in Excel.
+You can also choose to export it in Csv format which you can later open in Excel.<br>
+You can also choose to export all the classes and the students in it using the export class format.
 </td>
 </tr>
 </table>
@@ -5083,7 +5100,7 @@ You can also choose to export it in Csv format which you can later open in Excel
 </td>
 <td class="content">
 You can only export all or people based on one or zero tags.<br>
-Be careful about the parameter value for the format type. It has to exactly be either <code>normal</code> or <code>excel</code>.
+Be careful about the parameter value for the format type. It has to exactly be either <code>xml</code> or <code>excel</code>.
 </td>
 </tr>
 </table>
@@ -5094,7 +5111,7 @@ Be careful about the parameter value for the format type. It has to exactly be e
 <div class="ulist">
 <ul>
 <li>
-<p>Exports contacts : <code>export n/StudentsFile1 r/all t/students p/./data te/normal</code></p>
+<p>Exports contacts : <code>export n/StudentsFile1 r/all t/students p/./data te/xml</code></p>
 </li>
 <li>
 <p>Exports contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code></p>
@@ -5130,7 +5147,7 @@ Be careful about the parameter value for the format type. It has to exactly be e
 <div class="sect3">
 <h4 id="current-implementation-12"><a class="link" href="#current-implementation-12">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code> String <code>type</code>. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
+<p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code> String <code>type</code>.It is also possible to export classes with String <code>path</code> String <code>name</code> String <code>type</code> as parameters. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5166,6 +5183,9 @@ Be careful about the parameter value for the format type. It has to exactly be e
         <span class="keyword">return</span> rangeStringArray;
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Choosing to export classes follows a different pattern. It exports all the classes and the students related to those classes.</p>
 </div>
 <div class="paragraph">
 <p>Any range with more than 2 values in the String array returned throws an IO Exception. To add the contacts to the export file, contacts are added to the teachConnectBook. There are 4 individual cases and multiple combinations of these:</p>
@@ -5277,21 +5297,24 @@ Be careful about the parameter value for the format type. It has to exactly be e
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">CSVPrinter csvPrinter;
-        <span class="keyword">try</span> {
-            csvPrinter = csvFileToBeWritten();
-        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-           handle exception...
-        }
-
-        <span class="keyword">try</span> {
-            <span class="keyword">for</span> (Person p : exportAddition) {
-                csvPrinter.printRecord(p.getName(), p.getEmail(), p.getPhone(), p.getAddress(), p.getTags());
+       <span class="keyword">try</span> {
+            csvPrinter = csvFileToBeWritten(isClassesOrNot);
+            } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+                <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_FAIL));
             }
 
-            csvPrinter.flush();
+            <span class="keyword">if</span> (isClassesOrNot) {
+               saveAsCsvClasses(csvPrinter);
+            } <span class="keyword">else</span> {
+               saveAsCsvPersons(csvPrinter);
+            }
 
-        }
-        exceptions are to be handled...</code></pre>
+            <span class="keyword">try</span> {
+                csvPrinter.flush();
+                } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+                e.printStackTrace();
+            }
+       exceptions are to be handled...</code></pre>
 </div>
 </div>
 </div>
@@ -5387,7 +5410,7 @@ Be careful about the parameter value for the format type. It has to exactly be e
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-11 02:05:20 UTC
+Last updated 2018-04-14 08:27:13 UTC
 </div>
 </div>
 </body>

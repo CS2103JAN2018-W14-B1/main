@@ -32,10 +32,10 @@
 <li><a href="#adding-a-contact-code-add-code">3.2. Adding a contact: <code>add</code></a></li>
 <li><a href="#forming-a-class-code-coming-in-v1-5-code">3.3. Forming a class <code>[coming in v1.5]</code></a></li>
 <li><a href="#setting-up-an-appointment-code-set_appointment-code-code-since-v1-3-code">3.4. Setting up an appointment : <code>set_appointment</code> <code>[since v1.3]</code></a></li>
-<li><a href="#removing-an-appointment-or-a-task-code-remove-code-code-since-v1-4-code">3.5. Removing an appointment or a task: <code>remove</code> <code>[since v1.4]</code></a></li>
+<li><a href="#changing-gui-theme-code-theme-code-code-since-v1-4-code">3.5. Changing GUI theme : <code>theme</code> <code>[since v1.4]</code></a></li>
 <li><a href="#switching-calendar-viewmode-code-calendar-code-code-since-v1-4-code">3.6. Switching Calendar Viewmode : <code>calendar</code> <code>[since v1.4]</code></a></li>
 <li><a href="#importing-the-contacts-code-import-code-code-since-v1-4-code">3.7. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></li>
-<li><a href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">3.8. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></li>
+<li><a href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">3.8. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></li>
 <li><a href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code">3.9. Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></li>
 <li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code">3.10. Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></li>
 <li><a href="#editing-a-contact-code-edit-code">3.11. Editing a contact : <code>edit</code></a></li>
@@ -49,7 +49,7 @@
 <li><a href="#exiting-the-program-code-exit-code">3.19. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">3.20. Saving the data</a></li>
 <li><a href="#importing-the-contacts-code-import-code-code-since-v1-4-code-2">3.21. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></li>
-<li><a href="#exporting-the-contacts-code-export-code-code-since-v1-4-code-2">3.22. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></li>
+<li><a href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">3.22. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></li>
 <li><a href="#adding-your-own-shortcut-code-shortcut-code-code-since-v1-4-code-2">3.23. Adding your own shortcut : <code>shortcut</code> <code>[since v1.4]</code></a></li>
 <li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code-code-since-v1-4-code-2">3.24. Deleting your personalised Alias : <code>delete_shortcut</code> <code>[since v1.4]</code></a></li>
 <li><a href="#upcoming-features-code-coming-soon-code">3.25. Upcoming features <code>[coming soon]</code></a></li>
@@ -364,50 +364,7 @@ Sets a task which needs to be completed before April 5th, 2018, 10am.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="removing-an-appointment-or-a-task-code-remove-code-code-since-v1-4-code"><a class="link" href="#removing-an-appointment-or-a-task-code-remove-code-code-since-v1-4-code">3.5. Removing an appointment or a task: <code>remove</code> <code>[since v1.4]</code></a></h3>
-<div class="paragraph">
-<p>Removes an appointment or a task by the index number used from their respective listing.<br>
-Format: <code>remove EVENT_TYPE INDEX</code>.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>EVENT_TYPE</code> can be either <code>appointment</code> or <code>task</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list appointments</code><br>
-<code>remove appointment 2</code><br>
-Removes the appointment with the index 2 in the appointment list.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/appointmentRemoved.jpg" alt="appointmentRemoved" width="800">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 4: Remove command usage example</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>=== Changing GUI theme : <code>theme</code> <code>[since v1.4]</code></p>
-</div>
-</li>
-</ul>
-</div>
+<h3 id="changing-gui-theme-code-theme-code-code-since-v1-4-code"><a class="link" href="#changing-gui-theme-code-theme-code-code-since-v1-4-code">3.5. Changing GUI theme : <code>theme</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
 <p>Changes the theme of the GUI. <br>
 Format: <code>theme THEME_NAME</code></p>
@@ -575,10 +532,10 @@ Lists all command shortcuts.</p>
 <div class="sect2">
 <h3 id="importing-the-contacts-code-import-code-code-since-v1-4-code"><a class="link" href="#importing-the-contacts-code-import-code-code-since-v1-4-code">3.7. Importing the contacts : <code>import</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
-<p>Imports contacts from a different TeachConnect file by specifying the location of the file.<br></p>
+<p>Imports contacts from a different TeachConnect file by specifying the location of the file. This automatically imports all the students, classes and any other contacts present in the import file.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>import [TYPE] pathname</code></p>
+<p>Format: <code>import pathname</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -592,15 +549,29 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-contacts-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">3.8. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></h3>
+<h3 id="exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">3.8. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
-<p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts based on a given range of indexes or a given tag or a given tag in a range of indexes. By specifying the type of the export you want it saves either only the xml file or both the xml and Csv file.</p>
+<p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts/students based on a given range of indexes or a given tag or a given tag in a range of indexes. Alternatively you can choose to export all the classes with the students in them. By specifying the type of the export you want it saves either only the xml file or the Csv file.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export n/NAME r/RANGE t/TAG p/PATH te/normal</code></p>
+<p>Format: <code>export n/NAME r/RANGE [t/TAG] p/PATH te/TYPE</code></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export n/NAME r/RANGE p/PATH te/excel</code></p>
+<p>Format: <code>export classes n/NAME p/PATH te/TYPE</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Here TYPE refers to the kind of export you want to do.</p>
+</li>
+<li>
+<p><code>TYPE</code> can be either excel or xml.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -610,7 +581,8 @@ Lists all command shortcuts.</p>
 </td>
 <td class="content">
 You can export all the people at once, all the people with a certain tag at once, all the people with a certain tag in a range at once or all the people in a range with any tags in a single command.<br>
-You can also choose to export it in Csv format which you can later open in Excel.
+You can also choose to export it in Csv format which you can later open in Excel.<br>
+You can also choose to export all the classes and the students in it using the export class format.
 </td>
 </tr>
 </table>
@@ -623,7 +595,7 @@ You can also choose to export it in Csv format which you can later open in Excel
 </td>
 <td class="content">
 You can only export all or people based on one or zero tags.<br>
-Be careful about the parameter value for the format type. It has to exactly be either <code>normal</code> or <code>excel</code>.
+Be careful about the parameter value for the format type. It has to exactly be either <code>xml</code> or <code>excel</code>.
 </td>
 </tr>
 </table>
@@ -634,7 +606,7 @@ Be careful about the parameter value for the format type. It has to exactly be e
 <div class="ulist">
 <ul>
 <li>
-<p>Exports contacts : <code>export n/StudentsFile1 r/all t/students p/./data te/normal</code></p>
+<p>Exports contacts : <code>export n/StudentsFile1 r/all t/students p/./data te/xml</code></p>
 </li>
 <li>
 <p>Exports contacts : <code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code></p>
@@ -1072,7 +1044,7 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-contacts-code-export-code-code-since-v1-4-code-2"><a class="link" href="#exporting-the-contacts-code-export-code-code-since-v1-4-code-2">3.22. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></h3>
+<h3 id="exporting-the-contacts-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-code-export-code-code-since-v1-4-code">3.22. Exporting the contacts : <code>export</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
 <p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts based on a given range of indexes or a given tag or a given tag in a range of indexes. By specifying the type of the export you want it saves either only the xml file or both the xml and Csv file.</p>
 </div>
@@ -1323,11 +1295,6 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_task t/Mark papers d/05/04/2018 10:00</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Remove</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove EVENT_TYPE INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove task 3</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Change GUI theme</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>theme THEME_NAME</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>theme dark</code></p></td>
@@ -1389,7 +1356,7 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-11 02:05:20 UTC
+Last updated 2018-04-14 08:27:13 UTC
 </div>
 </div>
 </body>
