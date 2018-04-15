@@ -341,6 +341,9 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 <div class="sect2">
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
+<div class="paragraph">
+<p>The high-level design of the App is illustrated in <code>Figure 1</code>.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Architecture.png" alt="Architecture" width="600">
@@ -352,19 +355,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="paragraph">
-<p><code>Figure 1</code> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103JAN2018-W14-B1/main/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
-</td>
-</tr>
-</table>
+<p>Below is a quick overview of each component.</p>
 </div>
 <div class="paragraph">
 <p><code>Main</code> has only one class called <a href="https://github.com/CS2103JAN2018-W14-B1/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
@@ -1024,6 +1015,9 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The execution flow of the Import command is shown in <code>Figure 19</code>.</p>
+</div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/ImportCommandFlowChart.png" alt="ImportCommandFlowChart">
@@ -1105,6 +1099,9 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
         teachConnectBook = <span class="keyword">new</span> AddressBook();
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The execution flow of the Export command is shown in <code>Figure 20</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1739,8 +1736,10 @@ To illustrate how the encrypt command works, <code>Figure 27</code> shows the se
 <img src="images/EncryptionSequenceDiagram.png" alt="EncryptionSequenceDiagram">
 </div>
 </div>
-<div class="paragraph">
-<p>Figure 27: Encrypt Command Sequence Diagram</p>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 27: Encrypt Command Sequence Diagram</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>The Decrypt command also follows the same flow, except that <code>DecryptEvent</code> is posted,<code>handleDecryptEvent</code> is called instead, and decryptUtil handles the decryption.</p>
@@ -1883,7 +1882,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <p>Within Chrome, click on the <code>Print</code> option in Chrome&#8217;s menu.</p>
 </li>
 <li>
-<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings indicated in <code>Figure 27</code> below.</p>
+<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings indicated in <code>Figure 28</code> below.</p>
 </li>
 </ol>
 </div>
@@ -1894,7 +1893,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Figure 27: Saving Document as pdf settings</pre>
+<pre>Figure 28: Saving Document as pdf settings</pre>
 </div>
 </div>
 </div>
@@ -3075,7 +3074,7 @@ Expected: Should delete the shortcut for the command <code>list</code> with <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 14:59:10 UTC
+Last updated 2018-04-15 15:22:32 UTC
 </div>
 </div>
 </body>
