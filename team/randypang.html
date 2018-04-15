@@ -129,11 +129,34 @@ student.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="incomplete-student-management"><a class="link" href="#incomplete-student-management">[Incomplete] Student Management</a></h3>
+<h3 id="student-management"><a class="link" href="#student-management">Student Management</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The student manangement allows the user of TeachConnect to manage a particular type of contact, a student. The user is capable of interacting with the student contact just like with any other contact, for example: adding, editing, deleting and so on. In addition, users will be able to form classes to group students of the same class together. An overview of the Model Class after implementation is shown below:</p>
+<p>The student manangement allows the user of TeachConnect to manage a particular type of contact, a student. The user is capable of interacting with the student contact just like with any other contact, for example: adding, editing, deleting and so on. In addition, users will be able to form classes to group students of the same class together.</p>
+</div>
+<div class="paragraph">
+<p>Each <code>Class</code> contains 4 variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name of class: for users to distinguish between classes.</p>
+</li>
+<li>
+<p>Subject being taught: for users to record what was taught to any particular class or student.</p>
+</li>
+<li>
+<p>Duration of Class: for users to record when that particular class was taught by them.<br>
+Shown as a range of dates, e.g 01 January 18 to 01 December 18.</p>
+</li>
+<li>
+<p>List of students taught: for users to recorded which class was attended by which student and vice versa.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>An overview of the Model Component after implementation is shown below in Figure 23:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -146,7 +169,7 @@ student.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As shown above, <code>student</code> extends from <code>person</code>, giving <code>student</code> access to its constructor and getter methods for <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code> whereas only <code>student</code> will have access to <code>class</code>.</p>
+<p>As shown above, <code>student</code> class extends from the <code>person</code> class, giving <code>student</code> access to its constructor and getter methods for <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code> whereas only <code>student</code> will have access to <code>class</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -163,7 +186,7 @@ student.</p>
 <p>Pros: This implementation allows students access to person methods while restricting person from accessing student methods.</p>
 </li>
 <li>
-<p>Cons: A separate UniqueStudentList is required to store the student contacts.</p>
+<p>Cons: The implementation is more complex as additional classes has to be added to facilitate storage and display.</p>
 </li>
 </ul>
 </div>
@@ -173,7 +196,7 @@ student.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: It&#8217;s more simple to implement and tags are visible to user.</p>
+<p>Pros: It is more simple to implement and tags are visible to user.</p>
 </li>
 <li>
 <p>Cons: This implementation would require every operation to check the tags. Tags can also be removed.</p>
@@ -227,7 +250,7 @@ student.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 13:59:29 UTC
+Last updated 2018-04-15 14:21:20 UTC
 </div>
 </div>
 </body>
