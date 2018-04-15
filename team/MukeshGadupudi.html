@@ -171,7 +171,7 @@ Lists all command shortcuts.</p>
 <p>There is a check to find if the command is already present and the method used for this is called <code>checkIfCommandPresent()</code>.By default it returns false.</p>
 </div>
 <div class="paragraph">
-<p>You can also choose to list all the shortcuts created until now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. A high level sequence diagram is given below :</p>
+<p>You can also choose to list all the shortcuts created until now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. <code>Figure 21</code> gives an example of a high level sequence diagram.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -184,10 +184,20 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As of now the conditions to take note of are:
-* Shortcut can be only one word.
-* The command word should already exist.
-* New commands are to be added in the <code>commandsPresent</code> String array of <code>ShortcutCommand</code> class.</p>
+<p>As of now the conditions to take note of are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Shortcut can be only one word.</p>
+</li>
+<li>
+<p>The command word should already exist.</p>
+</li>
+<li>
+<p>New commands are to be added in the <code>commandsPresent</code> String array of <code>ShortcutCommand</code> class.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -197,27 +207,27 @@ Lists all command shortcuts.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1:</strong> Restricting the number of aliases of a command word.</p>
+<p><strong>Alternative 1:</strong> There is a limit to the number of aliases a command word can have.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Allows for setting up a shortcut word there by increasing the usability of the app.</p>
+<p>Pros: This implementation allows the developers to set up default shortcuts for each command word there by increasing the usability of the app.</p>
 </li>
 <li>
-<p>Cons: Wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because if there is only one shortcut alias and the user might forget it.</p>
+<p>Cons: It wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because there is only one shortcut alias and the user might forget it.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice):</strong> Allowing multiple number of shortcut words for a single command word</p>
+<p><strong>Alternative 2 (current choice):</strong> Multiple number of shortcut words can be created for a single command word.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User can create multiple aliases there by giving the user more personalisation and the flexibility of forgetting the words as he can create more of them.</p>
+<p>Pros: As users can create multiple aliases, this implementation gives them more personalisation and the flexibility of forgetting the words as they can always create more of them.</p>
 </li>
 <li>
-<p>Cons: Need to consider several cases for duplicate shortcuts and maintain a dynamic list without forgetting the shortcuts when the app is closed without hardcoding the shortcut word into each command.</p>
+<p>Cons: Developers need to consider several cases for duplicate shortcuts and maintain a dynamic list without forgetting the shortcuts when the app is closed without hardcoding the shortcut word into each command.</p>
 </li>
 </ul>
 </div>
@@ -358,7 +368,7 @@ Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 <p>There is a check to find if the command is already present and the method used for this is called <code>checkIfCommandPresent()</code>.By default it returns false.</p>
 </div>
 <div class="paragraph">
-<p>You can also choose to list all the shortcuts created until now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. A high level sequence diagram is given below :</p>
+<p>You can also choose to list all the shortcuts created until now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. <code>Figure 21</code> gives an example of a high level sequence diagram.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -371,10 +381,20 @@ Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As of now the conditions to take note of are:
-* Shortcut can be only one word.
-* The command word should already exist.
-* New commands are to be added in the <code>commandsPresent</code> String array of <code>ShortcutCommand</code> class.</p>
+<p>As of now the conditions to take note of are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Shortcut can be only one word.</p>
+</li>
+<li>
+<p>The command word should already exist.</p>
+</li>
+<li>
+<p>New commands are to be added in the <code>commandsPresent</code> String array of <code>ShortcutCommand</code> class.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -384,27 +404,27 @@ Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1:</strong> Restricting the number of aliases of a command word.</p>
+<p><strong>Alternative 1:</strong> There is a limit to the number of aliases a command word can have.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Allows for setting up a shortcut word there by increasing the usability of the app.</p>
+<p>Pros: This implementation allows the developers to set up default shortcuts for each command word there by increasing the usability of the app.</p>
 </li>
 <li>
-<p>Cons: Wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because if there is only one shortcut alias and the user might forget it.</p>
+<p>Cons: It wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because there is only one shortcut alias and the user might forget it.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice):</strong> Allowing multiple number of shortcut words for a single command word</p>
+<p><strong>Alternative 2 (current choice):</strong> Multiple number of shortcut words can be created for a single command word.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User can create multiple aliases there by giving the user more personalisation and the flexibility of forgetting the words as he can create more of them.</p>
+<p>Pros: As users can create multiple aliases, this implementation gives them more personalisation and the flexibility of forgetting the words as they can always create more of them.</p>
 </li>
 <li>
-<p>Cons: Need to consider several cases for duplicate shortcuts and maintain a dynamic list without forgetting the shortcuts when the app is closed without hardcoding the shortcut word into each command.</p>
+<p>Cons: Developers need to consider several cases for duplicate shortcuts and maintain a dynamic list without forgetting the shortcuts when the app is closed without hardcoding the shortcut word into each command.</p>
 </li>
 </ul>
 </div>
@@ -541,27 +561,27 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1:</strong> Omit the delete shortcut command.</p>
+<p><strong>Alternative 1:</strong> TeachConnect doesn&#8217;t support Delete Shortcut Command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Would require less implementation considering the fact that the shortcut has been added by the user.</p>
+<p>Pros: The implementation would be more simple considering the fact that the shortcut has been added by the user.</p>
 </li>
 <li>
-<p>Cons: Would not give the user any room for mistake or change of mind as once added it would be not possible to delete it.</p>
+<p>Cons: This implementation would not give the user any room for mistake or change of mind as once added shortcut cannot be deleted.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice):</strong> Include the delete shortcut command.</p>
+<p><strong>Alternative 2 (current choice):</strong> TeachConnect also supports Delete Shorcut Command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will give the user the room to make mistake and change the shortcuts if needed. Would also help him in clearing the clutter of shortcuts which would have developed over time.</p>
+<p>Pros: This implementation will give the user the room to make mistake and change the shortcuts if needed. It would also help him in clearing the clutter of shortcuts which would have developed over time.</p>
 </li>
 <li>
-<p>Cons: Will have to take care of various edge cases when the shortcuts are not present and keep modifying the dynamic list. Several relevant exceptions have to be thrown and taken care of.</p>
+<p>Cons: The developers will have to take care of various edge cases when the shortcuts are not present and keep modifying the dynamic list. Several relevant exceptions have to be thrown and taken care of.</p>
 </li>
 </ul>
 </div>
@@ -672,27 +692,27 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only import from an <code>XML</code> file.</p>
+<p><strong>Alternative 1 (current choice):</strong> User can only import from an <code>XML</code> file.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Goes well with the idea of TeachConnect. Easier to implement and also clear distinction of the file that needs to be imported by the user with the help of the .XML extension.</p>
+<p>Pros: This implementation goes well with the idea of TeachConnect. It&#8217;s easier to implement and also there is a clear distinction of the file that needs to be imported by the user with the help of the .XML extension.</p>
 </li>
 <li>
-<p>Cons: User might want to import from Excel only to realise this isn&#8217;t possible.</p>
+<p>Cons: Users might want to import from Excel only to realise this isn&#8217;t possible.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Include import from an <code>Excel</code> file too.</p>
+<p><strong>Alternative 2:</strong> Users can import from an <code>Excel</code> file too.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Might be more intuitive for the user and might come in handy.</p>
+<p>Pros: This implementation might be more intuitive for the user and might come in handy.</p>
 </li>
 <li>
-<p>Cons: Will not really help the user distinguish the exact file to be imported. Care has to be taken so that the input by the user follows a certain format to parse the content properly.</p>
+<p>Cons: This implementation will not really help the user to distinguish the exact file to be imported. Care has to be taken so that the input by the user follows a certain format to parse the content properly.</p>
 </li>
 </ul>
 </div>
@@ -928,11 +948,11 @@ Exports contacts from 1 to 10 with tag students to an excel file named <code>Stu
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1:</strong> Only export to an <code>XML</code> file.</p>
+<p><strong>Alternative 1:</strong> Users can only export to <code>XML</code> files.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier implementation and very helpful for the import command as import can only be done from an XML file.</p>
+<p>Pros: This is the easier implementation and it goes well with the import command as import can only be done from an XML file.</p>
 </li>
 <li>
 <p>Cons: The exported file might not be very user friendly to read in the xml file format and hence later referencing to the file after exporting can be a nightmare.</p>
@@ -941,14 +961,14 @@ Exports contacts from 1 to 10 with tag students to an excel file named <code>Stu
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice):</strong> Include export to an <code>Excel</code> file too.</p>
+<p><strong>Alternative 2 (current choice):</strong> Users can export to <code>Excel</code> files too.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Might be more intuitive for the user and might come in handy especially when the user wants to print it later or read the contents in a user friendly format.</p>
+<p>Pros: This implementation might be more intuitive for the user and might come in handy especially when the user wants to print it later or read the contents in a user friendly format.</p>
 </li>
 <li>
-<p>Cons: Complex implementation there by giving rise to more boundary cases to consider.</p>
+<p>Cons: The implementation would be more complex and hence there could be more boundary cases to consider.</p>
 </li>
 </ul>
 </div>
@@ -1013,7 +1033,7 @@ Exports contacts from 1 to 10 with tag students to an excel file named <code>Stu
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 04:22:40 UTC
+Last updated 2018-04-15 07:08:11 UTC
 </div>
 </div>
 </body>

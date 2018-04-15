@@ -81,18 +81,17 @@
 <li><a href="#managing-dependencies">7.6. Managing Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#GetStartedProgramming">Appendix A: Suggested Programming Tasks to Get Started</a></li>
-<li><a href="#GetStartedProgramming-EachComponent">Appendix B: Product Scope</a></li>
-<li><a href="#user-stories">Appendix C: User Stories</a></li>
-<li><a href="#use-cases">Appendix D: Use Cases</a></li>
-<li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix F: Glossary</a></li>
-<li><a href="#product-survey">Appendix G: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
+<li><a href="#GetStartedProgramming">Appendix A: Product Scope</a></li>
+<li><a href="#user-stories">Appendix B: User Stories</a></li>
+<li><a href="#use-cases">Appendix C: Use Cases</a></li>
+<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
+<li><a href="#glossary">Appendix E: Glossary</a></li>
+<li><a href="#product-survey">Appendix F: Product Survey</a></li>
+<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
-<li><a href="#saving-data">H.3. Saving data</a></li>
+<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -137,6 +136,9 @@
 <div class="sect1">
 <h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section covers the steps needed to set up TeachConnect on a computer.</p>
+</div>
 <div class="sect2">
 <h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="olist arabic">
@@ -312,7 +314,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 3.1, &#8220;Architecture&#8221;</a>.</p>
 </li>
 <li>
-<p>Take a look at <a href="#GetStartedProgramming">Appendix A, <em>Suggested Programming Tasks to Get Started</em></a>.</p>
+<p>Take a look at <a href="#GetStartedProgramming">Appendix A, <em>Product Scope</em></a>.</p>
 </li>
 </ol>
 </div>
@@ -324,7 +326,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <h2 id="design"><a class="link" href="#design">3. Design</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section discusses the design of TeachConnect&#8217;s major components.</p>
+<p>This section discusses the design of TeachConnect&#8217;s architecture and its components.</p>
 </div>
 <div class="sect2">
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
@@ -1043,27 +1045,27 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only import from an <code>XML</code> file.</p>
+<p><strong>Alternative 1 (current choice):</strong> User can only import from an <code>XML</code> file.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Goes well with the idea of TeachConnect. Easier to implement and also clear distinction of the file that needs to be imported by the user with the help of the .XML extension.</p>
+<p>Pros: This implementation goes well with the idea of TeachConnect. It&#8217;s easier to implement and also there is a clear distinction of the file that needs to be imported by the user with the help of the .XML extension.</p>
 </li>
 <li>
-<p>Cons: User might want to import from Excel only to realise this isn&#8217;t possible.</p>
+<p>Cons: Users might want to import from Excel only to realise this isn&#8217;t possible.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Include import from an <code>Excel</code> file too.</p>
+<p><strong>Alternative 2:</strong> Users can import from an <code>Excel</code> file too.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Might be more intuitive for the user and might come in handy.</p>
+<p>Pros: This implementation might be more intuitive for the user and might come in handy.</p>
 </li>
 <li>
-<p>Cons: Will not really help the user distinguish the exact file to be imported. Care has to be taken so that the input by the user follows a certain format to parse the content properly.</p>
+<p>Cons: This implementation will not really help the user to distinguish the exact file to be imported. Care has to be taken so that the input by the user follows a certain format to parse the content properly.</p>
 </li>
 </ul>
 </div>
@@ -1194,11 +1196,11 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1:</strong> Only export to an <code>XML</code> file.</p>
+<p><strong>Alternative 1:</strong> Users can only export to <code>XML</code> files.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier implementation and very helpful for the import command as import can only be done from an XML file.</p>
+<p>Pros: This is the easier implementation and it goes well with the import command as import can only be done from an XML file.</p>
 </li>
 <li>
 <p>Cons: The exported file might not be very user friendly to read in the xml file format and hence later referencing to the file after exporting can be a nightmare.</p>
@@ -1207,14 +1209,14 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice):</strong> Include export to an <code>Excel</code> file too.</p>
+<p><strong>Alternative 2 (current choice):</strong> Users can export to <code>Excel</code> files too.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Might be more intuitive for the user and might come in handy especially when the user wants to print it later or read the contents in a user friendly format.</p>
+<p>Pros: This implementation might be more intuitive for the user and might come in handy especially when the user wants to print it later or read the contents in a user friendly format.</p>
 </li>
 <li>
-<p>Cons: Complex implementation there by giving rise to more boundary cases to consider.</p>
+<p>Cons: The implementation would be more complex and hence there could be more boundary cases to consider.</p>
 </li>
 </ul>
 </div>
@@ -1257,7 +1259,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>There is a check to find if the command is already present and the method used for this is called <code>checkIfCommandPresent()</code>.By default it returns false.</p>
 </div>
 <div class="paragraph">
-<p>You can also choose to list all the shortcuts created until now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. A high level sequence diagram is given below :</p>
+<p>You can also choose to list all the shortcuts created until now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. <code>Figure 21</code> gives an example of a high level sequence diagram.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1270,10 +1272,20 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>As of now the conditions to take note of are:
-* Shortcut can be only one word.
-* The command word should already exist.
-* New commands are to be added in the <code>commandsPresent</code> String array of <code>ShortcutCommand</code> class.</p>
+<p>As of now the conditions to take note of are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Shortcut can be only one word.</p>
+</li>
+<li>
+<p>The command word should already exist.</p>
+</li>
+<li>
+<p>New commands are to be added in the <code>commandsPresent</code> String array of <code>ShortcutCommand</code> class.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -1283,27 +1295,27 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1:</strong> Restricting the number of aliases of a command word.</p>
+<p><strong>Alternative 1:</strong> There is a limit to the number of aliases a command word can have.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Allows for setting up a shortcut word there by increasing the usability of the app.</p>
+<p>Pros: This implementation allows the developers to set up default shortcuts for each command word there by increasing the usability of the app.</p>
 </li>
 <li>
-<p>Cons: Wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because if there is only one shortcut alias and the user might forget it.</p>
+<p>Cons: It wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because there is only one shortcut alias and the user might forget it.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice):</strong> Allowing multiple number of shortcut words for a single command word</p>
+<p><strong>Alternative 2 (current choice):</strong> Multiple number of shortcut words can be created for a single command word.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User can create multiple aliases there by giving the user more personalisation and the flexibility of forgetting the words as he can create more of them.</p>
+<p>Pros: As users can create multiple aliases, this implementation gives them more personalisation and the flexibility of forgetting the words as they can always create more of them.</p>
 </li>
 <li>
-<p>Cons: Need to consider several cases for duplicate shortcuts and maintain a dynamic list without forgetting the shortcuts when the app is closed without hardcoding the shortcut word into each command.</p>
+<p>Cons: Developers need to consider several cases for duplicate shortcuts and maintain a dynamic list without forgetting the shortcuts when the app is closed without hardcoding the shortcut word into each command.</p>
 </li>
 </ul>
 </div>
@@ -1357,27 +1369,27 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1:</strong> Omit the delete shortcut command.</p>
+<p><strong>Alternative 1:</strong> TeachConnect doesn&#8217;t support Delete Shortcut Command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Would require less implementation considering the fact that the shortcut has been added by the user.</p>
+<p>Pros: The implementation would be more simple considering the fact that the shortcut has been added by the user.</p>
 </li>
 <li>
-<p>Cons: Would not give the user any room for mistake or change of mind as once added it would be not possible to delete it.</p>
+<p>Cons: This implementation would not give the user any room for mistake or change of mind as once added shortcut cannot be deleted.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice):</strong> Include the delete shortcut command.</p>
+<p><strong>Alternative 2 (current choice):</strong> TeachConnect also supports Delete Shorcut Command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will give the user the room to make mistake and change the shortcuts if needed. Would also help him in clearing the clutter of shortcuts which would have developed over time.</p>
+<p>Pros: This implementation will give the user the room to make mistake and change the shortcuts if needed. It would also help him in clearing the clutter of shortcuts which would have developed over time.</p>
 </li>
 <li>
-<p>Cons: Will have to take care of various edge cases when the shortcuts are not present and keep modifying the dynamic list. Several relevant exceptions have to be thrown and taken care of.</p>
+<p>Cons: The developers will have to take care of various edge cases when the shortcuts are not present and keep modifying the dynamic list. Several relevant exceptions have to be thrown and taken care of.</p>
 </li>
 </ul>
 </div>
@@ -1415,11 +1427,11 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> student extends person</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>Student</code> class extends <code>Person</code> class.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Allow students access to person methods while restricting person from accessing student methods.</p>
+<p>Pros: This implementation allows students access to person methods while restricting person from accessing student methods.</p>
 </li>
 <li>
 <p>Cons: A separate UniqueStudentList is required to store the student contacts.</p>
@@ -1428,14 +1440,14 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> only use a tag to show its a student</p>
+<p><strong>Alternative 2:</strong> Developers only use a tag to distinguish a student from a person.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Simpler to implement and tags are visible to user</p>
+<p>Pros: It&#8217;s more simple to implement and tags are visible to user.</p>
 </li>
 <li>
-<p>Cons: Requires every operation to check the tags. Tags can be removed.</p>
+<p>Cons: This implementation would require every operation to check the tags. Tags can also be removed.</p>
 </li>
 </ul>
 </div>
@@ -1478,7 +1490,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p>Title: Holds description for the appointment.</p>
+<p>Title: Holds the description for the appointment.</p>
 </li>
 <li>
 <p>Start Time: Holds the starting time of the appointment.</p>
@@ -1497,7 +1509,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p>Title: Holds description for the task.</p>
+<p>Title: Holds the description for the task.</p>
 </li>
 <li>
 <p>Time: Holds the time the task is expected to be finished.</p>
@@ -1508,7 +1520,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>Similar to <code>UniquePersonList</code> and <code>UniqueTagList</code>, <code>UniqueAppointmentList</code> and <code>UniqueTaskList</code> is linked to <code>AddressBook</code>. Request to change to the <code>AddressBook</code> model is signalled through <code>ModelManager</code>.</p>
 </div>
 <div class="paragraph">
-<p>Every <code>Appointment</code> in the <code>UniqueAppointmentList</code> is also added to <code>CalendarFX</code> 's Calendar entry list to be rendered on the Calendar View in the GUI. When there is a change in the <code>UniqueAppointmentList</code>, an <code>AppointmentListChangedEvent</code> will be propagated through the <code>EventsCenter</code>. When it reaches the <code>UI</code> component, the result is re-syncing of <code>UniqueAppointmentList</code> and <code>CalendarFx</code> 's Calendar entry list and the Calendar View in the GUI will be updated. The code below shows how the re-syncing works within the <code>UI</code> component.</p>
+<p>Every <code>Appointment</code> in the <code>UniqueAppointmentList</code> is also added to <code>CalendarFX</code> 's Calendar <code>Entry</code> list to be rendered on the Calendar View in the GUI. When there is a change in the <code>UniqueAppointmentList</code>, an <code>AppointmentListChangedEvent</code> will be propagated through the <code>EventsCenter</code>. When it reaches the <code>UI</code> component, the result is re-syncing of <code>UniqueAppointmentList</code> and <code>CalendarFx</code> 's Calendar <code>Entry</code> list and the Calendar View in the GUI will be updated. The code below shows how the re-syncing works within the <code>UI</code> component.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1593,7 +1605,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Theme selected is not saved to storage or <code>UserPrefs</code>, thus when TeachConnect starts the default theme is always selected.</p>
+<p><strong>Alternative 1 (current choice):</strong> Theme selected is not saved to storage, thus when TeachConnect starts the default theme is always selected.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1606,7 +1618,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Last selected theme by the users would be saved to storage or <code>UserPrefs</code>.</p>
+<p><strong>Alternative 2:</strong> Last selected theme by the users would be saved to storage.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1922,25 +1934,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="GetStartedProgramming"><a class="link" href="#GetStartedProgramming">Appendix A: Suggested Programming Tasks to Get Started</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Suggested path for new programmers:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>First, add small local-impact (i.e. the impact of the change does not go beyond the component) enhancements to one component at a time. Some suggestions are given in <a href="#GetStartedProgramming-EachComponent">Appendix B, <em>Product Scope</em></a>.</p>
-</li>
-<li>
-<p>Next, add a feature that touches multiple components to learn how to implement an end-to-end feature across all components. <a href="#GetStartedProgramming-RemarkCommand">[GetStartedProgramming-RemarkCommand]</a> explains how to go about adding such a feature.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="GetStartedProgramming-EachComponent"><a class="link" href="#GetStartedProgramming-EachComponent">Appendix B: Product Scope</a></h2>
+<h2 id="GetStartedProgramming"><a class="link" href="#GetStartedProgramming">Appendix A: Product Scope</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Target user profile</strong>: teachers or educational professionals who</p>
@@ -2055,7 +2049,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </li>
 <li>
-<p>How the features fit into the product scope :</p>
+<p>How the features fit into the product scope:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2119,7 +2113,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="ulist">
 <ul>
 <li>
-<p>Student contact can be created and be added into classes</p>
+<p>Student contact can be created and be added into classes.</p>
 </li>
 </ul>
 </div>
@@ -2129,7 +2123,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="ulist">
 <ul>
 <li>
-<p>The list in GUI will hava tabs for multiple different lists</p>
+<p>The list in GUI will hava tabs for multiple different lists.</p>
 </li>
 </ul>
 </div>
@@ -2155,7 +2149,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix C: User Stories</a></h2>
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
@@ -2298,7 +2292,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is <code>TeachConnect</code> and the <strong>Actor</strong> is the <code>teacher</code>, unless specified otherwise)</p>
@@ -2518,7 +2512,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></h2>
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -2529,7 +2523,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
-<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+<p>Should allow a user with above average typing speed for regular English text (i.e. not code, not system admin commands) to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 <li>
 <p>Should be intutive for any first time user.</p>
@@ -2538,7 +2532,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <p>Should be able to handle any invalid input i.e should be able to inform the user and guide the user for valid input.</p>
 </li>
 <li>
-<p>Should respond within a second</p>
+<p>Should respond within a second.</p>
 </li>
 </ol>
 </div>
@@ -2548,7 +2542,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix F: Glossary</a></h2>
+<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
@@ -2565,7 +2559,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix G: Product Survey</a></h2>
+<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Product Name</strong></p>
@@ -2602,7 +2596,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a></h2>
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -2620,7 +2614,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">H.1. Launch and Shutdown</a></h3>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2658,7 +2652,7 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.2. Deleting a person</a></h3>
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2690,7 +2684,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.3. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2714,7 +2708,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 04:22:40 UTC
+Last updated 2018-04-15 07:08:11 UTC
 </div>
 </div>
 </body>
