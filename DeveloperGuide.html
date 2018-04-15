@@ -53,8 +53,10 @@
 <li><a href="#incomplete-student-management">4.6. [Incomplete] Student Management</a></li>
 <li><a href="#schedule-management">4.7. Schedule Management</a></li>
 <li><a href="#changing-gui-theme">4.8. Changing GUI theme</a></li>
-<li><a href="#logging">4.9. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.10. Configuration</a></li>
+<li><a href="#sorting-contacts">4.9. Sorting Contacts</a></li>
+<li><a href="#encryption-decryption-proposed">4.10. Encryption/Decryption [Proposed]</a></li>
+<li><a href="#logging">4.11. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.12. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1633,14 +1635,134 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
+<h3 id="sorting-contacts"><a class="link" href="#sorting-contacts">4.9. Sorting Contacts</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.9.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>This command sorts all the contacts in TeachConnect lexicographically.
+The command calls upon a <code>sortByNameFilteredPersonList()</code> method in <code>Model</code>, which then calls upon the <code>sortList()</code> method in <code>UniqueContactList</code>. The <code>sortList()</code> method sorts the entire contact list using a comparator.
+Below is the code snippet.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void sortList() {
+       Comparator&lt;Person&gt; sortByName = new Comparator&lt;Person&gt;() {
+           @Override
+           public int compare (Person contact1, Person contact2)  {
+               return contact1.getName().fullName.compareToIgnoreCase(contact2.getName().fullName);
+           }
+       };
+       FXCollections.sort(combinedList, sortByName);
+   }</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.9.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-automatic-sorting-of-contacts"><a class="link" href="#aspects-automatic-sorting-of-contacts">Aspects : Automatic sorting of contacts</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> TeachConnect will only sort contacts after user keys in the command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This implementation is simpler and more intuitive.</p>
+</li>
+<li>
+<p>Cons: Users might find it a slight hassle to have to key in the sort command every time a new contact is added.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2: </strong> TeachConnect automatically sorts contacts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: When new contacts are added, they are automatic sorted without the need to key in the command.</p>
+</li>
+<li>
+<p>Cons: The command implementation might be more complex and it would make the command redundant. Users also might not always want their contact list to be sorted.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="encryption-decryption-proposed"><a class="link" href="#encryption-decryption-proposed">4.10. Encryption/Decryption [Proposed]</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.10.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>TeachConnect will also have a data encryption feature to keep the teacher&#8217;s sensitive contact data safe from unauthorised persons.
+To illustrate how the encrypt command works, <code>Figure 27</code> shows the sequence diagram when the command <code>encrypt pw/&lt;password&gt;</code> is entered.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/EncryptionSequenceDiagram.png" alt="EncryptionSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 27: Encrypt Command Sequence Diagram</p>
+</div>
+<div class="paragraph">
+<p>The Decrypt command also follows the same flow, except that <code>DecryptEvent</code> is posted,<code>handleDecryptEvent</code> is called instead, and decryptUtil handles the decryption.</p>
+</div>
+<div class="paragraph">
+<p>After encryption the result would be an encrypted <code>addressBook.xml</code> file, and after decryption the result is a decrypted and human-readable <code>addressBook.xml</code> file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.10.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-saving-of-password-to-teachconnect-storage"><a class="link" href="#aspects-saving-of-password-to-teachconnect-storage">Aspects : Saving of password to TeachConnect storage</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Users remember their own passwords.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The password is also not stored locally within TeachConnect, hence it would be impossible to obtain the password from the application. No one else would have the password but the user, provided that he/she does not share it with any unauthorised persons.</p>
+</li>
+<li>
+<p>Cons: If the user forgets the password, then the file cannot be decrypted. Also, the user needs to find secure means to share this password with other authorised persons.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2: </strong> Password is saved within TeachConnect.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Users will find it more convenient as they do not have to remember their password.</p>
+</li>
+<li>
+<p>Cons: The command implementation might be more complex. There is a risk of unauthorised persons breaking and reverse-engineering the password.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.11. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.12, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1671,7 +1793,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.12. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2705,7 +2827,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 12:15:27 UTC
+Last updated 2018-04-15 12:26:34 UTC
 </div>
 </div>
 </body>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Lim Shi Min - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Lim Shi Min - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-teachconnect"><a class="link" href="#project-teachconnect">Project: TeachConnect</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TeachConnect(TC) is an application to help teachers and educators manage their student contacts, appointments and tasks. It uses a Command Line Interface (CLI) which is tailored for users who love typing, and can type quickly. Its output is all displayed on its Graphical User Interface (GUI).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="portfolio-purpose"><a class="link" href="#portfolio-purpose">Portfolio Purpose</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This portfolio was made to document all contribution I have made to the project.<br>
+The content includes are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The external behavior of my contributions</p>
+</li>
+<li>
+<p>The justification for their implementation</p>
+</li>
+<li>
+<p>Details of the implementation</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>[Attempted] Major enhancement:</strong> Security Features</p>
+</div>
+<div class="paragraph">
+<p><strong>What it does:</strong> This feature allows users to perform encryption and decryption on their contact lists using a user-provided password.</p>
+</div>
+<div class="paragraph">
+<p><strong>Justification:</strong> This feature safeguards and protects potentially sensitive contact details and data (such as student&#8217;s grades, or parent&#8217;s contact details) from unauthorised persons. If the encrypted data file falls into the wrong hands, it is still safe as the file is non-human readable.</p>
+</div>
+<div class="paragraph">
+<p><strong>Minor enhancement:</strong> Sorting of contacts</p>
+</div>
+<div class="paragraph">
+<p><strong>What it does:</strong> Allows users to sort all their contacts in lexicographical order.</p>
+</div>
+<div class="paragraph">
+<p><strong>Justification:</strong> This feature helps to keep TeachConnect neat and orderly. It also makes it easier to search for contacts.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>:<br>
+<a href="{collatedDir}/main/LimShiMinJonathan.md">Functional code</a><br>
+<a href="{collatedDir}/test/LimShiMinJonathan.md">Test code</a><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Other Contributions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Project issues assignment and management.</p>
+</li>
+<li>
+<p>Project PR review.</p>
+</li>
+<li>
+<p>Discussed bugs fixes for various issues.</p>
+</li>
+<li>
+<p>Edited and Formatted User Guide and Developer Guide</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide:</a></h3>
+<div class="sect3">
+<h4 id="minor-enhancement"><a class="link" href="#minor-enhancement">Minor Enhancement</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-all-contacts-code-sort-code"><a class="link" href="#sorting-all-contacts-code-sort-code">Sorting all contacts : <code>sort</code></a></h3>
+<div class="paragraph">
+<p>Sorts all contacts in alphabetical order.<br>
+Format: <code>sort</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="attempted-major-enhancement"><a class="link" href="#attempted-major-enhancement">[Attempted] Major Enhancement:</a></h4>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="encryption-decryption-proposed"><a class="link" href="#encryption-decryption-proposed">Encryption/Decryption [Proposed]</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>TeachConnect will also have a data encryption feature to keep the teacher&#8217;s sensitive contact data safe from unauthorised persons.
+To illustrate how the encrypt command works, <code>Figure 27</code> shows the sequence diagram when the command <code>encrypt pw/&lt;password&gt;</code> is entered.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/EncryptionSequenceDiagram.png" alt="EncryptionSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 27: Encrypt Command Sequence Diagram</p>
+</div>
+<div class="paragraph">
+<p>The Decrypt command also follows the same flow, except that <code>DecryptEvent</code> is posted,<code>handleDecryptEvent</code> is called instead, and decryptUtil handles the decryption.</p>
+</div>
+<div class="paragraph">
+<p>After encryption the result would be an encrypted <code>addressBook.xml</code> file, and after decryption the result is a decrypted and human-readable <code>addressBook.xml</code> file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-saving-of-password-to-teachconnect-storage"><a class="link" href="#aspects-saving-of-password-to-teachconnect-storage">Aspects : Saving of password to TeachConnect storage</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Users remember their own passwords.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The password is also not stored locally within TeachConnect, hence it would be impossible to obtain the password from the application. No one else would have the password but the user, provided that he/she does not share it with any unauthorised persons.</p>
+</li>
+<li>
+<p>Cons: If the user forgets the password, then the file cannot be decrypted. Also, the user needs to find secure means to share this password with other authorised persons.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2: </strong> Password is saved within TeachConnect.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Users will find it more convenient as they do not have to remember their password.</p>
+</li>
+<li>
+<p>Cons: The command implementation might be more complex. There is a risk of unauthorised persons breaking and reverse-engineering the password.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="minor-enhancement-2"><a class="link" href="#minor-enhancement-2">Minor Enhancement:</a></h4>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-contacts"><a class="link" href="#sorting-contacts">Sorting Contacts</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>This command sorts all the contacts in TeachConnect lexicographically.
+The command calls upon a <code>sortByNameFilteredPersonList()</code> method in <code>Model</code>, which then calls upon the <code>sortList()</code> method in <code>UniqueContactList</code>. The <code>sortList()</code> method sorts the entire contact list using a comparator.
+Below is the code snippet.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public void sortList() {
+       Comparator&lt;Person&gt; sortByName = new Comparator&lt;Person&gt;() {
+           @Override
+           public int compare (Person contact1, Person contact2)  {
+               return contact1.getName().fullName.compareToIgnoreCase(contact2.getName().fullName);
+           }
+       };
+       FXCollections.sort(combinedList, sortByName);
+   }</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-automatic-sorting-of-contacts"><a class="link" href="#aspects-automatic-sorting-of-contacts">Aspects : Automatic sorting of contacts</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> TeachConnect will only sort contacts after user keys in the command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This implementation is simpler and more intuitive.</p>
+</li>
+<li>
+<p>Cons: Users might find it a slight hassle to have to key in the sort command every time a new contact is added.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2: </strong> TeachConnect automatically sorts contacts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: When new contacts are added, they are automatic sorted without the need to key in the command.</p>
+</li>
+<li>
+<p>Cons: The command implementation might be more complex and it would make the command redundant. Users also might not always want their contact list to be sorted.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-for-version-2-0"><a class="link" href="#enhancement-proposed-for-version-2-0">Enhancement Proposed (for Version 2.0)</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Enhanced sort command that allows sorting of contacts by various catergories (Such as by grades, class, and year).</p>
+</li>
+<li>
+<p>2FA Authentication to keep contact details more secure.</p>
+</li>
+<li>
+<p>Alumni/Past Student 'Favourites' feature for teachers to keep in contact with their favourite students.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-15 12:26:34 UTC
+</div>
+</div>
+</body>
+</html>
