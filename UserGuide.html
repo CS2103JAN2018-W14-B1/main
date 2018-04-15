@@ -36,22 +36,23 @@
 <li><a href="#setting-up-an-appointment-code-set_appointment-code">5.4. Setting up an appointment : <code>set_appointment</code></a></li>
 <li><a href="#setting-up-a-task-code-set_task-code-code-since-v1-3-code">5.5. Setting up a task : <code>set_task</code> <code>[since v1.3]</code></a></li>
 <li><a href="#changing-gui-theme-code-theme-code">5.6. Changing GUI theme : <code>theme</code></a></li>
-<li><a href="#switching-calendar-viewmode-code-calendar-code">5.7. Switching Calendar Viewmode : <code>calendar</code></a></li>
-<li><a href="#importing-the-contacts-code-import-code">5.8. Importing the contacts : <code>import</code></a></li>
-<li><a href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">5.9. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></li>
-<li><a href="#adding-your-own-shortcut-code-shortcut-code">5.10. Adding your own shortcut : <code>shortcut</code></a></li>
-<li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code">5.11. Deleting your personalised Alias : <code>delete_shortcut</code></a></li>
-<li><a href="#editing-a-contact-code-edit-code">5.12. Editing a contact : <code>edit</code></a></li>
-<li><a href="#locating-contacts-by-name-code-find-code">5.13. Locating contacts by name: <code>find</code></a></li>
-<li><a href="#deleting-an-entry-in-the-list-code-delete-code">5.14. Deleting an entry in the list : <code>delete</code></a></li>
-<li><a href="#selecting-a-contact-code-select-code">5.15. Selecting a contact : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">5.16. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">5.17. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">5.18. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">5.19. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">5.20. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">5.21. Saving the data</a></li>
-<li><a href="#upcoming-features-code-coming-soon-code">5.22. Upcoming features <code>[coming soon]</code></a></li>
+<li><a href="#SwitchingCalendarViewmode">5.7. Switching Calendar View mode : <code>calendar</code></a></li>
+<li><a href="#List">5.8. Listing all contact/task/appointment/student : <code>list</code></a></li>
+<li><a href="#importing-the-contacts-code-import-code">5.9. Importing the contacts : <code>import</code></a></li>
+<li><a href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">5.10. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></li>
+<li><a href="#adding-your-own-shortcut-code-shortcut-code">5.11. Adding your own shortcut : <code>shortcut</code></a></li>
+<li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code">5.12. Deleting your personalised Alias : <code>delete_shortcut</code></a></li>
+<li><a href="#editing-a-contact-code-edit-code">5.13. Editing a contact : <code>edit</code></a></li>
+<li><a href="#locating-contacts-by-name-code-find-code">5.14. Locating contacts by name: <code>find</code></a></li>
+<li><a href="#deleting-an-entry-in-the-list-code-delete-code">5.15. Deleting an entry in the list : <code>delete</code></a></li>
+<li><a href="#selecting-a-contact-code-select-code">5.16. Selecting a contact : <code>select</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">5.17. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">5.18. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">5.19. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">5.20. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">5.21. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">5.22. Saving the data</a></li>
+<li><a href="#upcoming-features-code-coming-soon-code">5.23. Upcoming features <code>[coming soon]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">6. FAQ</a></li>
@@ -153,7 +154,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h2 id="UserInterface"><a class="link" href="#UserInterface">4. User Interface</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TeachConnect GUI consists of 5 major components: command box, command result box, active list, calendar view and menu bar. <code>Figure 2</code> annotates the position of each component in the GUI.</p>
+<p>TeachConnect GUI consists of 5 major components: menu bar, command box, command result box, active list, and calendar view. <code>Figure 2</code> annotates the position of each component in the GUI.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -162,8 +163,47 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Figure 2: Position of the GUI components</pre>
+<pre>Figure 2: Position of GUI components</pre>
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Menu bar:<br>
+Contains drop down option for closing TeachConnect or opening the User Guide.</p>
+</li>
+<li>
+<p>Command box:<br>
+Is where users key in command input.</p>
+</li>
+<li>
+<p>Command result box:<br>
+Shows result message upon execution of any input entered.</p>
+</li>
+<li>
+<p>Active List:<br>
+Displays the full list of <code>contacts</code>, <code>students</code>, <code>appointments</code>, <code>tasks</code>, <code>classes</code> or <code>shortcuts</code> stored by TeachConnect, with the active item list selected by the last <code>list</code> command. The default list selected upon successful start up of TeachConnect is <code>contacts</code>. You can refer to <a href="#List">Section 5.8, &#8220;Listing all contact/task/appointment/student : <code>list</code>&#8221;</a> for more details.<br>
+Item in the list is shown as a card with an index which can be used for <code>delete</code> or <code>edit</code> command, together with their details. <code>Figure 3</code> shows the components of typical cards in the contact list. A student marker on the top right corner of the card is used to distinguish students from other people.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/itemCard.JPG" alt="itemCard" width="300">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 3: Components of a card in the Contact List</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Calendar view:<br>
+Shows all appointment you have within the day, week or month depending on which view mode is selected. You can refer to <a href="#SwitchingCalendarViewmode">Section 5.7, &#8220;Switching Calendar View mode : <code>calendar</code>&#8221;</a> for the different Calendar view mode.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -340,7 +380,7 @@ Sets up an appointment on April 2nd, 2018, from 7pm to 8pm.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Figure 3: Appointment added successfully example</pre>
+<pre>Figure 4: Appointment added successfully example</pre>
 </div>
 </div>
 </li>
@@ -409,7 +449,7 @@ Format: <code>theme THEME_NAME</code></p>
 Changes the theme of TeachConnect to Dark Theme.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/themeDark.jpg" alt="themeDark" width="800">
+<img src="images/darkTheme.jpg" alt="darkTheme" width="800">
 </div>
 </div>
 <div class="literalblock">
@@ -423,7 +463,7 @@ Changes the theme of TeachConnect to Dark Theme.</p>
 Changes the theme of TeachConnect to Galaxy Theme.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/themeGalaxy.jpg" alt="themeGalaxy" width="800">
+<img src="images/galaxyTheme.jpg" alt="galaxyTheme" width="800">
 </div>
 </div>
 <div class="literalblock">
@@ -436,7 +476,7 @@ Changes the theme of TeachConnect to Galaxy Theme.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switching-calendar-viewmode-code-calendar-code"><a class="link" href="#switching-calendar-viewmode-code-calendar-code">5.7. Switching Calendar Viewmode : <code>calendar</code></a></h3>
+<h3 id="SwitchingCalendarViewmode"><a class="link" href="#SwitchingCalendarViewmode">5.7. Switching Calendar View mode : <code>calendar</code></a></h3>
 <div class="paragraph">
 <p>Switches the Calendar view mode. <br>
 Format: <code>calendar VIEW_MODE</code></p>
@@ -501,12 +541,12 @@ Changes the view mode of TeachConnect Calendar to Month View.</p>
 <pre>Figure 9: Calendar Month View</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>=== Listing all contact/task/appointment/student : <code>list</code></p>
-</div>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="List"><a class="link" href="#List">5.8. Listing all contact/task/appointment/student : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all of the specified <code>TYPE</code>.<br>
 Format: <code>list TYPE</code>.</p>
@@ -533,20 +573,64 @@ Format: <code>list TYPE</code>.</p>
 <li>
 <p><code>list students</code><br>
 Lists all student.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/studentList.jpg" alt="studentList" width="300">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 9: Student List displayed as active list</pre>
+</div>
+</div>
 </li>
 <li>
 <p><code>list tasks</code><br>
 Lists all task.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/taskList.jpg" alt="taskList" width="300">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 10: Task List displayed as active list</pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>list appointments</code><br>
+Lists all appointment.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/taskList.jpg" alt="taskList" width="300">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 11: Appointment List displayed as active list</pre>
+</div>
+</div>
 </li>
 <li>
 <p><code>list shortcuts</code><br>
 Lists all command shortcuts.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/shortcutList.jpg" alt="shortcutList" width="300">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 12: Shortcut List displayed as active list</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-the-contacts-code-import-code"><a class="link" href="#importing-the-contacts-code-import-code">5.8. Importing the contacts : <code>import</code></a></h3>
+<h3 id="importing-the-contacts-code-import-code"><a class="link" href="#importing-the-contacts-code-import-code">5.9. Importing the contacts : <code>import</code></a></h3>
 <div class="paragraph">
 <p>Imports contacts from a different TeachConnect file by specifying the location of the file. This automatically imports all the students, classes and any other contacts present in the import file.<br></p>
 </div>
@@ -565,7 +649,7 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">5.9. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></h3>
+<h3 id="exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">5.10. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></h3>
 <div class="paragraph">
 <p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts/students based on a given range of indexes or a given tag or a given tag in a range of indexes. Alternatively you can choose to export all the classes with the students in them. By specifying the type of the export you want it saves either only the xml file or the Csv file.</p>
 </div>
@@ -633,7 +717,7 @@ Exports contacts from 1 to 10 with tag students to an excel file named <code>Stu
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-your-own-shortcut-code-shortcut-code"><a class="link" href="#adding-your-own-shortcut-code-shortcut-code">5.10. Adding your own shortcut : <code>shortcut</code></a></h3>
+<h3 id="adding-your-own-shortcut-code-shortcut-code"><a class="link" href="#adding-your-own-shortcut-code-shortcut-code">5.11. Adding your own shortcut : <code>shortcut</code></a></h3>
 <div class="paragraph">
 <p>Sets your own personal shortcut for any of the commands above.</p>
 </div>
@@ -677,7 +761,7 @@ Your shortcut word cannot be more than a single word.
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Figure 10: List of shortcuts stored</pre>
+<pre>Figure 13: List of shortcuts stored</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -697,7 +781,7 @@ Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code">5.11. Deleting your personalised Alias : <code>delete_shortcut</code></a></h3>
+<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code">5.12. Deleting your personalised Alias : <code>delete_shortcut</code></a></h3>
 <div class="paragraph">
 <p>Deletes your personalised Alias if you don&#8217;t want them or if you created them by mistake.</p>
 </div>
@@ -746,7 +830,7 @@ Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-contact-code-edit-code"><a class="link" href="#editing-a-contact-code-edit-code">5.12. Editing a contact : <code>edit</code></a></h3>
+<h3 id="editing-a-contact-code-edit-code"><a class="link" href="#editing-a-contact-code-edit-code">5.13. Editing a contact : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing contact.<br></p>
 </div>
@@ -798,7 +882,7 @@ Edits the name of the 2nd student to be <code>Betsy Crower</code> and clears all
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-contacts-by-name-code-find-code"><a class="link" href="#locating-contacts-by-name-code-find-code">5.13. Locating contacts by name: <code>find</code></a></h3>
+<h3 id="locating-contacts-by-name-code-find-code"><a class="link" href="#locating-contacts-by-name-code-find-code">5.14. Locating contacts by name: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds contacts whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -843,7 +927,7 @@ Shows al contacts with <code>Betsy</code>, <code>Tim</code>, or <code>John</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-entry-in-the-list-code-delete-code"><a class="link" href="#deleting-an-entry-in-the-list-code-delete-code">5.14. Deleting an entry in the list : <code>delete</code></a></h3>
+<h3 id="deleting-an-entry-in-the-list-code-delete-code"><a class="link" href="#deleting-an-entry-in-the-list-code-delete-code">5.15. Deleting an entry in the list : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified entry in the list.<br>
 Format: <code>delete INDEX</code></p>
@@ -881,7 +965,7 @@ Deletes the 4th task in the list</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-contact-code-select-code"><a class="link" href="#selecting-a-contact-code-select-code">5.15. Selecting a contact : <code>select</code></a></h3>
+<h3 id="selecting-a-contact-code-select-code"><a class="link" href="#selecting-a-contact-code-select-code">5.16. Selecting a contact : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the contact identified by the index number used in the last contact listing.<br>
 Format: <code>select INDEX</code></p>
@@ -925,7 +1009,7 @@ Selects the 1st contact in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">5.16. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">5.17. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -946,7 +1030,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">5.17. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">5.18. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores TeachConnect to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -991,7 +1075,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">5.18. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">5.19. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -1023,28 +1107,28 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">5.19. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">5.20. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">5.20. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">5.21. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">5.21. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">5.22. Saving the data</a></h3>
 <div class="paragraph">
 <p>Saves data in the hard disk automatically [even while sharing TeachConnect] after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">5.22. Upcoming features <code>[coming soon]</code></a></h3>
+<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">5.23. Upcoming features <code>[coming soon]</code></a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1106,7 +1190,7 @@ There is no need to save manually.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Change Calendar View mode</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch Calendar View mode</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar VIEW_MODE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar d</code></p></td>
 </tr>
@@ -1217,7 +1301,7 @@ There is no need to save manually.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 02:18:51 UTC
+Last updated 2018-04-15 03:56:48 UTC
 </div>
 </div>
 </body>
