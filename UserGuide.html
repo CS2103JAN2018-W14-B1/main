@@ -15,52 +15,6 @@
 <h1>TeachConnect - User Guide</h1>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>By: <code>Team W14-B1</code>      Since: <code>Jan 2018</code>      Licence: <code>MIT</code></p>
-</div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#about-this-guide">2. About this guide</a></li>
-<li><a href="#quick-start">3. Quick Start</a></li>
-<li><a href="#UserInterface">4. User Interface</a></li>
-<li><a href="#Features">5. Features</a>
-<ul class="sectlevel2">
-<li><a href="#viewing-manual-code-help-code">5.1. Viewing manual : <code>help</code></a></li>
-<li><a href="#sorting-all-contacts-code-sort-code">5.2. Sorting all contacts : <code>sort</code></a></li>
-<li><a href="#adding-a-contact-code-add-code">5.3. Adding a contact: <code>add</code></a></li>
-<li><a href="#forming-a-class">5.4. Forming a class</a></li>
-<li><a href="#setting-up-an-appointment-code-set_appointment-code">5.5. Setting up an appointment : <code>set_appointment</code></a></li>
-<li><a href="#setting-up-a-task-code-set_task-code-code-since-v1-3-code">5.6. Setting up a task : <code>set_task</code> <code>[since v1.3]</code></a></li>
-<li><a href="#changing-gui-theme-code-theme-code">5.7. Changing GUI theme : <code>theme</code></a></li>
-<li><a href="#SwitchingCalendarViewmode">5.8. Switching Calendar View mode : <code>calendar</code></a></li>
-<li><a href="#List">5.9. Listing all contact/task/appointment/student : <code>list</code></a></li>
-<li><a href="#importing-the-contacts-code-import-code">5.10. Importing the contacts : <code>import</code></a></li>
-<li><a href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">5.11. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></li>
-<li><a href="#adding-your-own-shortcut-code-shortcut-code">5.12. Adding your own shortcut : <code>shortcut</code></a></li>
-<li><a href="#deleting-your-personalised-alias-code-delete_shortcut-code">5.13. Deleting your personalised Alias : <code>delete_shortcut</code></a></li>
-<li><a href="#editing-a-contact-code-edit-code">5.14. Editing a contact : <code>edit</code></a></li>
-<li><a href="#locating-contacts-by-name-code-find-code">5.15. Locating contacts by name: <code>find</code></a></li>
-<li><a href="#deleting-an-entry-in-the-list-code-delete-code">5.16. Deleting an entry in the list : <code>delete</code></a></li>
-<li><a href="#selecting-a-contact-code-select-code">5.17. Selecting a contact : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">5.18. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">5.19. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">5.20. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">5.21. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">5.22. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">5.23. Saving the data</a></li>
-<li><a href="#upcoming-features-code-coming-soon-code">5.24. Upcoming features <code>[coming soon]</code></a></li>
-</ul>
-</li>
-<li><a href="#faq">6. FAQ</a></li>
-<li><a href="#command-summary">7. Command Summary</a></li>
-</ul>
-</div>
-</div>
 <div class="sect1">
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
@@ -123,15 +77,18 @@ You can download the latest Java version <a href="https://java.com/en/download/"
 <pre>Figure 1: Application screen with Light Theme selected</pre>
 </div>
 </div>
-</li>
-<li>
-<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
-</li>
-<li>
-<p>Some example commands you can try:</p>
+<div class="paragraph">
+<p>And that&#8217;s it! The setup is done! You can now:</p>
+</div>
 <div class="ulist">
 <ul>
+<li>
+<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Some example commands you can try:</p>
+</li>
 <li>
 <p><strong><code>list</code></strong> : lists all contacts.</p>
 </li>
@@ -147,10 +104,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </ul>
 </div>
 </li>
-<li>
-<p>Refer to <a href="#Features">Section 5, &#8220;Features&#8221;</a> for details of each command.</p>
+</ul>
+</div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="#Features">Section 5, &#8220;Features&#8221;</a> for details of each command.</p>
 </div>
 </div>
 </div>
@@ -178,7 +138,7 @@ Contains two options <code>File</code> and <code>Help</code>. <code>File</code> 
 </li>
 <li>
 <p>Command box:<br>
-Is where users key in command input.</p>
+Commands are entered here.</p>
 </li>
 <li>
 <p>Command result box:<br>
@@ -186,7 +146,7 @@ Shows result message upon execution of any input entered.</p>
 </li>
 <li>
 <p>Active List:<br>
-Displays the full list of <code>contacts</code>, <code>students</code>, <code>appointments</code>, <code>tasks</code>, <code>classes</code> or <code>shortcuts</code> stored by TeachConnect. The active item list is selected by the last <code>list</code> command entered. The default list selected upon successful start up of TeachConnect is <code>contacts</code>. You can refer to <a href="#List">Section 5.9, &#8220;Listing all contact/task/appointment/student : <code>list</code>&#8221;</a> for more details.<br>
+Displays the full list of <code>contacts</code>, <code>students</code>, <code>appointments</code>, <code>tasks</code>, <code>classes</code> or <code>shortcuts</code> stored by TeachConnect. The active item list is selected by the last <code>list</code> command entered. The default list selected upon successful start up of TeachConnect is <code>contacts</code>. You can refer to <a href="#List">Section 5.9, &#8220;Listing all contact/student/task/appointment/shortcuts : <code>list</code>&#8221;</a> for more details.<br>
 Item in the list is shown as a card with an index which can be used for <code>delete</code> or <code>edit</code> commands, together with their details. <code>Figure 3</code> shows the components of a typical card in the contacts list. A student marker on the top right corner of the card is used to distinguish students from other people.</p>
 </li>
 </ul>
@@ -303,10 +263,10 @@ Adds a student contact named <code>Betsy Crowe</code> to TeachConnect&#8217;s co
 </div>
 </div>
 <div class="sect2">
-<h3 id="forming-a-class"><a class="link" href="#forming-a-class">5.4. Forming a class</a></h3>
+<h3 id="forming-a-class-code-form-code"><a class="link" href="#forming-a-class-code-form-code">5.4. Forming a class: <code>form</code></a></h3>
 <div class="paragraph">
 <p>Forms a class of students for a specified subject and time period.<br>
-Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code></p>
+Format: <code>form SUBJECT n/CLASS_NAME s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -330,6 +290,9 @@ Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code><
 <li>
 <p>Dates must be in the format: <code>DD/MM/YYYY</code>.</p>
 </li>
+<li>
+<p>Subjects must be a single word only.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -341,7 +304,7 @@ Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code><
 <ul>
 <li>
 <p><code>list students</code><br>
-<code>form English s/18/01/2018 e/17/07/2019 i/1,5,2</code><br>
+<code>form English n/class 01 s/10/01/2018 e/17/07/2019 i/1,5,2</code><br>
 Forms an English class containing the first, second and fifth contact in the list that starts in 18 Jan 2018 to 17 July 2019.</p>
 </li>
 </ul>
@@ -383,7 +346,7 @@ Format: <code>set_appointment t/TITLE s/START_DATE START_TIME e/END_DATE END_TIM
 <ul>
 <li>
 <p><code>set_appointment t/Tutoring session s/02/04/2018 19:00 e/02/04/2018 20:00</code><br>
-Sets up an appointment on April 2nd, 2018, from 7pm to 8pm.</p>
+Sets up an appointment on April 2nd, 2018, from 7pm to 8pm. <code>Figure 4</code> below shows the application screen when a new appointment is added.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/appointmentAdded.jpg" alt="appointmentAdded" width="800">
@@ -399,7 +362,7 @@ Sets up an appointment on April 2nd, 2018, from 7pm to 8pm.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-a-task-code-set_task-code-code-since-v1-3-code"><a class="link" href="#setting-up-a-task-code-set_task-code-code-since-v1-3-code">5.6. Setting up a task : <code>set_task</code> <code>[since v1.3]</code></a></h3>
+<h3 id="setting-up-a-task-code-set_task-code"><a class="link" href="#setting-up-a-task-code-set_task-code">5.6. Setting up a task : <code>set_task</code></a></h3>
 <div class="paragraph">
 <p>Sets up a task to be done by a deadline.<br>
 Format: <code>set_task t/TITLE e/END_DATE END_TIME</code></p>
@@ -457,7 +420,7 @@ Format: <code>theme THEME_NAME</code></p>
 <ul>
 <li>
 <p><code>theme dark</code><br>
-Changes the theme of TeachConnect to Dark Theme.</p>
+Changes the theme of TeachConnect to Dark Theme. The Dark theme is shown below in <code>Figure 5</code>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/darkTheme.jpg" alt="darkTheme" width="800">
@@ -471,7 +434,7 @@ Changes the theme of TeachConnect to Dark Theme.</p>
 </li>
 <li>
 <p><code>theme galaxy</code><br>
-Changes the theme of TeachConnect to Galaxy Theme.</p>
+Changes the theme of TeachConnect to Galaxy Theme. The Galaxy theme is shown below in <code>Figure 6</code>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/galaxyTheme.jpg" alt="galaxyTheme" width="800">
@@ -513,7 +476,7 @@ Format: <code>calendar VIEW_MODE</code></p>
 <ul>
 <li>
 <p><code>calendar d</code><br>
-Changes the view mode of TeachConnect Calendar to Day View.</p>
+Changes the view mode of TeachConnect Calendar to Day View. <code>Figure 7</code> below shows the Day view mode of the calendar.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/calendarDay.jpg" alt="calendarDay" width="800">
@@ -527,7 +490,7 @@ Changes the view mode of TeachConnect Calendar to Day View.</p>
 </li>
 <li>
 <p><code>calendar w</code><br>
-Changes the view mode of TeachConnect Calendar to Week View.</p>
+Changes the view mode of TeachConnect Calendar to Week View. <code>Figure 8</code> below shows the Week view mode of the calendar.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/calendarWeek.jpg" alt="calendarWeek" width="800">
@@ -541,7 +504,7 @@ Changes the view mode of TeachConnect Calendar to Week View.</p>
 </li>
 <li>
 <p><code>calendar m</code><br>
-Changes the view mode of TeachConnect Calendar to Month View.</p>
+Changes the view mode of TeachConnect Calendar to Month View. <code>Figure 9</code> below shows the Day view mode of the calendar.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/calendarMonth.jpg" alt="calendarMonth" width="800">
@@ -557,7 +520,7 @@ Changes the view mode of TeachConnect Calendar to Month View.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="List"><a class="link" href="#List">5.9. Listing all contact/task/appointment/student : <code>list</code></a></h3>
+<h3 id="List"><a class="link" href="#List">5.9. Listing all contact/student/task/appointment/shortcuts : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all of the specified <code>TYPE</code>.<br>
 Format: <code>list TYPE</code>.</p>
@@ -577,65 +540,38 @@ Format: <code>list TYPE</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
+</div>
+<div class="paragraph">
+<p><code>list students</code><br>
+Lists all students. <code>Figure 10</code> given below shows the student list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/studentList.jpg" alt="studentList" width="100">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 10: Student List displayed as active list</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other examples :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list students</code><br>
-Lists all student.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/studentList.jpg" alt="studentList" width="300">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 9: Student List displayed as active list</pre>
-</div>
-</div>
-</li>
-<li>
 <p><code>list tasks</code><br>
-Lists all task.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/taskList.jpg" alt="taskList" width="300">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 10: Task List displayed as active list</pre>
-</div>
-</div>
+Lists all tasks.</p>
 </li>
 <li>
 <p><code>list appointments</code><br>
-Lists all appointment.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/taskList.jpg" alt="taskList" width="300">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 11: Appointment List displayed as active list</pre>
-</div>
-</div>
+Lists all appointments.</p>
 </li>
 <li>
 <p><code>list shortcuts</code><br>
 Lists all command shortcuts.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/shortcutList.jpg" alt="shortcutList" width="300">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 12: Shortcut List displayed as active list</pre>
-</div>
-</div>
 </li>
 </ul>
 </div>
@@ -648,37 +584,55 @@ Lists all command shortcuts.</p>
 <div class="paragraph">
 <p>Format: <code>import pathname</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>It can only import XML files.</p>
+</li>
+<li>
+<p>The input path must be valid.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>import ./data/importsample.xml</code> : Import contacts from <code>importsample.xml</code></p>
+<p><code>import ./data/importsample.xml</code><br>
+Imports contacts from <code>importsample.xml</code> if such a file is present.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">5.11. Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></h3>
+<h3 id="exporting-the-contacts-or-classes-code-export-code"><a class="link" href="#exporting-the-contacts-or-classes-code-export-code">5.11. Exporting the contacts or classes : <code>export</code></a></h3>
 <div class="paragraph">
-<p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts/students based on a given range of indexes or a given tag or a given tag in a range of indexes. Alternatively you can choose to export all the classes with the students in them. By specifying the type of the export you want it saves either only the xml file or the Csv file.</p>
+<p>Exports contacts from your TeachConnect by specifying the name of the file and the path where you want to save it. It can export contacts/students based on a given range of indexes, tags or a given tag in a range of indexes. Alternatively you can choose to export all the classes with the students in them. By specifying the type of the export you can choose to export it as a CSV file or a XML file.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export n/NAME r/RANGE [t/TAG] p/PATH te/TYPE</code></p>
+<p>Format 1: <code>export n/NAME r/RANGE [t/TAG] p/PATH te/TYPE</code></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export classes n/NAME p/PATH te/TYPE</code></p>
+<p>Format 2: <code>export classes n/NAME p/PATH te/TYPE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Here TYPE refers to the kind of export you want to do.</p>
+<p>Here <code>TYPE</code> refers to the kind of export you want to do.</p>
 </li>
 <li>
 <p><code>TYPE</code> can be either excel or xml.</p>
+</li>
+<li>
+<p><code>Name</code> should not be included in the path. There is also no need to give the extension of the file (.xml or .csv) as type of the file is already being given.</p>
 </li>
 </ul>
 </div>
@@ -691,8 +645,8 @@ Lists all command shortcuts.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can export all the people at once, all the people with a certain tag at once, all the people with a certain tag in a range at once or all the people in a range with any tags in a single command.<br>
-You can also choose to export it in Csv format which you can later open in Excel.<br>
+You can export all contacts, all contacts with a certain tag, all contacts in a range or all the contacts in a range with a certain tag in a single command.<br>
+You can also choose to export it a .csv file which you can later open in Excel.<br>
 You can also choose to export all the classes and the students in it using the export class format.
 </td>
 </tr>
@@ -717,12 +671,16 @@ Be careful about the parameter value for the format type. It has to exactly be e
 <div class="ulist">
 <ul>
 <li>
-<p><code>export n/StudentsFile1 r/all t/students p/./data te/normal</code> :<br>
-Exports all contacts with tag student to an xml file named <code>StudentsFile1</code> in the <code>data</code> folder.</p>
+<p><code>export n/StudentsFile1 r/all t/students p/{path to the current folder} te/xml</code> :<br>
+Exports all contacts with tag student to an xml file named <code>StudentsFile1</code> to the folder given in the path.</p>
 </li>
 <li>
-<p><code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code> :<br>
-Exports contacts from 1 to 10 with tag students to an excel file named <code>StudentsFile2</code> in the <code>data</code> folder.</p>
+<p><code>export n/StudentsFile2 r/1,10 t/students p/{path to the current folder} te/excel</code> :<br>
+Exports contacts from 1 to 10 with tag students to a .csv file named <code>StudentsFile2</code> to the folder given in the path.</p>
+</li>
+<li>
+<p><code>export classes n/ClassesFile1 p/{path to the current folder} te/excel</code> :<br>
+Exports all classes and the names of students in the classes to a .csv file named <code>ClassesFile1</code> to the folder given in the path.</p>
 </li>
 </ul>
 </div>
@@ -745,7 +703,7 @@ Exports contacts from 1 to 10 with tag students to an excel file named <code>Stu
 You can choose multiple shortcuts for the same command.<br>
 You can later use these shortcuts in place of the original command even after closing and reopening the app.<br>
 You can also set shortcut for the shortcut command.<br>
-You can always see the list of shortcuts you set using <code>list shortcuts</code> as shown in Figure 13.
+You can always see the list of shortcuts you set using <code>list shortcuts</code> as shown in <code>Figure 13</code> given below.
 </td>
 </tr>
 </table>
@@ -767,8 +725,9 @@ You can always see the list of shortcuts you set using <code>list shortcuts</cod
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-You cannot set the shortcut word to a already preregistered command.<br>
-Your shortcut word cannot be more than a single word.
+You cannot set the shortcut word to be a already preregistered command.<br>
+Your shortcut word cannot be more than a single word.<br>
+You can only use shortcut word for the command word. You cannot use it for the type. Eg. You can set the shortcut for <code>export</code> but not for <code>export classes</code>.
 </td>
 </tr>
 </table>
@@ -780,19 +739,23 @@ Your shortcut word cannot be more than a single word.
 <ul>
 <li>
 <p><code>shortcut list l</code><br>
-Sets <code>l</code> as the Personalised Alias for <code>list</code> command.</p>
+Sets <code>l</code> as the personalised alias for <code>list</code> command.</p>
 </li>
 <li>
 <p><code>shortcut add a</code><br>
-Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
+Sets <code>a</code> as the personalised alias for <code>add</code> command.</p>
+</li>
+<li>
+<p><code>shortcut export e</code><br>
+Sets <code>e</code> as the personalised alias for the <code>export</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code">5.13. Deleting your personalised Alias : <code>delete_shortcut</code></a></h3>
+<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code">5.13. Deleting your personalised alias : <code>delete_shortcut</code></a></h3>
 <div class="paragraph">
-<p>Deletes your personalised Alias if you don&#8217;t want them or if you created them by mistake.</p>
+<p>Deletes your personalised alias if you don&#8217;t want the shortcut or if you created the shortcut by mistake.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete_shortcut [command word] [shortcut word]</code></p>
@@ -805,7 +768,7 @@ Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 </td>
 <td class="content">
 You can choose to just undo the delete_shortcut if you delete a shortcut by mistake.<br>
-Listing all the shortcuts using the <code>list shortcuts</code> command as mentioned above might help in seeing all the shortcuts at once.<br>
+Listing all the shortcuts using the <code>list shortcuts</code> command as mentioned previously might help in seeing all the shortcuts at once.<br>
 </td>
 </tr>
 </table>
@@ -829,11 +792,11 @@ You can only delete shortcuts that you have already added.
 <ul>
 <li>
 <p><code>delete_shortcut list l</code><br>
-Deletes the Personalised Alias <code>l</code> for <code>list</code> command.</p>
+Deletes the personalised alias <code>l</code> for <code>list</code> command.</p>
 </li>
 <li>
 <p><code>delete_shortcut add a</code><br>
-Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
+Deletes the personalised alias <code>a</code> for <code>add</code> command.</p>
 </li>
 </ul>
 </div>
@@ -1136,28 +1099,6 @@ Format: <code>exit</code></p>
 There is no need to save manually.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="upcoming-features-code-coming-soon-code"><a class="link" href="#upcoming-features-code-coming-soon-code">5.24. Upcoming features <code>[coming soon]</code></a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A login feature [coming in v2.0]</p>
-</li>
-<li>
-<p>Dynamic search [coming in v2.0]</p>
-</li>
-<li>
-<p>NLP for event and appointment scheduling [coming in v2.0]</p>
-</li>
-<li>
-<p>Encrypting data files [coming in v2.0]</p>
-</li>
-<li>
-<p>Adding a student into an already formed class [coming in v2.0]</p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1173,7 +1114,7 @@ There is no need to save manually.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q</strong>: How do I contact you if something goes wrong?<br>
-<strong>A</strong>: Please contact us at <a href="mailto:cs2103B1W14@gmail.com">cs2103B1W14@gmail.com</a>.</p>
+<strong>A</strong>: Please contact us at <a href="mailto:CS2103B1W14@gmail.com">CS2103B1W14@gmail.com</a>.</p>
 </div>
 </div>
 </div>
@@ -1183,11 +1124,11 @@ There is no need to save manually.</p>
 <div class="paragraph">
 <p>The table below summarizes TeachConnect&#8217;s command list.</p>
 </div>
-<table class="tableblock frame-all grid-all" style="width: 59%;">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 26.8292%;">
-<col style="width: 36.5853%;">
-<col style="width: 36.5855%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
@@ -1201,11 +1142,6 @@ There is no need to save manually.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add [TYPE] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch Calendar View mode</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar VIEW_MODE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar d</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Change GUI theme</strong></p></td>
@@ -1233,9 +1169,14 @@ There is no need to save manually.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit 2 n/James Lee e/jameslee@example.com</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Export</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Export Classes</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export classes n/NAME p/PATH te/TYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export classes n/sampleclasses p/./Desktop/Folder te/excel</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Export Contacts/Students</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/NAME r/RANGE t/TAG p/PATH te/TYPE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/samplefile.xml r/all t/friends p/.data te/excel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export n/samplefile r/all t/friends p/./Desktop/Folder te/excel</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Form</strong></p></td>
@@ -1264,7 +1205,7 @@ There is no need to save manually.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Import TeachConnect File</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>import</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>import [path]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>import ./data/samplefile.xml</code></p></td>
 </tr>
 <tr>
@@ -1298,6 +1239,11 @@ There is no need to save manually.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_task t/Mark papers d/05/04/2018 10:00</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Switch Calendar View mode</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar VIEW_MODE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar d</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Undo</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>undo</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>undo</code></p></td>
@@ -1314,7 +1260,7 @@ There is no need to save manually.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 12:26:34 UTC
+Last updated 2018-04-15 13:59:29 UTC
 </div>
 </div>
 </body>

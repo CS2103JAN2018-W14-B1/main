@@ -65,10 +65,10 @@ The content includes are:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="forming-a-class"><a class="link" href="#forming-a-class">Forming a class</a></h3>
+<h3 id="forming-a-class-code-form-code"><a class="link" href="#forming-a-class-code-form-code">Forming a class: <code>form</code></a></h3>
 <div class="paragraph">
 <p>Forms a class of students for a specified subject and time period.<br>
-Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code></p>
+Format: <code>form SUBJECT n/CLASS_NAME s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -92,6 +92,9 @@ Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code><
 <li>
 <p>Dates must be in the format: <code>DD/MM/YYYY</code>.</p>
 </li>
+<li>
+<p>Subjects must be a single word only.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -103,7 +106,7 @@ Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code><
 <ul>
 <li>
 <p><code>list students</code><br>
-<code>form English s/18/01/2018 e/17/07/2019 i/1,5,2</code><br>
+<code>form English n/class 01 s/10/01/2018 e/17/07/2019 i/1,5,2</code><br>
 Forms an English class containing the first, second and fifth contact in the list that starts in 18 Jan 2018 to 17 July 2019.</p>
 </li>
 </ul>
@@ -224,7 +227,7 @@ student.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 12:26:34 UTC
+Last updated 2018-04-15 13:59:29 UTC
 </div>
 </div>
 </body>

@@ -145,37 +145,55 @@ The contents included are:</p>
 <div class="paragraph">
 <p>Format: <code>import pathname</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>It can only import XML files.</p>
+</li>
+<li>
+<p>The input path must be valid.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>import ./data/importsample.xml</code> : Import contacts from <code>importsample.xml</code></p>
+<p><code>import ./data/importsample.xml</code><br>
+Imports contacts from <code>importsample.xml</code> if such a file is present.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code"><a class="link" href="#exporting-the-contacts-or-classes-code-export-code-code-since-v1-4-code">Exporting the contacts or classes : <code>export</code> <code>[since v1.4]</code></a></h3>
+<h3 id="exporting-the-contacts-or-classes-code-export-code"><a class="link" href="#exporting-the-contacts-or-classes-code-export-code">Exporting the contacts or classes : <code>export</code></a></h3>
 <div class="paragraph">
-<p>Exports contacts from your TeachConnect by specifying the name of the file you want to save it in and the path where you want to save it. It can export the contacts/students based on a given range of indexes or a given tag or a given tag in a range of indexes. Alternatively you can choose to export all the classes with the students in them. By specifying the type of the export you want it saves either only the xml file or the Csv file.</p>
+<p>Exports contacts from your TeachConnect by specifying the name of the file and the path where you want to save it. It can export contacts/students based on a given range of indexes, tags or a given tag in a range of indexes. Alternatively you can choose to export all the classes with the students in them. By specifying the type of the export you can choose to export it as a CSV file or a XML file.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export n/NAME r/RANGE [t/TAG] p/PATH te/TYPE</code></p>
+<p>Format 1: <code>export n/NAME r/RANGE [t/TAG] p/PATH te/TYPE</code></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export classes n/NAME p/PATH te/TYPE</code></p>
+<p>Format 2: <code>export classes n/NAME p/PATH te/TYPE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Here TYPE refers to the kind of export you want to do.</p>
+<p>Here <code>TYPE</code> refers to the kind of export you want to do.</p>
 </li>
 <li>
 <p><code>TYPE</code> can be either excel or xml.</p>
+</li>
+<li>
+<p><code>Name</code> should not be included in the path. There is also no need to give the extension of the file (.xml or .csv) as type of the file is already being given.</p>
 </li>
 </ul>
 </div>
@@ -188,8 +206,8 @@ The contents included are:</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can export all the people at once, all the people with a certain tag at once, all the people with a certain tag in a range at once or all the people in a range with any tags in a single command.<br>
-You can also choose to export it in Csv format which you can later open in Excel.<br>
+You can export all contacts, all contacts with a certain tag, all contacts in a range or all the contacts in a range with a certain tag in a single command.<br>
+You can also choose to export it a .csv file which you can later open in Excel.<br>
 You can also choose to export all the classes and the students in it using the export class format.
 </td>
 </tr>
@@ -214,12 +232,16 @@ Be careful about the parameter value for the format type. It has to exactly be e
 <div class="ulist">
 <ul>
 <li>
-<p><code>export n/StudentsFile1 r/all t/students p/./data te/normal</code> :<br>
-Exports all contacts with tag student to an xml file named <code>StudentsFile1</code> in the <code>data</code> folder.</p>
+<p><code>export n/StudentsFile1 r/all t/students p/{path to the current folder} te/xml</code> :<br>
+Exports all contacts with tag student to an xml file named <code>StudentsFile1</code> to the folder given in the path.</p>
 </li>
 <li>
-<p><code>export n/StudentsFile2 r/1,10 t/students p/./data te/excel</code> :<br>
-Exports contacts from 1 to 10 with tag students to an excel file named <code>StudentsFile2</code> in the <code>data</code> folder.</p>
+<p><code>export n/StudentsFile2 r/1,10 t/students p/{path to the current folder} te/excel</code> :<br>
+Exports contacts from 1 to 10 with tag students to a .csv file named <code>StudentsFile2</code> to the folder given in the path.</p>
+</li>
+<li>
+<p><code>export classes n/ClassesFile1 p/{path to the current folder} te/excel</code> :<br>
+Exports all classes and the names of students in the classes to a .csv file named <code>ClassesFile1</code> to the folder given in the path.</p>
 </li>
 </ul>
 </div>
@@ -251,7 +273,7 @@ Exports contacts from 1 to 10 with tag students to an excel file named <code>Stu
 You can choose multiple shortcuts for the same command.<br>
 You can later use these shortcuts in place of the original command even after closing and reopening the app.<br>
 You can also set shortcut for the shortcut command.<br>
-You can always see the list of shortcuts you set using <code>list shortcuts</code> as shown in Figure 13.
+You can always see the list of shortcuts you set using <code>list shortcuts</code> as shown in <code>Figure 13</code> given below.
 </td>
 </tr>
 </table>
@@ -273,8 +295,9 @@ You can always see the list of shortcuts you set using <code>list shortcuts</cod
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-You cannot set the shortcut word to a already preregistered command.<br>
-Your shortcut word cannot be more than a single word.
+You cannot set the shortcut word to be a already preregistered command.<br>
+Your shortcut word cannot be more than a single word.<br>
+You can only use shortcut word for the command word. You cannot use it for the type. Eg. You can set the shortcut for <code>export</code> but not for <code>export classes</code>.
 </td>
 </tr>
 </table>
@@ -286,19 +309,23 @@ Your shortcut word cannot be more than a single word.
 <ul>
 <li>
 <p><code>shortcut list l</code><br>
-Sets <code>l</code> as the Personalised Alias for <code>list</code> command.</p>
+Sets <code>l</code> as the personalised alias for <code>list</code> command.</p>
 </li>
 <li>
 <p><code>shortcut add a</code><br>
-Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
+Sets <code>a</code> as the personalised alias for <code>add</code> command.</p>
+</li>
+<li>
+<p><code>shortcut export e</code><br>
+Sets <code>e</code> as the personalised alias for the <code>export</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code">Deleting your personalised Alias : <code>delete_shortcut</code></a></h3>
+<h3 id="deleting-your-personalised-alias-code-delete_shortcut-code"><a class="link" href="#deleting-your-personalised-alias-code-delete_shortcut-code">Deleting your personalised alias : <code>delete_shortcut</code></a></h3>
 <div class="paragraph">
-<p>Deletes your personalised Alias if you don&#8217;t want them or if you created them by mistake.</p>
+<p>Deletes your personalised alias if you don&#8217;t want the shortcut or if you created the shortcut by mistake.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete_shortcut [command word] [shortcut word]</code></p>
@@ -311,7 +338,7 @@ Sets <code>a</code> as the Personalised Alias for <code>add</code> command.</p>
 </td>
 <td class="content">
 You can choose to just undo the delete_shortcut if you delete a shortcut by mistake.<br>
-Listing all the shortcuts using the <code>list shortcuts</code> command as mentioned above might help in seeing all the shortcuts at once.<br>
+Listing all the shortcuts using the <code>list shortcuts</code> command as mentioned previously might help in seeing all the shortcuts at once.<br>
 </td>
 </tr>
 </table>
@@ -335,95 +362,11 @@ You can only delete shortcuts that you have already added.
 <ul>
 <li>
 <p><code>delete_shortcut list l</code><br>
-Deletes the Personalised Alias <code>l</code> for <code>list</code> command.</p>
+Deletes the personalised alias <code>l</code> for <code>list</code> command.</p>
 </li>
 <li>
 <p><code>delete_shortcut add a</code><br>
-Deletes the Personalised Alias <code>a</code> for <code>add</code> command.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="List"><a class="link" href="#List">Listing all contact/task/appointment/student : <code>list</code></a></h3>
-<div class="paragraph">
-<p>Shows a list of all of the specified <code>TYPE</code>.<br>
-Format: <code>list TYPE</code>.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>TYPE</code> can be of the following: <code>contacts</code>, <code>students</code>, <code>tasks</code>, <code>appointments</code>, <code>shortcuts</code>.</p>
-</li>
-<li>
-<p><code>TYPE</code> cannot be empty.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list students</code><br>
-Lists all student.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../images/studentList.jpg" alt="studentList" width="300">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 9: Student List displayed as active list</pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>list tasks</code><br>
-Lists all task.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../images/taskList.jpg" alt="taskList" width="300">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 10: Task List displayed as active list</pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>list appointments</code><br>
-Lists all appointment.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../images/taskList.jpg" alt="taskList" width="300">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 11: Appointment List displayed as active list</pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>list shortcuts</code><br>
-Lists all command shortcuts.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../images/shortcutList.jpg" alt="shortcutList" width="300">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 12: Shortcut List displayed as active list</pre>
-</div>
-</div>
+Deletes the personalised alias <code>a</code> for <code>add</code> command.</p>
 </li>
 </ul>
 </div>
@@ -453,87 +396,9 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-contacts"><a class="link" href="#import-contacts">Import Contacts</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
-<div class="paragraph">
-<p>The ImportCommand uses <code>XmlAddressBookStorage</code> to generate a temporary <code>AddressBook</code> object from a given path. It takes in a String value path. The command then adds the contacts or the classes found in the temporary <code>AddressBook</code> object into the model. Below is the rough idea of the constructor for the class:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ImportCommand(<span class="predefined-type">String</span> importPath) {
-        requireNonNull(importPath);
-        <span class="local-variable">this</span>.filePath = importPath;
-        addressBookStorage = <span class="keyword">new</span> XmlAddressBookStorage(filePath);
-}</code></pre>
-</div>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/ImportCommandFlowChart.png" alt="ImportCommandFlowChart">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 19: Import command flow chart</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Import command extends <code>Undoable Command</code> and hence Undo can be called on it. It also initially checks if the given file path is valid and if so initialises the contacts from there, creates a <code>Person</code> object and adds it to the current <code>TeachConnect</code> with the help of <code>model</code>.For importing classes <code>Class</code> objects are first created and <code>students</code> related to the classes are stored before being added to the model. The code can be found below.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
-     peopleToBeImported(people);
-     studentToBeImported(students);
-     classesToBeImported(students, classes);
-
-     <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspects-implementation-import-command"><a class="link" href="#aspects-implementation-import-command">Aspects : Implementation Import Command</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> User can only import from an <code>XML</code> file.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: This implementation goes well with the idea of TeachConnect. It&#8217;s easier to implement and also there is a clear distinction of the file that needs to be imported by the user with the help of the .XML extension.</p>
-</li>
-<li>
-<p>Cons: Users might want to import from Excel only to realise this isn&#8217;t possible.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Users can import from an <code>Excel</code> file too.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: This implementation might be more intuitive for the user and might come in handy.</p>
-</li>
-<li>
-<p>Cons: This implementation will not really help the user to distinguish the exact file to be imported. Care has to be taken so that the input by the user follows a certain format to parse the content properly.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="export-contacts"><a class="link" href="#export-contacts">Export Contacts</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range/index/tag and save it to the location specified with the chosen file name. It takes in String <code>name</code> String <code>range</code> Tag <code>tag</code> String <code>path</code> String <code>type</code>.It is also possible to export classes with String <code>path</code> String <code>name</code> String <code>type</code> as parameters. The tag is not compulsory and can be excluded or included depending on the user. Below is the basic idea of the constructor for the class:</p>
 </div>
@@ -645,7 +510,7 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspects-implementation-export-command"><a class="link" href="#aspects-implementation-export-command">Aspects : Implementation Export Command</a></h5>
 <div class="ulist">
@@ -693,7 +558,7 @@ Lists all command shortcuts.</p>
 <div class="sect2">
 <h3 id="personalised-shortcut"><a class="link" href="#personalised-shortcut">Personalised Shortcut</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The personalised shortcut uses a <code>ShortcutDouble</code> to hold the shortcut word and the command word. There is a <code>UniqueShortcutDoublesList</code> to which these <code>ShortcutDoubles</code> are added. The comparator in the <code>ShortcutDouble</code> accounts to check for any duplicates in the <code>UniqueShortcutDoublesList</code>. This list is then added to the <code>addressbook.xml</code> so as to load the shortcuts on initialisation. Below is a short code snippet of the constructor of the ShortcutDouble:</p>
 </div>
@@ -753,7 +618,7 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspects-implementation-shortcut-command"><a class="link" href="#aspects-implementation-shortcut-command">Aspects : Implementation Shortcut Command</a></h5>
 <div class="ulist">
@@ -785,6 +650,194 @@ Lists all command shortcuts.</p>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="appendix-a-proposed-enhancement"><a class="link" href="#appendix-a-proposed-enhancement">Appendix A : Proposed Enhancement</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="a-1-other-features-implemented"><a class="link" href="#a-1-other-features-implemented">A.1 Other features Implemented</a></h3>
+<div class="sect3">
+<h4 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Minor Enhancement: Personalised Shortcut Commands</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="List"><a class="link" href="#List">Listing all contact/student/task/appointment/shortcuts : <code>list</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all of the specified <code>TYPE</code>.<br>
+Format: <code>list TYPE</code>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>TYPE</code> can be of the following: <code>contacts</code>, <code>students</code>, <code>tasks</code>, <code>appointments</code>, <code>shortcuts</code>.</p>
+</li>
+<li>
+<p><code>TYPE</code> cannot be empty.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="paragraph">
+<p><code>list students</code><br>
+Lists all students. <code>Figure 10</code> given below shows the student list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/studentList.jpg" alt="studentList" width="100">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 10: Student List displayed as active list</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other examples :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list tasks</code><br>
+Lists all tasks.</p>
+</li>
+<li>
+<p><code>list appointments</code><br>
+Lists all appointments.</p>
+</li>
+<li>
+<p><code>list shortcuts</code><br>
+Lists all command shortcuts.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+<div class="sect3">
+<h4 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Major Enhancement: Sharing of Contacts</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from DeveloperGuide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-contacts"><a class="link" href="#import-contacts">Import Contacts</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The ImportCommand uses <code>XmlAddressBookStorage</code> to generate a temporary <code>AddressBook</code> object from a given path. It takes in a String value path. The command then adds the contacts or the classes found in the temporary <code>AddressBook</code> object into the model. Below is the rough idea of the constructor for the class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ImportCommand(<span class="predefined-type">String</span> importPath) {
+        requireNonNull(importPath);
+        <span class="local-variable">this</span>.filePath = importPath;
+        addressBookStorage = <span class="keyword">new</span> XmlAddressBookStorage(filePath);
+}</code></pre>
+</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/ImportCommandFlowChart.png" alt="ImportCommandFlowChart">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 19: Import command flow chart</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Import command extends <code>Undoable Command</code> and hence Undo can be called on it. It also initially checks if the given file path is valid and if so initialises the contacts from there, creates a <code>Person</code> object and adds it to the current <code>TeachConnect</code> with the help of <code>model</code>.For importing classes <code>Class</code> objects are first created and <code>students</code> related to the classes are stored before being added to the model. The code can be found below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+     peopleToBeImported(people);
+     studentToBeImported(students);
+     classesToBeImported(students, classes);
+
+     <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspects-implementation-import-command"><a class="link" href="#aspects-implementation-import-command">Aspects : Implementation Import Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> User can only import from an <code>XML</code> file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This implementation goes well with the idea of TeachConnect. It&#8217;s easier to implement and also there is a clear distinction of the file that needs to be imported by the user with the help of the .XML extension.</p>
+</li>
+<li>
+<p>Cons: Users might want to import from Excel only to realise this isn&#8217;t possible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Users can import from an <code>Excel</code> file too.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This implementation might be more intuitive for the user and might come in handy.</p>
+</li>
+<li>
+<p>Cons: This implementation will not really help the user to distinguish the exact file to be imported. Care has to be taken so that the input by the user follows a certain format to parse the content properly.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from DeveloperGuide)</mark></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Minor Enhancement: Personalised Shortcut Commands</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
 </div>
 </div>
 </div>
@@ -866,13 +919,8 @@ Lists all command shortcuts.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="appendix-a-proposed-enhancement"><a class="link" href="#appendix-a-proposed-enhancement">Appendix A : Proposed Enhancement</a></h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="a-1-enhancement-proposed-saving-data-on-server"><a class="link" href="#a-1-enhancement-proposed-saving-data-on-server">A.1 Enhancement Proposed: Saving Data on Server</a></h3>
+<h3 id="a-2-enhancement-proposed-saving-data-on-server"><a class="link" href="#a-2-enhancement-proposed-saving-data-on-server">A.2 Enhancement Proposed: Saving Data on Server</a></h3>
 <div class="sect3">
 <h4 id="external-behaviour"><a class="link" href="#external-behaviour">External Behaviour</a></h4>
 <div class="paragraph">
@@ -917,7 +965,7 @@ The files are encrypted using the SHA algorithm to prevent it from being read by
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 12:26:34 UTC
+Last updated 2018-04-15 13:59:29 UTC
 </div>
 </div>
 </body>
