@@ -95,7 +95,11 @@
 <li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
 <li><a href="#adding-a-student">G.3. Adding a student</a></li>
 <li><a href="#forming-a-class-of-students">G.4. Forming a class of students</a></li>
-<li><a href="#saving-data">G.5. Saving data</a></li>
+<li><a href="#importing-contacts">G.5. Importing Contacts</a></li>
+<li><a href="#exporting-contacts">G.6. Exporting Contacts</a></li>
+<li><a href="#creating-shortcuts">G.7. Creating shortcuts</a></li>
+<li><a href="#delete-shortcuts">G.8. Delete shortcuts</a></li>
+<li><a href="#saving-data">G.9. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2878,7 +2882,111 @@ Expected: No class is formed. Error message is shown. List view not toggled.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.5. Saving data</a></h3>
+<h3 id="importing-contacts"><a class="link" href="#importing-contacts">G.5. Importing Contacts</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Importing contacts into the book.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Create a sample xml file to import.</p>
+</li>
+<li>
+<p>Test case: <code>import {path of the file}</code><br>
+Expected: Number of contacts, student, classes imported.</p>
+</li>
+<li>
+<p>Test case: <code>import {empty xml file}</code><br>
+Expected: No person is imported.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>import {wrong file path}</code> responds with incorrect file path error.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-contacts"><a class="link" href="#exporting-contacts">G.6. Exporting Contacts</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Exports contacts/classes from the book.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: The path should be to a valid folder</p>
+</li>
+<li>
+<p>Test case: <code>export classes n/sampleclasses p/./Desktop/Folder te/excel</code><br>
+Expected: Exports all the classes along with the names of the students in them.</p>
+</li>
+<li>
+<p>Test case: <code>export n/samplefile r/all t/friends p/./Desktop/Folder te/excel</code><br>
+Expected: Exports all the contacts with the tag friends to the folder mentioned.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>export n/samplefile r/all t/friends p/./Desktop/Folder te/{something other than excel or xm}</code> responds with invalid format exception.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-shortcuts"><a class="link" href="#creating-shortcuts">G.7. Creating shortcuts</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creates shortcuts for the required command.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: That shortcut should not exist</p>
+</li>
+<li>
+<p>Test case: <code>shortcut list l</code><br>
+Expected: Should create a shortcut for the command <code>list</code> with <code>l</code>.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>shortcut list add</code> responds with error message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-shortcuts"><a class="link" href="#delete-shortcuts">G.8. Delete shortcuts</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deletes shortcuts for the required command.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: That shortcut should exist</p>
+</li>
+<li>
+<p>Test case: <code>delete_shortcut list l</code><br>
+Expected: Should delete the shortcut for the command <code>list</code> with <code>l</code>.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>delete_shortcut list add</code> responds with error message because the command is not present.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.9. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2902,7 +3010,7 @@ Expected: No class is formed. Error message is shown. List view not toggled.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 14:34:16 UTC
+Last updated 2018-04-15 14:52:57 UTC
 </div>
 </div>
 </body>
