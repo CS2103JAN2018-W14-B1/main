@@ -65,7 +65,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TeachConnect (TC) is created to assist teachers and other educational professionals in <strong>managing their contacts, appointments and tasks</strong>. TeachConnect is also tailored for teachers who would <strong>prefer to use a Desktop App for managing contacts</strong>. Most importantly, it is *optimized for those who prefer to enter input using keyboard while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeachConnect will manage your contacts faster than traditional GUI apps.</p>
+<p>TeachConnect (TC) is created to assist teachers and other educational professionals in <strong>managing their contacts, appointments and tasks</strong>. TeachConnect is also tailored for teachers who would <strong>prefer to use a Desktop App for managing contacts</strong>. Most importantly, it is <strong>optimized for those who prefer to enter input using keyboard</strong> while still having the benefits of seeing the results on a screen. If you can type fast, TeachConnect will manage your contacts faster than traditional contact books.</p>
 </div>
 </div>
 </div>
@@ -84,6 +84,9 @@ Let’s jump to <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a> 
 <div class="sect1">
 <h2 id="quick-start"><a class="link" href="#quick-start">3. Quick Start</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>There a few pre-requisites that you might need to install. This shouldn&#8217;t take more than a few minutes. If you already have them installed, please move to <a href="#Features">Section 5, &#8220;Features&#8221;</a> to learn more about our features:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -109,7 +112,7 @@ You can download the latest Java version <a href="https://java.com/en/download/"
 <p>Copy the file to the folder you want to use as the home folder for your TeachConnect.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds. For details of each GUI component, you can refer to <a href="#UserInterface">Section 4, &#8220;User Interface&#8221;</a>. <code>Figure 1</code> displays an example of a successfully start up GUI.</p>
+<p>Double-click the file to start the app. The application screen should appear in a few seconds. For details of each component of the application, you can refer to <a href="#UserInterface">Section 4, &#8220;User Interface&#8221;</a>. <code>Figure 1</code> displays an example of the screen on loading the application.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/StartupUI.jpg" alt="StartupUI" width="800">
@@ -117,7 +120,7 @@ You can download the latest Java version <a href="https://java.com/en/download/"
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Figure 1: GUI with Light Theme selected</pre>
+<pre>Figure 1: Application screen with Light Theme selected</pre>
 </div>
 </div>
 </li>
@@ -155,7 +158,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h2 id="UserInterface"><a class="link" href="#UserInterface">4. User Interface</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TeachConnect GUI consists of 5 major components: menu bar, command box, command result box, active list, and calendar view. <code>Figure 2</code> annotates the position of each component in the GUI.</p>
+<p>TeachConnect application screen consists of 5 major components: menu bar, command box, command result box, active list, and calendar view. <code>Figure 2</code> annotates the position of each component in the application screen.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -164,14 +167,14 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Figure 2: Position of GUI components</pre>
+<pre>Figure 2: Position of various components</pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Menu bar:<br>
-Contains drop down option for closing TeachConnect or opening the User Guide.</p>
+Contains two options <code>File</code> and <code>Help</code>. <code>File</code> creates a drop down menu to exit the application. <code>Help</code> opens the help window if needed.</p>
 </li>
 <li>
 <p>Command box:<br>
@@ -183,8 +186,8 @@ Shows result message upon execution of any input entered.</p>
 </li>
 <li>
 <p>Active List:<br>
-Displays the full list of <code>contacts</code>, <code>students</code>, <code>appointments</code>, <code>tasks</code>, <code>classes</code> or <code>shortcuts</code> stored by TeachConnect, with the active item list selected by the last <code>list</code> command. The default list selected upon successful start up of TeachConnect is <code>contacts</code>. You can refer to <a href="#List">Section 5.9, &#8220;Listing all contact/task/appointment/student : <code>list</code>&#8221;</a> for more details.<br>
-Item in the list is shown as a card with an index which can be used for <code>delete</code> or <code>edit</code> command, together with their details. <code>Figure 3</code> shows the components of typical cards in the contact list. A student marker on the top right corner of the card is used to distinguish students from other people.</p>
+Displays the full list of <code>contacts</code>, <code>students</code>, <code>appointments</code>, <code>tasks</code>, <code>classes</code> or <code>shortcuts</code> stored by TeachConnect. The active item list is selected by the last <code>list</code> command entered. The default list selected upon successful start up of TeachConnect is <code>contacts</code>. You can refer to <a href="#List">Section 5.9, &#8220;Listing all contact/task/appointment/student : <code>list</code>&#8221;</a> for more details.<br>
+Item in the list is shown as a card with an index which can be used for <code>delete</code> or <code>edit</code> commands, together with their details. <code>Figure 3</code> shows the components of a typical card in the contacts list. A student marker on the top right corner of the card is used to distinguish students from other people.</p>
 </li>
 </ul>
 </div>
@@ -202,7 +205,7 @@ Item in the list is shown as a card with an index which can be used for <code>de
 <ul>
 <li>
 <p>Calendar view:<br>
-Shows all appointment you have within the day, week or month depending on which view mode is selected. You can refer to <a href="#SwitchingCalendarViewmode">Section 5.8, &#8220;Switching Calendar View mode : <code>calendar</code>&#8221;</a> for the different Calendar view mode.</p>
+Shows all appointments you have within the day, week or month depending on which view mode is selected. You can refer to <a href="#SwitchingCalendarViewmode">Section 5.8, &#8220;Switching Calendar View mode : <code>calendar</code>&#8221;</a> for the different calendar view modes.</p>
 </li>
 </ul>
 </div>
@@ -338,7 +341,7 @@ Format: <code>form SUBJECT s/START_DATE e/END_DATE i/INDEX&#8230;&#8203;</code><
 <ul>
 <li>
 <p><code>list students</code><br>
-<code>form English s/18/01/2018 e/17/07/2019</code> i/1,5,2<br>
+<code>form English s/18/01/2018 e/17/07/2019 i/1,5,2</code><br>
 Forms an English class containing the first, second and fifth contact in the list that starts in 18 Jan 2018 to 17 July 2019.</p>
 </li>
 </ul>
@@ -741,10 +744,21 @@ Exports contacts from 1 to 10 with tag students to an excel file named <code>Stu
 <td class="content">
 You can choose multiple shortcuts for the same command.<br>
 You can later use these shortcuts in place of the original command even after closing and reopening the app.<br>
-You can also set shortcut for the shortcut command.
+You can also set shortcut for the shortcut command.<br>
+You can always see the list of shortcuts you set using <code>list shortcuts</code> as shown in Figure 13.
 </td>
 </tr>
 </table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ShortcutsList.png" alt="ShortcutsList" width="800">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Figure 13: List of shortcuts stored</pre>
+</div>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -758,19 +772,6 @@ Your shortcut word cannot be more than a single word.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>You can always see the list of shortcuts you set using <code>list shortcuts</code> as shown in the figure below.<br></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ShortcutsList.png" alt="ShortcutsList" width="800">
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Figure 13: List of shortcuts stored</pre>
-</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -929,7 +930,7 @@ Shows all contacts with <code>john</code> in their name.</p>
 </li>
 <li>
 <p><code>find Betsy Tim John</code><br>
-Shows al contacts with <code>Betsy</code>, <code>Tim</code>, or <code>John</code> in their name.</p>
+Shows all contacts with <code>Betsy</code>, <code>Tim</code>, or <code>John</code> in their name.</p>
 </li>
 </ul>
 </div>
@@ -1131,7 +1132,7 @@ Format: <code>exit</code></p>
 <div class="sect2">
 <h3 id="saving-the-data"><a class="link" href="#saving-the-data">5.23. Saving the data</a></h3>
 <div class="paragraph">
-<p>Saves data in the hard disk automatically [even while sharing TeachConnect] after any command that changes the data.<br>
+<p>Saves data in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
@@ -1313,7 +1314,7 @@ There is no need to save manually.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:46:58 UTC
+Last updated 2018-04-15 10:36:59 UTC
 </div>
 </div>
 </body>
