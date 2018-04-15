@@ -1000,7 +1000,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The ImportCommand uses <code>XmlAddressBookStorage</code> to generate a temporary <code>AddressBook</code> object from a given path. It takes in a String value path. The command then adds the contacts or the classes found in the temporary <code>AddressBook</code> object into the main address book object. Below is the rough idea of the constructor for the class:</p>
+<p>The ImportCommand uses <code>XmlAddressBookStorage</code> to generate a temporary <code>AddressBook</code> object from a given path. It takes in a String value path. The command then adds the contacts or the classes found in the temporary <code>AddressBook</code> object into the model. Below is the rough idea of the constructor for the class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1022,7 +1022,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>Import command extends <code>Undoable Command</code> and hence Undo can be called on it. It initially checks if the given file path is valid and if so initialises the contacts from there, creates a <code>Person</code> object and adds it to the current <code>TeachConnect</code> with the help of <code>model</code>.For importing classes class objects are first created and students related to the classes are stored before being added to the model. The code can be found below.</p>
+<p>Import command extends <code>Undoable Command</code> and hence Undo can be called on it. It also initially checks if the given file path is valid and if so initialises the contacts from there, creates a <code>Person</code> object and adds it to the current <code>TeachConnect</code> with the help of <code>model</code>.For importing classes <code>Class</code> objects are first created and <code>students</code> related to the classes are stored before being added to the model. The code can be found below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1104,7 +1104,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>The method <code>handleRange()</code> splits the range using a separator [, in this case] and returns a <code>String</code> array with the upper bound and lower bound as values. In some cases it also returns <code>all</code> or the single <code>index</code> that has to be exported. Based on the type it also exports to an excel format or XML format.</p>
+<p>The method <code>handleRange()</code> splits the range using a separator "," and returns a <code>String</code> array with the upper bound and lower bound as values. In some cases it also returns the String <code>all</code> or the single integer <code>index</code> that has to be exported. Based on the type it also exports to an excel format (CSV file) or XML format (XML file).</p>
 </div>
 <div class="paragraph">
 <p>Below is an extract of the method <code>handleRange()</code>:</p>
@@ -1124,7 +1124,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>Choosing to export classes follows a different pattern. It exports all the classes and the students related to those classes.</p>
 </div>
 <div class="paragraph">
-<p>Any range with more than 2 values in the String array returned throws an IO Exception. To add the contacts to the export file, contacts are added to the teachConnectBook. There are 4 individual cases and multiple combinations of these:</p>
+<p>Any range with more than 2 values in the String array returns an IO Exception. There are 4 individual cases when exporting contacts and multiple combinations of these:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1181,77 +1181,10 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </ul>
 </div>
 <div class="paragraph">
-<p>Below is the code snippet to identify the three cases in the user input:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">String</span><span class="type">[]</span> rangeGiven;
-        <span class="keyword">try</span> {
-            rangeGiven = handleRange();
-        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_RANGE_ERROR);
-        }
-
-
-        <span class="keyword">try</span> {
-            handledRangeSituation = handleRangeArray(rangeGiven);
-        } <span class="keyword">catch</span> (DuplicatePersonException e) {
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_FAIL);
-        } <span class="keyword">catch</span> (<span class="exception">IndexOutOfBoundsException</span> e) {
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_OUT_OF_BOUNDS);
-        }
-
-        <span class="keyword">if</span> (handledRangeSituation != <span class="predefined-constant">null</span>) {
-            <span class="keyword">return</span> handledRangeSituation;
-        }
-        ....Storage part comes here</code></pre>
-</div>
+<p>The final step is to create the xml/excel file from the <code>teachConnectBook</code>. This is done with the help of the method <code>tryStorage()</code>.</p>
 </div>
 <div class="paragraph">
-<p>The final step is to create the xml/excel file from the <code>teachConnectBook</code>.</p>
-</div>
-<div class="paragraph">
-<p>Below is the code snippet to export the data into an xml file using <code>AddressBookStorage</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">teachConnectStorage = <span class="keyword">new</span> XmlAddressBookStorage(path + <span class="string"><span class="delimiter">&quot;</span><span class="content">/</span><span class="delimiter">&quot;</span></span> + nameOfExportFile + <span class="string"><span class="delimiter">&quot;</span><span class="content">.xml</span><span class="delimiter">&quot;</span></span>);
-        <span class="keyword">try</span> {
-            teachConnectStorage.saveAddressBook(teachConnectBook);
-        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_FAIL);
-        }
-        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Depending on the type of export it can also be exported to an excel format using an arrayList called <code>exportAddition</code>.</p>
-</div>
-<div class="paragraph">
-<p>Below is the code snipped to export the data into an excel file.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">CSVPrinter csvPrinter;
-       <span class="keyword">try</span> {
-            csvPrinter = csvFileToBeWritten(isClassesOrNot);
-            } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-                <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_FAIL));
-            }
-
-            <span class="keyword">if</span> (isClassesOrNot) {
-               saveAsCsvClasses(csvPrinter);
-            } <span class="keyword">else</span> {
-               saveAsCsvPersons(csvPrinter);
-            }
-
-            <span class="keyword">try</span> {
-                csvPrinter.flush();
-                } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-                e.printStackTrace();
-            }
-       exceptions are to be handled...</code></pre>
-</div>
+<p>Depending on the type of export it can also be exported to an excel format with the help of Arraylists called <code>exportAdditionPeople</code>, <code>exportAdditionClasses</code>, <code>exportAdditionStudents</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1278,7 +1211,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Might be more intuitive for the user and might come in handy especially when the user wants to print it or later read the contents in a user friendly format.</p>
+<p>Pros: Might be more intuitive for the user and might come in handy especially when the user wants to print it later or read the contents in a user friendly format.</p>
 </li>
 <li>
 <p>Cons: Complex implementation there by giving rise to more boundary cases to consider.</p>
@@ -1318,41 +1251,13 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>Shortcut command extends <code>UndoableCommand</code> and hence is undoable. It initially calls a filtered commandsList to which a new <code>ShortcutDouble</code> is added based on the checks. Below is the implementation of the <code>executeUndoableCommand()</code> method in the ShortcutCommand class.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">commandsList = model.getFilteredCommandsList();
-        checks <span class="keyword">for</span> checking <span class="keyword">if</span> the command is already present...
-
-        ShortcutDoubles toAdd = <span class="keyword">new</span> ShortcutDoubles(shortcutWord, commandWord);
-        <span class="keyword">try</span> {
-            model.addCommandShortcut(toAdd);
-        } <span class="keyword">catch</span> (UniqueShortcutDoublesList.DuplicateShortcutDoublesException e) {
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SHORTCUT_AVAILABLE));
-        }
-
-        returns the success message....</code></pre>
-</div>
+<p>Shortcut command extends <code>UndoableCommand</code> and hence is undoable. It initially calls a filtered commandsList to which a new <code>ShortcutDouble</code> is added if it passes all validity checks.</p>
 </div>
 <div class="paragraph">
-<p>There is a check to find if the command is already present and the method used for this is called <code>checkIfCommandPresent()</code>.By default it returns false. Below is a small code snippet to take notice of:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (!containsKeyWord(commandWord) || containsKeyWord(shortcutWord)) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NO_COMMAND_TO_MAP);
-}
-<span class="keyword">for</span> (ShortcutDoubles s : commandsList) {
-     <span class="keyword">if</span> (s.shortcutWord.equals(shortcutWord)) {
-         <span class="keyword">return</span> <span class="predefined-constant">true</span>;
-     }
-}
-<span class="keyword">return</span> <span class="predefined-constant">false</span>;</code></pre>
-</div>
+<p>There is a check to find if the command is already present and the method used for this is called <code>checkIfCommandPresent()</code>.By default it returns false.</p>
 </div>
 <div class="paragraph">
-<p>You can also choose to list all the shortcuts created uptil now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. <code>Figure 21</code> gives an example of a high level sequence diagram.</p>
+<p>You can also choose to list all the shortcuts created until now. This displays the <code>UniqueShortcutDoublesList</code> instead of the contacts in the list panel. A high level sequence diagram is given below :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1368,7 +1273,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>As of now the conditions to take note of are:
 * Shortcut can be only one word.
 * The command word should already exist.
-* New commands are to be added in the <code>commandsPresent</code> String array.</p>
+* New commands are to be added in the <code>commandsPresent</code> String array of <code>ShortcutCommand</code> class.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1385,7 +1290,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>Pros: Allows for setting up a shortcut word there by increasing the usability of the app.</p>
 </li>
 <li>
-<p>Cons: Wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because there is only one shortcut alias and the user might forget it.</p>
+<p>Cons: Wouldn&#8217;t help much if the user keeps forgetting the shortcut word too because if there is only one shortcut alias and the user might forget it.</p>
 </li>
 </ul>
 </div>
@@ -1413,18 +1318,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The personalised shortcut uses a <code>ShortcutDouble</code> to hold the shortcut word and the command word. There is a <code>UniqueShortcutDoublesList</code> to which these <code>ShortcutDoubles</code> are added. The comparator in the <code>ShortcutDouble</code> accounts to check for any duplicates in the <code>UniqueShortcutDoublesList</code>. This list is then added to the <code>addressbook.xml</code> so as to load the shortcuts on initialisation. Below is a short code snippet of the constructor of the ShortcutDouble:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ShortcutDoubles(<span class="predefined-type">String</span> shortcutWord, <span class="predefined-type">String</span> commandWord) {
-        <span class="local-variable">this</span>.shortcutWord = shortcutWord;
-        <span class="local-variable">this</span>.commandWord = commandWord;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This ShortcutDouble can be deleted using the <code>DeleteShortcutCommand</code>. The sequence diagram is below :</p>
+<p>The ShortcutDouble can be deleted using the <code>DeleteShortcutCommand</code>. The sequence diagram is below :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1437,7 +1331,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>Below is the constructor to the DeleteShortcutCommand:</p>
+<p>The <code>ShortcutDouble</code> is deleted from the <code>UniqueShortcutDoublesList</code>. It throws a <code>CommandShortcutNotFoundException</code> in case the shortcut is not found. Below is the constructor to the DeleteShortcutCommand:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1449,24 +1343,11 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>DeleteShortcut command extends <code>UndoableCommand</code> and hence is undoable. It calls the method <code>deleteCommandShortcut()</code> in the model class to achieve its objective. Below is a code snippet of the <code>executeUndoableCommand()</code> used to for deleting the shortcut:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">       <span class="keyword">try</span> {
-            model.deleteCommandShortcut(commandShortcut);
-        } <span class="keyword">catch</span> (UniqueShortcutDoublesList.CommandShortcutNotFoundException csnf) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="string"><span class="delimiter">&quot;</span><span class="content">Please enter a valid Shortcut Command you have saved</span><span class="delimiter">&quot;</span></span>);
-        }
-        returns the success message....</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>There is a check to find if the shortcut is already present or not and <code>CommandShortcutNotFoundException</code> is thrown if the shortcut is not present.</p>
+<p>DeleteShortcut command extends <code>UndoableCommand</code> and hence is undoable. It calls the method <code>deleteCommandShortcut()</code> in the model class to achieve its objective.</p>
 </div>
 <div class="paragraph">
 <p>As of now the conditions to take note of are:
-* DeleteShortcut can be only delete something if the command is already present.</p>
+* DeleteShortcut can only delete a shortcut if the command is already present and the shortcut has been made previously.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1483,7 +1364,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>Pros: Would require less implementation considering the fact that the shortcut has been added by the user.</p>
 </li>
 <li>
-<p>Cons: Would not give the user any room for mistake or change of mind as once added cannot be deleted.</p>
+<p>Cons: Would not give the user any room for mistake or change of mind as once added it would be not possible to delete it.</p>
 </li>
 </ul>
 </div>
@@ -2833,7 +2714,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 03:56:48 UTC
+Last updated 2018-04-15 04:15:19 UTC
 </div>
 </div>
 </body>
