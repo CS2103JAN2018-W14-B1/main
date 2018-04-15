@@ -95,11 +95,14 @@
 <li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
 <li><a href="#adding-a-student">G.3. Adding a student</a></li>
 <li><a href="#forming-a-class-of-students">G.4. Forming a class of students</a></li>
-<li><a href="#importing-contacts">G.5. Importing Contacts</a></li>
-<li><a href="#exporting-contacts">G.6. Exporting Contacts</a></li>
-<li><a href="#creating-shortcuts">G.7. Creating shortcuts</a></li>
-<li><a href="#delete-shortcuts">G.8. Delete shortcuts</a></li>
-<li><a href="#saving-data">G.9. Saving data</a></li>
+<li><a href="#adding-an-appointment">G.5. Adding an appointment</a></li>
+<li><a href="#adding-a-task">G.6. Adding a task</a></li>
+<li><a href="#changing-theme">G.7. Changing theme</a></li>
+<li><a href="#importing-contacts">G.8. Importing Contacts</a></li>
+<li><a href="#exporting-contacts">G.9. Exporting Contacts</a></li>
+<li><a href="#creating-shortcuts">G.10. Creating shortcuts</a></li>
+<li><a href="#delete-shortcuts">G.11. Delete shortcuts</a></li>
+<li><a href="#saving-data">G.12. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2882,7 +2885,69 @@ Expected: No class is formed. Error message is shown. List view not toggled.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-contacts"><a class="link" href="#importing-contacts">G.5. Importing Contacts</a></h3>
+<h3 id="adding-an-appointment"><a class="link" href="#adding-an-appointment">G.5. Adding an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding an appointment to TeachConnect</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test Case: <code>set_appointment t/Private meeting s/20/04/2018 18:00 e/20/04/2018 20:00 i/3</code><br>
+Expected: The list view is toggled to the appointment list where a new appointment card is added. The appointment should be with the third person in the most recent contact listing. The appointment should also show up on the calendar in the GUI. If you don&#8217;t see the appointment on the calendar Day View, try to switch to the Week View or Month View using <code>calendar</code> command.</p>
+</li>
+<li>
+<p>Test Case: <code>set_appointment t/Consultation s/32/04/2018 18:00 e/32/05/2018 21:00</code><br>
+Expected: No appointment is added as the date is invalid. Error message is shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-task"><a class="link" href="#adding-a-task">G.6. Adding a task</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a task to TeachConnect</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test Case: <code>set_task t/Collect documents e/21/04/2018 20:00</code><br>
+Expected: The list view is toggled to the task list where a new task card is added.</p>
+</li>
+<li>
+<p>Test Case: <code>set_task t/Grade papers e/29/02/2018 21:00</code><br>
+Expected: The list view is toggled to the task list where a new task card is added. There is an <code>Expired</code> tag on the task card as the deadline of the task already passed.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-theme"><a class="link" href="#changing-theme">G.7. Changing theme</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Changing the theme of the GUI</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test Case: <code>theme dark</code><br>
+Expected: The theme of the GUI should be changed to <code>dark</code> theme. Success message is shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-contacts"><a class="link" href="#importing-contacts">G.8. Importing Contacts</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2910,7 +2975,7 @@ Expected: No person is imported.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-contacts"><a class="link" href="#exporting-contacts">G.6. Exporting Contacts</a></h3>
+<h3 id="exporting-contacts"><a class="link" href="#exporting-contacts">G.9. Exporting Contacts</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2938,7 +3003,7 @@ Expected: Exports all the contacts with the tag friends to the folder mentioned.
 </div>
 </div>
 <div class="sect2">
-<h3 id="creating-shortcuts"><a class="link" href="#creating-shortcuts">G.7. Creating shortcuts</a></h3>
+<h3 id="creating-shortcuts"><a class="link" href="#creating-shortcuts">G.10. Creating shortcuts</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2962,7 +3027,7 @@ Expected: Should create a shortcut for the command <code>list</code> with <code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-shortcuts"><a class="link" href="#delete-shortcuts">G.8. Delete shortcuts</a></h3>
+<h3 id="delete-shortcuts"><a class="link" href="#delete-shortcuts">G.11. Delete shortcuts</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2986,7 +3051,7 @@ Expected: Should delete the shortcut for the command <code>list</code> with <cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.9. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.12. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3010,7 +3075,7 @@ Expected: Should delete the shortcut for the command <code>list</code> with <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 14:52:57 UTC
+Last updated 2018-04-15 14:59:10 UTC
 </div>
 </div>
 </body>
